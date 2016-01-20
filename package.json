@@ -1,0 +1,23 @@
+{
+  "name": "sonrasc-front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brennj55/sonrasc-front.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brennj55/sonrasc-front/issues"
+  },
+  "homepage": "https://github.com/brennj55/sonrasc-front#readme",
+  "dependencies": {
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.0"
+  }
+}
