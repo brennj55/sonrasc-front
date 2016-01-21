@@ -7,5 +7,5 @@ RUN npm install webpack -g
 RUN npm install webpack-dev-server -g
 
 EXPOSE 8080
-CMD [ "npm", "run", "dev" ]
-#CMD [ "bash" ]
+#CMD [ "npm", "run", "dev" ]
+CMD [ "bash" ]
