@@ -1,5 +1,3 @@
-'use strict';
-var component = require('./component.js');
+import x from './component.js';
 
-
-document.body.appendChild(component());
+document.write(x);
