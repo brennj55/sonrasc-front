@@ -1,2 +1,1 @@
-let sum = (x, y) => x + y;
-export default sum;
+let x = 100000000000;

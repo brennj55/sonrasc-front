@@ -1,12 +1,11 @@
 var path = require('path');
 
 module.exports = {
-  entry: './app/main.js',
+  entry: './tests/main.js',
   output: {
     path: __dirname,
-    filename: './build/bundle.js'
+    filename: 'testBundle.js'
   },
-  devtool: 'eval-source-map',
   module: {
     loaders: [
       {
@@ -18,14 +17,5 @@ module.exports = {
         }
       }
     ]
-  },
-  resolve: {
-    root: [
-      path.resolve('./app/')
-    ]
-  },
-  devServer: {
-    port: 8080,
-    host: "0.0.0.0"
   }
 };

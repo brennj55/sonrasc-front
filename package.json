@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "echo \"fix me for production\"",
+    "start": "echo \"LOL me for production\"",
     "dev": "webpack-dev-server --devtool eval --progress --colors",
     "build": "webpack"
   },
   "jest": {
-    "rootDir": "src",
-    "scriptPreprocessor": "./__tests__/preprocessor.js"
+    "scriptPreprocessor": "./node_modules/webpack-babel-jest",
+    "testFileExtensions": ["es6", "js"],
+    "moduleFileExtensions": ["js", "json", "es6"]
   },
   "repository": {
     "type": "git",
@@ -34,13 +35,11 @@
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
-    "babel-jest": "^6.0.1",
     "babel-loader": "^6.2.1",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "css-loader": "^0.23.1",
-    "jest-cli": "^0.8.2",
-    "jest-webpack-alias": "^2.2.0",
+    "gulp": "^3.9.0",
     "redux-devtools": "^3.0.1",
     "webpack": "^1.12.11"
   }
