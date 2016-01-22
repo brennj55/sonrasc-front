@@ -9,5 +9,5 @@ RUN npm install webpack -g \
                 gulp -g
 
 EXPOSE 8080
-#CMD [ "npm", "run", "dev" ]
-CMD [ "bash" ]
+CMD [ "npm", "run", "dev" ]
+#CMD [ "bash" ]

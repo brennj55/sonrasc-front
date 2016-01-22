@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "echo \"LOL me for production\"",
-    "dev": "webpack-dev-server --devtool eval --progress --colors",
+    "dev": "gulp default",
     "build": "webpack"
   },
   "jest": {
