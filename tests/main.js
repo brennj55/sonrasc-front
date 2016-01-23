@@ -1,4 +1,4 @@
-import { todos } from '../app/main.js';
+import { todos, currentInputText } from '../app/main.js';
 
 describe('Todos', () => {
   const stateBefore = [];
@@ -74,5 +74,18 @@ describe('Todos', () => {
       todos(stateBefore, action)
     ).toEqual(stateAfter);
 
+  });
+
+  it('Set input text', () => {
+    const stateBefore = '';
+    const action = {
+      type: 'SET_TEXT',
+      text: 'H'
+    };
+    const stateAfter = 'H';
+    Object.freeze(action);
+    expect(
+      currentInputText(stateBefore, action)
+    ).toEqual(stateAfter);
   });
 });

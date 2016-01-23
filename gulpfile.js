@@ -4,14 +4,6 @@ var webpack = require("webpack");
 var gutil = require('gulp-util');
 var webpackDevServer = require('webpack-dev-server');
 
-var paths = {
-  test: ['tests/*.js']
-};
-
-gulp.task('build', function() {
-  return webpackStream(require('./webpack.config.js'));
-});
-
 gulp.task('tests:build', function() {
   return webpackStream(require('./webpack.config.tests.js'))
     .pipe(gulp.dest('./tests/'));
@@ -28,8 +20,4 @@ gulp.task("webpack-dev-server", function(callback) {
     });
 });
 
-gulp.task('tests:watch', function() {
-  gulp.watch(paths.test, ['tests:build']);
-});
-
-gulp.task('default', ['tests:watch', 'webpack-dev-server']);
+gulp.task('default', ['tests:build', 'webpack-dev-server']);
