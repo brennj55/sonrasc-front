@@ -1,9 +1,9 @@
 import * as types from '../../app/constants/ActionTypes.js';
 import { items } from '../../app/reducers/invoice.js';
 
-export default describe('Invoice actions', () => {
+export default describe('Add an invoice - ', () => {
 
-  describe('Add an invoice', () => {
+  describe('Add an item - ', () => {
     const initialState = [];
     const item = {
       quantity: 1,
@@ -20,7 +20,7 @@ export default describe('Invoice actions', () => {
     Object.freeze(item);
     Object.freeze(action);
 
-    it('should be the inital state.', () => {
+    it('should be empty array', () => {
       expect(items(undefined, {
         type: "NO_ACTION",
         item: {}
