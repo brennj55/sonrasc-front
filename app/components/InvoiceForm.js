@@ -2,78 +2,45 @@ import React, { PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 
 export const fields = [
-  'name',
-  'price',
-  'quantity',
-  'vat'
+  'items[].name',
+  'items[].price',
+  'items[].quantity',
+  'items[].vat'
 ];
-
-const InputFieldHeaders = () => {
-  return (
-    <div>
-      <label>Name</label>
-      <label>Quantity</label>
-      <label>Price</label>
-    </div>);
-};
-
-const InputFields = () => {
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder="Name"
-      />
-      <input
-        type="text"
-        placeholder="Quantity"
-      />
-      <input
-        type="text"
-        placeholder="Price"
-      />
-      <button>+</button>
-    </div>);
-};
 
 class InvoiceForm extends React.Component {
 
-
   render() {
     const {
-      fields : {name, quantity, price, vat}
+      fields : { items }
     } = this.props;
 
     return (
       <form>
-        <div>
-          <InputFieldHeaders />
+
+        {items.map((item, index) =>
+        <div key={index}>
+          <label>Item #{index + 1}</label>
           <div>
-            <input
-              type="text"
-              placeholder="Name"
-              {...name}
-            />
-            <input
-              type="text"
-              placeholder="Quantity"
-              {...quantity}
-            />
-            <input
-              type="text"
-              placeholder="Price"
-              {...price}
-            />
-            <button>+</button>
+            <input type="text" placeholder="Item Name" field={item.name} />
+            <input type="text" placeholder="Price" field={item.price} />
+            <input type="text" placeholder="Quantity" field={item.quantity} />
           </div>
-        </div>
+        </div>)}
+
+        <button
+          onClick={ event => {
+            event.preventDefault();
+            items.addField();
+          }}
+        >{'Add another item'}</button>
       </form>
     );
   }
 }
 
 InvoiceForm = reduxForm({
-  form: 'invoice',
+  form: 'uploadTextInvoice',
   fields
 })(InvoiceForm);
 
