@@ -2,6 +2,7 @@ var path = require('path');
 
 module.exports = [
 {
+  watch: true,
   name: 'dev-build',
   entry: './app/main.js',
   output: {

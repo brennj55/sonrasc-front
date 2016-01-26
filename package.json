@@ -43,6 +43,8 @@
     "redux-devtools": "^3.0.1",
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.2",
-    "webpack": "^1.12.11"
+    "webpack": "^2.0.5-beta",
+    "webpack-dev-server": "^2.0.0-beta",
+    "webpack-stream": "^3.1.0"
   }
 }

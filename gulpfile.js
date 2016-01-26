@@ -1,13 +1,7 @@
 var gulp = require('gulp');
-var webpackStream = require('webpack-stream');
 var webpack = require("webpack");
 var gutil = require('gulp-util');
 var webpackDevServer = require('webpack-dev-server');
-
-gulp.task('tests:build', function() {
-  return webpackStream(require('./webpack.config.tests.js'))
-    .pipe(gulp.dest('./tests/'));
-});
 
 gulp.task("webpack-dev-server", function(callback) {
     // Start a webpack-dev-server
@@ -20,4 +14,4 @@ gulp.task("webpack-dev-server", function(callback) {
     });
 });
 
-gulp.task('default', ['tests:build', 'webpack-dev-server']);
+gulp.task('default', ['webpack-dev-server']);
