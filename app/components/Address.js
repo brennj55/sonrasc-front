@@ -1,7 +1,8 @@
 import React, {Component, PropTypes } from 'react';
 import { fieldName } from '../utils/string.js';
+import TextField from 'material-ui/lib/text-field';
 
-const AddressField = ({addressField}) => ( <input
+const AddressField = ({addressField}) => ( <TextField
   type="text"
   placeholder={fieldName(addressField.name)}
   {...addressField} />
@@ -18,18 +19,14 @@ const AddressProperties = ({address}) => {
 class Address extends Component {
 
   render() {
+    const { address } = this.props;
     return (
       <div>
-        <AddressProperties address={this.props.address} />
+        <AddressProperties address={address} />
       </div>
     );
   }
-}
 
-// Address.PropTypes = {
-//   name:
-//   street: PropTypes.object.isRequired,
-//   town:
-// };
+}
 
 export default Address;

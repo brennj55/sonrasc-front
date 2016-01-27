@@ -3,9 +3,13 @@ import { reduxForm } from 'redux-form';
 import Address from './Address.js';
 import { fieldName } from '../utils/string.js';
 
+import RaisedButton from 'material-ui/lib/raised-button';
+import FlatButton from 'material-ui/lib/flat-button';
+import TextField from 'material-ui/lib/text-field';
+import { DatePickerWrapper } from './MaterialUIWrappers.js';
+
 // TODO: validation on fields.
 // TODO: dont let submission/wipe empty items.
-// TODO: address to, address from
 // TODO: upload image with
 // TODO: date
 // TODO: calculated fields for Quantity * price + VAT
@@ -13,30 +17,42 @@ import { fieldName } from '../utils/string.js';
 // TODO: server side prefilling of fields
 
 export const fields = [
+  'date',
   'addressTo.Name',
   'addressTo.Street',
   'addressTo.Town',
   'addressTo.County',
+  'addressTo.Country',
   'addressFrom.Name',
   'addressFrom.Street',
   'addressFrom.Town',
   'addressFrom.County',
+  'addressFrom.Country',
   'items[].Name',
   'items[].Price',
   'items[].Quantity',
   'items[].VAT'
 ];
 
-const HelperButton = (props) => {
-  return (<button
+const RaisedButtonHelper = (props) => {
+  return (<RaisedButton
     onClick={ event => {
       event.preventDefault();
       props.func();
     }}
-  >{ props.text }</button>);
+  >{ props.text }</RaisedButton>);
 };
 
-const ItemProperty = ({item}) => ( <input
+const FlatButtonHelper = (props) => {
+  return (<FlatButton
+    onClick={ event => {
+      event.preventDefault();
+      props.func();
+    }}
+  >{ props.text }</FlatButton>);
+};
+
+const ItemProperty = ({item}) => ( <TextField
   type="text"
   placeholder={fieldName(item.name)}
   {...item} />
@@ -48,7 +64,7 @@ const Items = ({ items }) => (
     <div key={index}>
       <label> Item #{index + 1} </label>
       { Object.keys(item).map(field => <ItemProperty item={item[field]} key={field} />) }
-      <HelperButton text="-" func={() => items.removeField(index) } />
+      <FlatButtonHelper text="Remove" func={() => items.removeField(index) } />
     </div>
     )}
   </div>
@@ -59,6 +75,7 @@ class InvoiceForm extends React.Component {
   render() {
     const {
       fields : {
+        date,
         items,
         addressTo,
         addressFrom
@@ -67,6 +84,12 @@ class InvoiceForm extends React.Component {
 
     return (
       <form>
+
+        <div>
+          <label>Date Sent:</label>
+          <DatePickerWrapper {...date} hintText={"Date"} />
+        </div>
+
         <div>
           <label>Sent to:</label>
           <Address address={addressTo} />
@@ -74,8 +97,12 @@ class InvoiceForm extends React.Component {
           <Address address={addressFrom} />
         </div>
 
-        <Items items={items} />
-        <HelperButton text="Add item" func={() => items.addField() } />
+        <div>
+          <label>Item List:</label>
+          <Items items={items} />
+          <RaisedButtonHelper text="Add item" func={() => items.addField() } />
+        </div>
+
       </form>
     );
   }

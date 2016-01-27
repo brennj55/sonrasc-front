@@ -1,3 +1,4 @@
+import './styles/main.css';
 import React from 'react';
 import { render } from 'react-dom';
 import { reduxForm } from 'redux-form';
@@ -6,6 +7,9 @@ import configureStore from './store/configureStore.js';
 
 import DevTools from './containers/DevTools.js';
 import InvoiceForm from './components/InvoiceForm.js';
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 // TODO: createStore(app, state_from_server).
 const store = configureStore();

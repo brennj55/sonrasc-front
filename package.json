@@ -4,15 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
     "start": "echo \"LOL me for production\"",
     "dev": "gulp default",
     "build": "webpack"
-  },
-  "jest": {
-    "scriptPreprocessor": "./node_modules/webpack-babel-jest",
-    "testFileExtensions": ["es6", "js"],
-    "moduleFileExtensions": ["js", "json", "es6"]
   },
   "repository": {
     "type": "git",
@@ -25,13 +19,14 @@
   },
   "homepage": "https://github.com/brennj55/sonrasc-front#readme",
   "dependencies": {
-    "css-loader": "^0.23.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-redux": "^4.0.6",
     "redux": "^3.0.5",
     "redux-form": "^4.1.5",
-    "style-loader": "^0.13.0"
+    "style-loader": "^0.13.0",
+    "material-ui": "^0.14.3",
+    "react-tap-event-plugin": "^0.2.1"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
@@ -43,8 +38,8 @@
     "redux-devtools": "^3.0.1",
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.2",
-    "webpack": "^2.0.5-beta",
-    "webpack-dev-server": "^2.0.0-beta",
+    "webpack": "^1.3.0",
+    "webpack-dev-server": "^1.14.1",
     "webpack-stream": "^3.1.0"
   }
 }
