@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
+import Address from './Address.js';
+import { fieldName } from '../utils/string.js';
 
 // TODO: validation on fields.
 // TODO: dont let submission/wipe empty items.
@@ -7,10 +9,18 @@ import { reduxForm } from 'redux-form';
 // TODO: upload image with
 // TODO: date
 // TODO: calculated fields for Quantity * price + VAT
-// TODO: business owner 
+// TODO: business owner
 // TODO: server side prefilling of fields
 
 export const fields = [
+  'addressTo.Name',
+  'addressTo.Street',
+  'addressTo.Town',
+  'addressTo.County',
+  'addressFrom.Name',
+  'addressFrom.Street',
+  'addressFrom.Town',
+  'addressFrom.County',
   'items[].Name',
   'items[].Price',
   'items[].Quantity',
@@ -26,8 +36,6 @@ const HelperButton = (props) => {
   >{ props.text }</button>);
 };
 
-// TODO: Move to utils class.
-const fieldName = (field) => field.slice(field.lastIndexOf(".") + 1);
 const ItemProperty = ({item}) => ( <input
   type="text"
   placeholder={fieldName(item.name)}
@@ -50,11 +58,22 @@ class InvoiceForm extends React.Component {
 
   render() {
     const {
-      fields : { items }
+      fields : {
+        items,
+        addressTo,
+        addressFrom
+      }
   } = this.props;
 
     return (
       <form>
+        <div>
+          <label>Sent to:</label>
+          <Address address={addressTo} />
+          <label>Sent From:</label>
+          <Address address={addressFrom} />
+        </div>
+
         <Items items={items} />
         <HelperButton text="Add item" func={() => items.addField() } />
       </form>
