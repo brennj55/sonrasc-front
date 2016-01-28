@@ -7,30 +7,33 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import FlatButton from 'material-ui/lib/flat-button';
 import TextField from 'material-ui/lib/text-field';
 import { DatePickerWrapper } from './MaterialUIWrappers.js';
+import Paper from 'material-ui/lib/paper';
 
 // TODO: validation on fields.
+// TODO: icons for input fields. 
 // TODO: dont let submission/wipe empty items.
 // TODO: upload image with
-// TODO: date
 // TODO: calculated fields for Quantity * price + VAT
 // TODO: business owner
 // TODO: server side prefilling of fields
 
 export const fields = [
   'date',
-  'addressTo.Name',
-  'addressTo.Street',
-  'addressTo.Town',
-  'addressTo.County',
-  'addressTo.Country',
-  'addressFrom.Name',
-  'addressFrom.Street',
-  'addressFrom.Town',
-  'addressFrom.County',
-  'addressFrom.Country',
-  'items[].Name',
-  'items[].Price',
-  'items[].Quantity',
+  'addressTo.name',
+  'addressTo.street',
+  'addressTo.town',
+  'addressTo.county',
+  'addressTo.country',
+  'addressFrom.name',
+  'addressFrom.street',
+  'addressFrom.town',
+  'addressFrom.county',
+  'addressFrom.country',
+  'business.phone',
+  'business.email',
+  'items[].name',
+  'items[].price',
+  'items[].quantity',
   'items[].VAT'
 ];
 
@@ -77,6 +80,7 @@ class InvoiceForm extends React.Component {
       fields : {
         date,
         items,
+        business,
         addressTo,
         addressFrom
       }
@@ -84,10 +88,11 @@ class InvoiceForm extends React.Component {
 
     return (
       <form>
+        <h2>Upload Invoice</h2>
 
         <div>
           <label>Date Sent:</label>
-          <DatePickerWrapper {...date} hintText={"Date"} />
+          <DatePickerWrapper {...date} hintText={"Date"} autoOk={true} />
         </div>
 
         <div>
@@ -95,6 +100,10 @@ class InvoiceForm extends React.Component {
           <Address address={addressTo} />
           <label>Sent From:</label>
           <Address address={addressFrom} />
+        </div>
+
+        <div>
+          { Object.keys(business).map(field => <ItemProperty item={business[field]} key={field} />) }
         </div>
 
         <div>

@@ -1,3 +1,10 @@
+@import "./reset.css";
+@import "./form.css";
+
 body {
   font-family: 'Roboto', sans-serif;
+}
+
+#appContainer {
+  padding: 1em;
 }

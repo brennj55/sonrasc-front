@@ -29,6 +29,9 @@ module.exports = [
       path.resolve('./app/')
     ]
   },
+  proxy: {
+   "*": "http://192.168.99.100:8080"
+ },
   devServer: {
     port: 8080,
     host: "0.0.0.0"
