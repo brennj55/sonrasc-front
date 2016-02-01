@@ -1,16 +1,20 @@
 import React, { PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
-import Address from './Address.js';
-import { fieldName } from '../utils/string.js';
+import Address from '../../components/Address.js';
+import { fieldName } from '../../utils/string.js';
 
+import Radium from 'radium';
+import styles from './styles.js';
+
+import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
 import FlatButton from 'material-ui/lib/flat-button';
 import TextField from 'material-ui/lib/text-field';
-import { DatePickerWrapper } from './MaterialUIWrappers.js';
-import Paper from 'material-ui/lib/paper';
+import { DatePickerWrapper } from '../../components/MaterialUIWrappers.js';
+
 
 // TODO: validation on fields.
-// TODO: icons for input fields. 
+// TODO: icons for input fields.
 // TODO: dont let submission/wipe empty items.
 // TODO: upload image with
 // TODO: calculated fields for Quantity * price + VAT
@@ -55,10 +59,22 @@ const FlatButtonHelper = (props) => {
   >{ props.text }</FlatButton>);
 };
 
-const ItemProperty = ({item}) => ( <TextField
+const ItemProperty = ({ item }) => ( <TextField
   type="text"
   placeholder={fieldName(item.name)}
   {...item} />
+);
+
+const DateGetter = ({ date }) => (
+  <div style={styles.address} key="DateGetter">
+    <label>Date Sent:</label>
+    <DatePickerWrapper
+      {...date}
+      hintText={"Date"}
+      autoOk={true}
+      style={styles.span}
+    />
+  </div>
 );
 
 const Items = ({ items }) => (
@@ -87,13 +103,13 @@ class InvoiceForm extends React.Component {
   } = this.props;
 
     return (
-      <form>
-        <h2>Upload Invoice</h2>
+      <form style={styles.base} key="InvoiceForm">
+        <h2
+          key="header"
+          style={styles.header}
+        >Upload Invoice</h2>
 
-        <div>
-          <label>Date Sent:</label>
-          <DatePickerWrapper {...date} hintText={"Date"} autoOk={true} />
-        </div>
+        <DateGetter date={date} />
 
         <div>
           <label>Sent to:</label>
@@ -121,6 +137,7 @@ InvoiceForm.propTypes = {
   fields: PropTypes.object.isRequired
 };
 
+InvoiceForm = Radium(InvoiceForm);
 InvoiceForm = reduxForm({
   form: 'uploadTextInvoice',
   fields
