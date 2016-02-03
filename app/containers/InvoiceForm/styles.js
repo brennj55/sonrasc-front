@@ -16,7 +16,7 @@ const styles = {
     }
   },
 
-  address: {
+  space: {
     paddingTop: '0.5em',
   },
 

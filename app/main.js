@@ -18,17 +18,19 @@ injectTapEventPlugin();
 // TODO: createStore(app, state_from_server).
 const store = configureStore();
 
+const x = (e) => {
+  console.log(e);
+};
+
 render(
   <Provider store={store}>
     <StyleRoot>
       <Header />
       <div id="appContainer">
-        <InvoiceForm />
-
+        <InvoiceForm onSubmit={x}/>
+        <DevTools />
       </div>
     </StyleRoot>
   </Provider>,
   document.getElementById('container')
 );
-
-//<DevTools />

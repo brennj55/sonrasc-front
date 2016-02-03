@@ -24,12 +24,14 @@ import { DatePickerWrapper } from '../../components/MaterialUIWrappers.js';
 export const fields = [
   'date',
   'addressTo.name',
-  'addressTo.street',
+  'addressTo.address1',
+  'addressTo.address2',
   'addressTo.town',
   'addressTo.county',
   'addressTo.country',
   'addressFrom.name',
-  'addressFrom.street',
+  'addressFrom.address1',
+  'addressFrom.address2',
   'addressFrom.town',
   'addressFrom.county',
   'addressFrom.country',
@@ -44,9 +46,10 @@ export const fields = [
 const RaisedButtonHelper = (props) => {
   return (<RaisedButton
     onClick={ event => {
-      event.preventDefault();
-      props.func();
+    //event.preventDefault();
+    props.func();
     }}
+    disabled={props.submitting}
   >{ props.text }</RaisedButton>);
 };
 
@@ -66,13 +69,12 @@ const ItemProperty = ({ item }) => ( <TextField
 );
 
 const DateGetter = ({ date }) => (
-  <div style={styles.address} key="DateGetter">
+  <div style={styles.space} key="DateGetter">
     <label>Date Sent:</label>
     <DatePickerWrapper
       {...date}
       hintText={"Date"}
       autoOk={true}
-      style={styles.span}
     />
   </div>
 );
@@ -99,11 +101,13 @@ class InvoiceForm extends React.Component {
         business,
         addressTo,
         addressFrom
-      }
-  } = this.props;
+      },
+      submitting,
+      handleSubmit
+    } = this.props;
 
     return (
-      <form style={styles.base} key="InvoiceForm">
+      <form style={styles.base} key="InvoiceForm" onSubmit={handleSubmit}>
         <h2
           key="header"
           style={styles.header}
@@ -128,13 +132,21 @@ class InvoiceForm extends React.Component {
           <RaisedButtonHelper text="Add item" func={() => items.addField() } />
         </div>
 
+        <div style={styles.space}>
+          <RaisedButton type="submit" disabled={submitting}>
+            {submitting ? <i/> : <i/>} Submit
+          </RaisedButton>
+        </div>
+
       </form>
     );
   }
 }
 
 InvoiceForm.propTypes = {
-  fields: PropTypes.object.isRequired
+  fields: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired
 };
 
 InvoiceForm = Radium(InvoiceForm);
