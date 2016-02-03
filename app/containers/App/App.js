@@ -10,8 +10,8 @@ export default class App extends Component {
     return (
       <StyleRoot>
         <Header />
-        <Nav />
         <div id="appContainer">
+          <Nav />
           {this.props.children}
         </div>
       </StyleRoot>

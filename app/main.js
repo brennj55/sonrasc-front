@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { reduxForm } from 'redux-form';
-import { IndexRoute, Router, Route, Link } from 'react-router';
+import { IndexRoute, Router, Route, Link, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore.js';
 
@@ -16,9 +16,9 @@ const store = configureStore();
 
 render(
   <Provider store={store}>
-    <Router>
+    <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <Route path="about" component={InvoiceForm} />
+        <Route path="/invoices/upload-invoice" component={InvoiceForm} />
       </Route>
     </Router>
   </Provider>,
