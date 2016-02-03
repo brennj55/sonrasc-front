@@ -1,6 +1,6 @@
 {
   "name": "sonrasc-front",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -19,14 +19,17 @@
   },
   "homepage": "https://github.com/brennj55/sonrasc-front#readme",
   "dependencies": {
+    "history": "1.17.0",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-redux": "^4.0.6",
     "redux": "^3.0.5",
     "redux-form": "^4.1.5",
+    "react-router": "1.0.3",
     "style-loader": "^0.13.0",
     "material-ui": "^0.14.3",
-    "react-tap-event-plugin": "^0.2.1"
+    "react-tap-event-plugin": "^0.2.1",
+    "material-design-icons": "^2.1.3"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",

@@ -23,12 +23,6 @@ const styles = {
   header: {
     borderBottom: '1px solid #eee',
     width: '90%'
-  },
-
-  span: {
-    '@media (minWidth: 42rem)': {
-      background: 'red'
-    }
   }
 };
 
