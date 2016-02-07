@@ -5,11 +5,10 @@ import Avatar from 'material-ui/lib/avatar';
 
 // TODO: replace avatar with server pic.
 
-const Header = () => (
+const Header = (props) => (
   <AppBar
     title="Sonrasc"
-    onLeftIconButtonTouchTap
-    style={{background: Colors.deepPurple600}}
+    style={{background: Colors.deepPurple600, position: 'fixed'}}
     iconElementRight={<Avatar src="/static/images/Profiler.jpg" />}
   />
 );

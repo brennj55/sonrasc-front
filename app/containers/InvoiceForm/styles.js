@@ -1,18 +1,14 @@
 const styles = {
   base: {
-    width: '100%',
+    minHeight: '100vh',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    margin: 'auto',
-    lineHeight: 1.334,
 
     '@media (min-width: 42rem)': {
-      width: '80%'
+      margin: '48px 72px'
     },
 
     '@media (min-width: 65em)': {
-      width: '80%'
     }
   },
 
@@ -21,8 +17,26 @@ const styles = {
   },
 
   header: {
-    borderBottom: '1px solid #eee',
-    width: '90%'
+    width: '100%',
+    alignSelf: 'flex-start',
+    fontWeight: 400,
+    borderBottom: '1px solid #eee'
+  },
+
+  innerFlex: {
+    display: 'flex',
+    alignItems: 'baseline',
+    justifyContent: 'space-around'
+  },
+
+  evenlyDivided: {
+    flex: 1
+  },
+
+  columnContainer: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column'
   }
 };
 

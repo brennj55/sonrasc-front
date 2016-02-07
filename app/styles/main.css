@@ -2,21 +2,25 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-
 }
 
-#appContainer {
-  padding: 1em;
-  display: flex;
-
+.appContainer {
+  
 }
 
-@media (min-width: 65em) {
+.navigation {
+  display: none;
+}
+
+@media (min-width: 42em) {
   #appContainer {
-    max-width: 80%;
-    margin-left: 20%;
     overflow-x: hidden;
-    justify-content: center;
+    padding-left: 256px;
+    padding-top: 64px;
+  }
+
+  .navigation {
+    display: block;
   }
 }
 

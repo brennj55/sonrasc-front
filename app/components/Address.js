@@ -1,17 +1,19 @@
 import React, {Component, PropTypes } from 'react';
 import { fieldName } from '../utils/string.js';
 import TextField from 'material-ui/lib/text-field';
+import Radium from 'radium';
 
 const AddressField = ({addressField}) => ( <TextField
   type="text"
   placeholder={fieldName(addressField.name)}
+  style={{paddingRight: '20px'}}
   {...addressField} />
 );
 
-const AddressProperties = ({address}) => {
+const AddressProperties = (props) => {
   return (
-    <div>
-      { Object.keys(address).map(field => <AddressField addressField={address[field]} key={field} />) }
+    <div style={props.style}>
+      { Object.keys(props.address).map(field => <AddressField addressField={props.address[field]} key={field} />) }
     </div>
   );
 };
@@ -19,14 +21,12 @@ const AddressProperties = ({address}) => {
 class Address extends Component {
 
   render() {
-    const { address } = this.props;
+    const { address, style } = this.props;
     return (
-      <div>
-        <AddressProperties address={address} />
-      </div>
+      <AddressProperties address={address} style={style} />
     );
   }
-
 }
 
+Address = Radium(Address);
 export default Address;

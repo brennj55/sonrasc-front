@@ -68,17 +68,6 @@ const ItemProperty = ({ item }) => ( <TextField
   {...item} />
 );
 
-const DateGetter = ({ date }) => (
-  <div style={styles.space} key="DateGetter">
-    <label>Date Sent:</label>
-    <DatePickerWrapper
-      {...date}
-      hintText={"Date"}
-      autoOk={true}
-    />
-  </div>
-);
-
 const Items = ({ items }) => (
   <div>
     { items.map((item, index) =>
@@ -107,36 +96,24 @@ class InvoiceForm extends React.Component {
     } = this.props;
 
     return (
-      <form style={styles.base} key="InvoiceForm" onSubmit={handleSubmit}>
-        <h2
-          key="header"
-          style={styles.header}
-        >Upload Invoice</h2>
+      <form style={styles.base} key="InvoiceForm" onSubmit={handleSubmit} >
+        <h2 style={styles.header}>Upload Invoice</h2>
 
-        <DateGetter date={date} />
-
-        <div>
-          <label>Sent to:</label>
-          <Address address={addressTo} />
-          <label>Sent From:</label>
-          <Address address={addressFrom} />
+        <div style={[styles.innerFlex, styles.space]}>
+          <label style={styles.evenlyDivided}>Date Sent</label>
+          <DatePickerWrapper
+            {...date}
+            hintText={"Date"}
+            autoOk={true}
+            style={styles.evenlyDivided}
+          />
         </div>
 
-        <div>
-          { Object.keys(business).map(field => <ItemProperty item={business[field]} key={field} />) }
+        <div style={[styles.innerFlex, styles.space]}>
+          <label style={styles.evenlyDivided}>Sent From</label>
+          <Address address={addressFrom} style={styles.columnContainer} />
         </div>
 
-        <div>
-          <label>Item List:</label>
-          <Items items={items} />
-          <RaisedButtonHelper text="Add item" func={() => items.addField() } />
-        </div>
-
-        <div style={styles.space}>
-          <RaisedButton type="submit" disabled={submitting}>
-            {submitting ? <i/> : <i/>} Submit
-          </RaisedButton>
-        </div>
 
       </form>
     );

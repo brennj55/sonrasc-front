@@ -30,6 +30,7 @@ class Nav extends Component {
       <LeftNav
         open={this.state.open}
         style={styles.base}
+        className={"navigation"}
       >
         <Link to="/"><MenuItem leftIcon={<ActionHome />}>Home</MenuItem></Link>
         <MenuItem leftIcon={<ActionDashboard />}>Dashboards</MenuItem>
