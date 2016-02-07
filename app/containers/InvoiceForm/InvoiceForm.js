@@ -5,6 +5,7 @@ import { fieldName } from '../../utils/string.js';
 
 import Radium from 'radium';
 import styles from './styles.js';
+import { formatDate } from '../../utils/date.js';
 
 import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -62,10 +63,13 @@ const FlatButtonHelper = (props) => {
   >{ props.text }</FlatButton>);
 };
 
-const ItemProperty = ({ item }) => ( <TextField
-  type="text"
-  placeholder={fieldName(item.name)}
-  {...item} />
+const ItemProperty = (props) => (
+  <TextField
+    type="text"
+    placeholder={fieldName(props.item.name)}
+    {...props.item}
+    style={props.style}
+  />
 );
 
 const Items = ({ items }) => (
@@ -97,23 +101,25 @@ class InvoiceForm extends React.Component {
 
     return (
       <form style={styles.base} key="InvoiceForm" onSubmit={handleSubmit} >
-        <h2 style={styles.header}>Upload Invoice</h2>
+        <h1 style={styles.header}>Upload Invoice</h1>
 
         <div style={[styles.innerFlex, styles.space]}>
-          <label style={styles.evenlyDivided}>Date Sent</label>
+          <label style={[styles.flex1, styles.label]}>Date Sent</label>
           <DatePickerWrapper
             {...date}
+            formatDate={formatDate}
             hintText={"Date"}
             autoOk={true}
-            style={styles.evenlyDivided}
+            style={styles.flex2}
           />
         </div>
 
         <div style={[styles.innerFlex, styles.space]}>
-          <label style={styles.evenlyDivided}>Sent From</label>
+          <label style={[styles.flex1, styles.label]}>Sent From</label>
           <Address address={addressFrom} style={styles.columnContainer} />
         </div>
 
+        <h2 style={[styles.subheader]}>Items</h2>
 
       </form>
     );

@@ -13,12 +13,22 @@ const styles = {
   },
 
   space: {
-    paddingTop: '0.5em',
+    paddingBottom: '0.5em',
   },
 
   header: {
     width: '100%',
+    paddingBottom: '0.3em',
     alignSelf: 'flex-start',
+    color: 'rgba(0, 0, 0, 0.87)',
+    fontSize: '24px',
+    fontWeight: 400,
+    borderBottom: '1px solid #eee'
+  },
+
+  subheader: {
+    fontSize: '20px',
+    color: 'rgba(0, 0, 0, 0.87)',
     fontWeight: 400,
     borderBottom: '1px solid #eee'
   },
@@ -29,12 +39,21 @@ const styles = {
     justifyContent: 'space-around'
   },
 
-  evenlyDivided: {
-    flex: 1
+  label: {
+    color: 'rgba(0, 0, 0, 0.54)',
+    fontSize: '12px'
+  },
+
+  flex1: {
+    flex: 2
+  },
+
+  flex2: {
+    flex: 2
   },
 
   columnContainer: {
-    flex: 1,
+    flex: 2,
     display: 'flex',
     flexDirection: 'column'
   }
