@@ -4,8 +4,16 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.appContainer {
-  
+#appContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+}
+
+form {
+  flex: 1 1 auto;
 }
 
 .navigation {
@@ -14,6 +22,9 @@ body {
 
 @media (min-width: 42em) {
   #appContainer {
+    flex-direction: row;
+    justify-content: flex-start;;
+    align-items: flex-start;;
     overflow-x: hidden;
     padding-left: 256px;
     padding-top: 64px;

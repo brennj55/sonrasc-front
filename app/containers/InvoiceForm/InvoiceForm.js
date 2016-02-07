@@ -57,9 +57,10 @@ const RaisedButtonHelper = (props) => {
 const FlatButtonHelper = (props) => {
   return (<FlatButton
     onClick={ event => {
-      event.preventDefault();
-      props.func();
+    event.preventDefault();
+    props.func();
     }}
+    style={props.style}
   >{ props.text }</FlatButton>);
 };
 
@@ -75,10 +76,10 @@ const ItemProperty = (props) => (
 const Items = ({ items }) => (
   <div>
     { items.map((item, index) =>
-    <div key={index}>
-      <label> Item #{index + 1} </label>
-      { Object.keys(item).map(field => <ItemProperty item={item[field]} key={field} />) }
-      <FlatButtonHelper text="Remove" func={() => items.removeField(index) } />
+    <div key={index} style={styles.innerFlex}>
+      <label style={styles.flex1}> Item {index + 1}</label>
+      { Object.keys(item).map(field => <ItemProperty style={styles.flex1} item={item[field]} key={field} />) }
+      <FlatButtonHelper style={styles.flex1} text="Remove" func={() => items.removeField(index) } />
     </div>
     )}
   </div>
@@ -120,6 +121,12 @@ class InvoiceForm extends React.Component {
         </div>
 
         <h2 style={[styles.subheader]}>Items</h2>
+        <div>
+          <Items items={items} />
+          <div style={styles.space}>
+            <RaisedButtonHelper text="Add item" func={() => items.addField() } />
+          </div>
+        </div>
 
       </form>
     );
