@@ -21,10 +21,6 @@ class Nav extends Component {
     this.state = {open: true};
   }
 
-  handleToggle() {
-    this.setState({open: !this.state.open});
-  }
-
   render() {
     return (
       <LeftNav

@@ -13,7 +13,7 @@ const styles = {
   },
 
   space: {
-    padding: '0.5em 0',
+    padding: '1em 0',
   },
 
   header: {

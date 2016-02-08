@@ -6,6 +6,7 @@ import Header from '../../components/Header.js';
 import { Nav } from '../../containers';
 
 export default class App extends Component {
+
   render() {
     return (
       <StyleRoot>

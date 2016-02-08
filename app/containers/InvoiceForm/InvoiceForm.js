@@ -74,6 +74,15 @@ class InvoiceForm extends React.Component {
     return (
       <form style={styles.base} key="InvoiceForm" onSubmit={handleSubmit} >
         <h1 style={styles.header}>Upload Invoice</h1>
+        
+        <div style={[styles.innerFlex, styles.space]}>
+          <label style={[styles.flex1, styles.label]}>Invoice Image</label>
+          <div style={styles.flex2}>
+            <RaisedButton label="Upload Image">
+              <input type="file" {...invoiceImage} value={ null } style={styles.exampleImageInput} />
+            </RaisedButton>
+          </div>
+        </div>
 
         <div style={[styles.innerFlex, styles.space]}>
           <label style={[styles.flex1, styles.label]}>Date Sent</label>
@@ -102,15 +111,6 @@ class InvoiceForm extends React.Component {
         </div>
 
         <h2 style={[styles.subheader]}>Other Details</h2>
-        <div style={[styles.innerFlex, styles.space]}>
-          <label style={[styles.flex1, styles.label]}>Invoice Image</label>
-          <RaisedButton
-            label="Upload an Image"
-            {...invoiceImage}
-          >
-            <input type="file" {...invoiceImage} value={ null } style={styles.exampleImageInput} />
-          </RaisedButton>
-        </div>
 
         <div style={[styles.innerFlex, styles.space]}>
           <label style={[styles.flex1, styles.label]}>Invoice Number</label>
@@ -134,6 +134,7 @@ class InvoiceForm extends React.Component {
             primary={true}
             className="SubmitItems"
             label={"Submit"}
+            style={styles.flex2}
           >
 
           </RaisedButton>
