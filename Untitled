@@ -1,0 +1,31 @@
+<h2
+  key="header"
+  style={styles.header}
+>Upload Invoice</h2>
+
+<DateGetter date={date} />
+
+<div style={{display: 'flex', flexWrap: 'wrap', background: 'none'}}>
+
+
+  <div style={{flexGrow: 1, flexShrink: 0, flexBasis: '50%', padding: '25px 0'}}>
+    <label>Sent From:</label>
+    <Address address={addressFrom} />
+  </div>
+</div>
+
+<div>
+  { Object.keys(business).map(field => <ItemProperty item={business[field]} key={field} />) }
+</div>
+
+<div>
+  <label>Item List:</label>
+  <Items items={items} />
+  <RaisedButtonHelper text="Add item" func={() => items.addField() } />
+</div>
+
+<div style={styles.space}>
+  <RaisedButton type="submit" disabled={submitting}>
+    {submitting ? <i/> : <i/>} Submit
+  </RaisedButton>
+</div>

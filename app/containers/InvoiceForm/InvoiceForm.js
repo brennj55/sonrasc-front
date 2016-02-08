@@ -1,16 +1,14 @@
 import React, { PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import Address from '../../components/Address.js';
+import Items from './Items.js';
 import { fieldName } from '../../utils/string.js';
 
 import Radium from 'radium';
 import styles from './styles.js';
 import { formatDate } from '../../utils/date.js';
 
-import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
-import FlatButton from 'material-ui/lib/flat-button';
-import TextField from 'material-ui/lib/text-field';
 import { DatePickerWrapper } from '../../components/MaterialUIWrappers.js';
 
 
@@ -54,37 +52,6 @@ const RaisedButtonHelper = (props) => {
   >{ props.text }</RaisedButton>);
 };
 
-const FlatButtonHelper = (props) => {
-  return (<FlatButton
-    onClick={ event => {
-    event.preventDefault();
-    props.func();
-    }}
-    style={props.style}
-  >{ props.text }</FlatButton>);
-};
-
-const ItemProperty = (props) => (
-  <TextField
-    type="text"
-    placeholder={fieldName(props.item.name)}
-    {...props.item}
-    style={props.style}
-  />
-);
-
-const Items = ({ items }) => (
-  <div>
-    { items.map((item, index) =>
-    <div key={index} style={styles.innerFlex}>
-      <label style={styles.flex1}> Item {index + 1}</label>
-      { Object.keys(item).map(field => <ItemProperty style={styles.flex1} item={item[field]} key={field} />) }
-      <FlatButtonHelper style={styles.flex1} text="Remove" func={() => items.removeField(index) } />
-    </div>
-    )}
-  </div>
-);
-
 class InvoiceForm extends React.Component {
 
   render() {
@@ -126,6 +93,12 @@ class InvoiceForm extends React.Component {
           <div style={styles.space}>
             <RaisedButtonHelper text="Add item" func={() => items.addField() } />
           </div>
+        </div>
+
+        <div style={styles.space}>
+          <RaisedButton type="submit" disabled={submitting} primary={true} classNames={"SubmitItems"}>
+            {submitting ? <i/> : <i/>} Submit
+          </RaisedButton>
         </div>
 
       </form>

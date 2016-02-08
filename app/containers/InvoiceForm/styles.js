@@ -36,6 +36,7 @@ const styles = {
   innerFlex: {
     display: 'flex',
     alignItems: 'baseline',
+    flexWrap: 'wrap',
     justifyContent: 'space-around'
   },
 
@@ -45,15 +46,15 @@ const styles = {
   },
 
   flex1: {
-    flex: 2
+    flex: '1 1 50%'
   },
 
   flex2: {
-    flex: 2
+    flex: '1 1 50%'
   },
 
   columnContainer: {
-    flex: 2,
+    flex: '2 1 50%',
     display: 'flex',
     flexDirection: 'column'
   }

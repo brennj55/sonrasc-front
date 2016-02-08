@@ -4,32 +4,37 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+/* Mobile-first container */
 #appContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 80px;
+  margin: 0px 10%;
 }
 
 form {
   flex: 1 1 auto;
 }
 
+/* Don't display nav unless prompted elsewhere on app on mobile display. */
 .navigation {
   display: none;
 }
 
+/* Tablet and desktop above */
 @media (min-width: 42em) {
   #appContainer {
     flex-direction: row;
-    justify-content: flex-start;;
-    align-items: flex-start;;
+    justify-content: flex-start;
+    align-items: flex-start;
     overflow-x: hidden;
     padding-left: 256px;
     padding-top: 64px;
   }
 
+  /* Always show the nav on larger displays. */
   .navigation {
     display: block;
   }
@@ -39,4 +44,8 @@ h2 {
     padding-bottom: .3em;
     font-size: 1.5em;
     line-height: 1.334;
+}
+
+.RemoveItemButton, .SubmitItems {
+  color: #fff;
 }
