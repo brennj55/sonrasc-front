@@ -8,6 +8,7 @@ import Radium from 'radium';
 import styles from './styles.js';
 import { formatDate } from '../../utils/date.js';
 
+import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
 import { DatePickerWrapper } from '../../components/MaterialUIWrappers.js';
 
@@ -39,17 +40,19 @@ export const fields = [
   'items[].name',
   'items[].price',
   'items[].quantity',
-  'items[].VAT'
+  'items[].VAT',
+  'items[].total',
+  'invoiceImage'
 ];
 
 const RaisedButtonHelper = (props) => {
   return (<RaisedButton
     onClick={ event => {
-    //event.preventDefault();
     props.func();
     }}
     disabled={props.submitting}
-  >{ props.text }</RaisedButton>);
+    label={props.text}
+  />);
 };
 
 class InvoiceForm extends React.Component {
@@ -61,7 +64,8 @@ class InvoiceForm extends React.Component {
         items,
         business,
         addressTo,
-        addressFrom
+        addressFrom,
+        invoiceImage
       },
       submitting,
       handleSubmit
@@ -88,16 +92,50 @@ class InvoiceForm extends React.Component {
         </div>
 
         <h2 style={[styles.subheader]}>Items</h2>
-        <div>
+        <div style={[styles.innerFlexNoWrap, styles.space]}>
+          <RaisedButtonHelper
+            text="Add item"
+            func={() => items.addField() }
+            style={{alignSelf: 'flex-end'}}
+          />
           <Items items={items} />
-          <div style={styles.space}>
-            <RaisedButtonHelper text="Add item" func={() => items.addField() } />
-          </div>
+        </div>
+
+        <h2 style={[styles.subheader]}>Other Details</h2>
+        <div style={[styles.innerFlex, styles.space]}>
+          <label style={[styles.flex1, styles.label]}>Invoice Image</label>
+          <RaisedButton
+            label="Upload an Image"
+            {...invoiceImage}
+          >
+            <input type="file" {...invoiceImage} value={ null } style={styles.exampleImageInput} />
+          </RaisedButton>
+        </div>
+
+        <div style={[styles.innerFlex, styles.space]}>
+          <label style={[styles.flex1, styles.label]}>Invoice Number</label>
+          <TextField style={styles.flex2} hintText="Hint Text" />
+        </div>
+
+        <div style={[styles.innerFlex, styles.space]}>
+          <label style={[styles.flex1, styles.label]}>Email</label>
+          <TextField style={styles.flex2} hintText="Hint Text" />
+        </div>
+
+        <div style={[styles.innerFlex, styles.space]}>
+          <label style={[styles.flex1, styles.label]}>Telephone</label>
+          <TextField style={styles.flex2} hintText="Hint Text" />
         </div>
 
         <div style={styles.space}>
-          <RaisedButton type="submit" disabled={submitting} primary={true} classNames={"SubmitItems"}>
-            {submitting ? <i/> : <i/>} Submit
+          <RaisedButton
+            type="submit"
+            disabled={submitting}
+            primary={true}
+            className="SubmitItems"
+            label={"Submit"}
+          >
+
           </RaisedButton>
         </div>
 

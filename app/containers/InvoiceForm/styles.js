@@ -40,6 +40,23 @@ const styles = {
     justifyContent: 'space-around'
   },
 
+  innerFlexNoWrap: {
+    display: 'flex',
+    alignItems: 'flex-end',
+    flexDirection: 'column'
+  },
+
+  exampleImageInput: {
+    cursor: 'pointer',
+    position: 'absolute',
+    top: '0',
+    bottom: '0',
+    right: '0',
+    left: '0',
+    width: '100%',
+    opacity: '0'
+  },
+
   label: {
     color: 'rgba(0, 0, 0, 0.54)',
     fontSize: '12px'
@@ -54,7 +71,7 @@ const styles = {
   },
 
   columnContainer: {
-    flex: '2 1 50%',
+    flex: '1 1 50%',
     display: 'flex',
     flexDirection: 'column'
   }

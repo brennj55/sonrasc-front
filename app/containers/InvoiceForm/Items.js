@@ -21,7 +21,8 @@ const Button = (props) => {
     secondary={true}
     className={"RemoveItemButton"}
     style={props.style}
-  >{ props.text }</RasiedButton>);
+    label={props.text}
+  />);
 };
 
 const ItemProperty = (props) => (
@@ -39,7 +40,11 @@ class Items extends React.Component {
     return (
       <div style={styles.innerFlex}>
         { items.map((item, index) =>
-        <Card key={index} style={{flex: '1 1 calc(50% - 20px)', margin: '10px', padding: '10px'}}>
+        <Card
+          key={index}
+          style={{flex: '1 1 50%', margin: '10px', padding: '10px'}}
+          className={"ItemCard"}
+        >
           <div style={[styles.innerFlex, styles.space]}>
             <div style={styles.flex1}>
               <CardHeader title={"Item " + (index + 1)} subtitle="Calculated content here." />
