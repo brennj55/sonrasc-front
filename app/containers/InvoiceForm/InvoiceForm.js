@@ -23,12 +23,6 @@ import { DatePickerWrapper } from '../../components/MaterialUIWrappers.js';
 
 export const fields = [
   'date',
-  'addressTo.name',
-  'addressTo.address1',
-  'addressTo.address2',
-  'addressTo.town',
-  'addressTo.county',
-  'addressTo.country',
   'addressFrom.name',
   'addressFrom.address1',
   'addressFrom.address2',
@@ -42,7 +36,10 @@ export const fields = [
   'items[].quantity',
   'items[].VAT',
   'items[].total',
-  'invoiceImage'
+  'invoiceImage',
+  'invoiceNumber',
+  'email',
+  'telephone'
 ];
 
 const RaisedButtonHelper = (props) => {
@@ -65,7 +62,10 @@ class InvoiceForm extends React.Component {
         business,
         addressTo,
         addressFrom,
-        invoiceImage
+        invoiceImage,
+        invoiceNumber,
+        email,
+        telephone
       },
       submitting,
       handleSubmit
@@ -74,11 +74,11 @@ class InvoiceForm extends React.Component {
     return (
       <form style={styles.base} key="InvoiceForm" onSubmit={handleSubmit} >
         <h1 style={styles.header}>Upload Invoice</h1>
-        
+
         <div style={[styles.innerFlex, styles.space]}>
           <label style={[styles.flex1, styles.label]}>Invoice Image</label>
           <div style={styles.flex2}>
-            <RaisedButton label="Upload Image">
+            <RaisedButton label="Upload Image" {...invoiceImage}>
               <input type="file" {...invoiceImage} value={ null } style={styles.exampleImageInput} />
             </RaisedButton>
           </div>
@@ -114,17 +114,17 @@ class InvoiceForm extends React.Component {
 
         <div style={[styles.innerFlex, styles.space]}>
           <label style={[styles.flex1, styles.label]}>Invoice Number</label>
-          <TextField style={styles.flex2} hintText="Hint Text" />
+          <TextField {...invoiceNumber} style={styles.flex2} hintText="Hint Text" />
         </div>
 
         <div style={[styles.innerFlex, styles.space]}>
           <label style={[styles.flex1, styles.label]}>Email</label>
-          <TextField style={styles.flex2} hintText="Hint Text" />
+          <TextField {...email} style={styles.flex2} hintText="Hint Text" />
         </div>
 
         <div style={[styles.innerFlex, styles.space]}>
           <label style={[styles.flex1, styles.label]}>Telephone</label>
-          <TextField style={styles.flex2} hintText="Hint Text" />
+          <TextField {...telephone} style={styles.flex2} hintText="Hint Text" />
         </div>
 
         <div style={styles.space}>

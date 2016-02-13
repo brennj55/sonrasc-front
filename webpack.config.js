@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 
 module.exports = [
 {
@@ -10,6 +11,11 @@ module.exports = [
     filename: './build/bundle.js',
     sourceMapFilename: 'bundle.map'
   },
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+ ],
+
   devtool: 'eval-source-map',
   module: {
     loaders: [

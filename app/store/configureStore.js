@@ -3,7 +3,7 @@ import rootReducer from '../reducers/index.js';
 import DevTools from '../containers/DevTools';
 
 const finalCreateStore = compose(
-  DevTools.instrument()
+  window.devToolsExtension ? window.devToolsExtension() : f => f
 )(createStore);
 
 export default function configureStore(initialState) {
