@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "echo \"LOL me for production\"",
+    "start": "webpack-dev-server",
     "dev": "gulp default",
     "build": "webpack"
   },
@@ -19,7 +19,10 @@
   },
   "homepage": "https://github.com/brennj55/sonrasc-front#readme",
   "dependencies": {
+    "file-loader": "^0.8.5",
+    "url-loader": "^0.5.7",
     "history": "1.17.0",
+    "react-cropper": "0.6.0",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-redux": "^4.0.6",

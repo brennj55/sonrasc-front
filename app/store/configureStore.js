@@ -14,6 +14,5 @@ export default function configureStore(initialState) {
       store.replaceReducer(require('../reducers/index.js')/*.default if you use Babel 6+ */)
     );
   }
-
   return store;
 }

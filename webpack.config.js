@@ -8,6 +8,7 @@ module.exports = [
   entry: './app/main.js',
   output: {
     path: __dirname,
+    publicPath: '/',
     filename: './build/bundle.js',
     sourceMapFilename: 'bundle.map'
   },
@@ -27,7 +28,8 @@ module.exports = [
           presets: ['react', 'es2015']
         }
       },
-      { test: /\.css$/, loader: "style!css" }
+      { test: /\.css$/, loader: "style!css" },
+      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=25000' }
     ]
   },
   resolve: {

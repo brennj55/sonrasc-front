@@ -1,4 +1,3 @@
-import * as types from '../../app/constants/ActionTypes.js';
 import { items } from '../../app/reducers/invoice.js';
 
 export default describe('Add an invoice - ', () => {
@@ -12,7 +11,7 @@ export default describe('Add an invoice - ', () => {
       price: 1.34
     };
     const action = {
-      type: types.ADD_ITEM,
+      type: "ADD_ITEM",
       item: item
     };
 

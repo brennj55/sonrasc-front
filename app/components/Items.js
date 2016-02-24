@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
-import styles from './styles.js';
-import { fieldName } from '../../utils/string.js';
+import styles from '../containers/InvoiceForm/styles.js';
+import { fieldName } from '../utils/string.js';
 
 import RasiedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/text-field';

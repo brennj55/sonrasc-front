@@ -31,6 +31,7 @@ class Nav extends Component {
         <Link to="/"><MenuItem leftIcon={<ActionHome />}>Home</MenuItem></Link>
         <MenuItem leftIcon={<ActionDashboard />}>Dashboards</MenuItem>
         <MenuItem leftIcon={<PlacesBusinessCenter />}>Businesses</MenuItem>
+        <Link to="/invoices/crop-test"><MenuItem leftIcon={<ActionHome />}>Crop Test</MenuItem></Link>
         <MenuItem leftIcon={<ContentContentCopy />}>Invoices</MenuItem>
         <Link to="/invoices/upload-invoice"><MenuItem leftIcon={<FileFileUpload />}>Upload Invoice</MenuItem></Link>
         <Divider />
