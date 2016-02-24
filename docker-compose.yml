@@ -1,6 +1,0 @@
-web:
-        build: .
-        volumes:
-        - "./:/src/"
-        ports:
-        - "8080:8080"

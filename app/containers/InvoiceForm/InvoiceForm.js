@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import Address from '../../components/Address.js';
-import Items from './Items.js';
+import { Items } from '../../components';
 import { fieldName } from '../../utils/string.js';
 
 import Radium from 'radium';
@@ -77,11 +77,7 @@ class InvoiceForm extends React.Component {
 
         <div style={[styles.innerFlex, styles.space]}>
           <label style={[styles.flex1, styles.label]}>Invoice Image</label>
-          <div style={styles.flex2}>
-            <RaisedButton label="Upload Image" {...invoiceImage}>
-              <input type="file" {...invoiceImage} value={ null } style={styles.exampleImageInput} />
-            </RaisedButton>
-          </div>
+
         </div>
 
         <div style={[styles.innerFlex, styles.space]}>
