@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore.js';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
-import io from 'socket.io-client';
 
 import { App, InvoiceForm, CropImage } from './containers/index.js';
 
@@ -11,7 +10,8 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 const store = configureStore();
-let socket = io();
+
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>

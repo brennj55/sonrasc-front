@@ -8,5 +8,3 @@ RUN npm install webpack -g \
                 gulp -g
 WORKDIR /src
 EXPOSE 8080
-CMD [ "npm", "start"]
-#CMD [ "bash" ]

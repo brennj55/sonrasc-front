@@ -9,6 +9,10 @@ const extractCropboxData = (cropbox) => {
     console.log(this.refs);
 };
 
+import io from 'socket.io-client';
+let socket = io.connect('http://192.168.99.100:9005');
+
+
 export default class CropImage extends React.Component {
 
   constructor(props) {
@@ -24,10 +28,7 @@ export default class CropImage extends React.Component {
     let x = () => {
       if (this.refs.cropper.getCroppedCanvas() === undefined) return;
       let image = this.refs.cropper.getCroppedCanvas().toDataURL("image/jpeg", 1.0);
-      let blob = new Blob([image]);
-      var urlCreator = window.URL || window.webkitURL;
-      var imageUrl = urlCreator.createObjectURL( blob );
-      console.log(imageUrl);
+      socket.emit('image-cropping', {imageData: image });
     };
 
     const actions = [
