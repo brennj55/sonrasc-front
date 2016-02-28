@@ -1,5 +1,3 @@
-import { items } from '../../app/reducers/invoice.js';
-
 export default describe('Add an invoice - ', () => {
 
   describe('Add an item - ', () => {
