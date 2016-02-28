@@ -29,6 +29,7 @@ export default class CropImage extends React.Component {
       if (this.refs.cropper.getCroppedCanvas() === undefined) return;
       let image = this.refs.cropper.getCroppedCanvas().toDataURL("image/jpeg", 1.0);
       socket.emit('image-cropping', {imageData: image });
+      socket.on('extracted text', data => console.log(data));
     };
 
     const actions = [
