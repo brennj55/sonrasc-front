@@ -1,19 +1,40 @@
-import { TOGGLE_MODAL, OPEN_MODAL, CLOSE_MODAL } from '../actions/modal-actions.js';
 import { combineReducers } from 'redux';
+import { connect } from 'react-redux';
+import { CropButton } from '../components';
 
-const modal = (state = false, action) => {
+const TOGGLE_CROP_DIALOG = 'TOGGLE_CROP_DIALOG';
+const toggleCropDiaglog = () => {
+  return {
+    type: TOGGLE_CROP_DIALOG
+  };
+};
+
+const initalState = false;
+
+const cropDialog = (state = false, action) => {
   switch (action.type) {
-    case TOGGLE_MODAL:
+    case TOGGLE_CROP_DIALOG:
       return !state;
-    case TOGGLE_MODAL:
-      return true;
+
     default:
-      return false;
+      return state;
   }
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onClick: (open) => {
+      dispatch(toggleCropDiaglog())
+    }
+  };
+};
+
+const Open = connect(
+  mapDispatchToProps
+)(CropButton);
+
 const modalDisplay = combineReducers({
-  modal
+  cropDialog
 });
 
 export default modalDisplay;

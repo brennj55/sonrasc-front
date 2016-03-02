@@ -63,7 +63,11 @@ const styles = {
   },
 
   flex1: {
-    flex: '1 1 50%'
+    flex: '1 1 45%'
+  },
+
+  buttonFlex: {
+    flex: '1 1 5%'
   },
 
   flex2: {
@@ -71,7 +75,7 @@ const styles = {
   },
 
   columnContainer: {
-    flex: '1 1 50%',
+    flex: '1 1 45%',
     display: 'flex',
     flexDirection: 'column'
   }

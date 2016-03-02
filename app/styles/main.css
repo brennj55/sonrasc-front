@@ -14,6 +14,10 @@ body {
   margin: 0px 10%;
 }
 
+.container {
+  flex: 1 1 100%;
+}
+
 form {
   flex: 1 1 auto;
 }
@@ -58,4 +62,22 @@ h2 {
 
 .cropper-wrap-box {
     border-radius: 2px;
+}
+
+.DatePicker:first-child {
+  padding-right: 20px;
+}
+
+.FAB {
+  position: fixed;
+  padding-top: 15px;
+  margin-bottom: 0;
+  z-index: 998;
+  bottom: 45px;
+  right: 24px;
+}
+
+button.FAB {
+  position: fixed !important;
+  box-shadow: 0 5px 20px #aaa;
 }

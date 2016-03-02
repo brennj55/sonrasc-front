@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import Address from '../../components/Address.js';
-import { Items } from '../../components';
+import { Items, CropButton } from '../../components';
 import { fieldName } from '../../utils/string.js';
 
 import Radium from 'radium';
@@ -52,6 +52,14 @@ const RaisedButtonHelper = (props) => {
   />);
 };
 
+const Icon = (props) => (
+  <FloatingActionButton {...props} tooltip="Crop Image">
+    <ImageCrop />
+  </FloatingActionButton>
+);
+
+
+
 class InvoiceForm extends React.Component {
 
   render() {
@@ -72,71 +80,78 @@ class InvoiceForm extends React.Component {
     } = this.props;
 
     return (
-      <form style={styles.base} key="InvoiceForm" onSubmit={handleSubmit} >
-        <h1 style={styles.header}>Upload Invoice</h1>
+        <div className="container">
+          <form style={styles.base} key="InvoiceForm" onSubmit={handleSubmit} >
+            <h1 style={styles.header}>Upload Invoice</h1>
 
-        <div style={[styles.innerFlex, styles.space]}>
-          <label style={[styles.flex1, styles.label]}>Invoice Image</label>
+            <div style={[styles.innerFlex, styles.space]}>
+              <label style={[styles.flex1, styles.label]}>Invoice Image</label>
 
+            </div>
+
+            <div style={[styles.innerFlex, styles.space]}>
+              <label style={[styles.flex1, styles.label]}>Date Sent</label>
+              <DatePickerWrapper
+                className="DatePicker"
+                {...date}
+                formatDate={formatDate}
+                hintText={"Date"}
+                autoOk={true}
+                style={styles.flex1}
+              />
+              <CropButton type="date" />
+            </div>
+
+            <div style={[styles.innerFlex, styles.space]}>
+              <label style={[styles.flex1, styles.label]}>Sent From</label>
+              <Address address={addressFrom} style={styles.columnContainer} />
+              <CropButton />
+            </div>
+
+            <h2 style={[styles.subheader]}>Items</h2>
+            <div style={[styles.innerFlexNoWrap, styles.space]}>
+              <RaisedButtonHelper
+                text="Add item"
+                func={() => items.addField() }
+                style={{alignSelf: 'flex-end'}}
+              />
+              <Items items={items} />
+            </div>
+
+            <h2 style={[styles.subheader]}>Other Details</h2>
+
+            <div style={[styles.innerFlex, styles.space]}>
+              <label style={[styles.flex1, styles.label]}>Invoice Number</label>
+              <TextField {...invoiceNumber} style={styles.flex1} hintText="Hint Text" />
+              <CropButton />
+            </div>
+
+            <div style={[styles.innerFlex, styles.space]}>
+              <label style={[styles.flex1, styles.label]}>Email</label>
+              <TextField {...email} style={styles.flex1} hintText="Hint Text" />
+              <CropButton />
+            </div>
+
+            <div style={[styles.innerFlex, styles.space]}>
+              <label style={[styles.flex1, styles.label]}>Telephone</label>
+              <TextField {...telephone} style={styles.flex1} hintText="Hint Text" />
+              <CropButton />
+            </div>
+
+            <div style={styles.space}>
+              <RaisedButton
+                type="submit"
+                disabled={submitting}
+                primary={true}
+                className="SubmitItems"
+                label={"Submit"}
+                style={styles.flex2}
+              >
+
+              </RaisedButton>
+            </div>
+          </form>
         </div>
-
-        <div style={[styles.innerFlex, styles.space]}>
-          <label style={[styles.flex1, styles.label]}>Date Sent</label>
-          <DatePickerWrapper
-            {...date}
-            formatDate={formatDate}
-            hintText={"Date"}
-            autoOk={true}
-            style={styles.flex2}
-          />
-        </div>
-
-        <div style={[styles.innerFlex, styles.space]}>
-          <label style={[styles.flex1, styles.label]}>Sent From</label>
-          <Address address={addressFrom} style={styles.columnContainer} />
-        </div>
-
-        <h2 style={[styles.subheader]}>Items</h2>
-        <div style={[styles.innerFlexNoWrap, styles.space]}>
-          <RaisedButtonHelper
-            text="Add item"
-            func={() => items.addField() }
-            style={{alignSelf: 'flex-end'}}
-          />
-          <Items items={items} />
-        </div>
-
-        <h2 style={[styles.subheader]}>Other Details</h2>
-
-        <div style={[styles.innerFlex, styles.space]}>
-          <label style={[styles.flex1, styles.label]}>Invoice Number</label>
-          <TextField {...invoiceNumber} style={styles.flex2} hintText="Hint Text" />
-        </div>
-
-        <div style={[styles.innerFlex, styles.space]}>
-          <label style={[styles.flex1, styles.label]}>Email</label>
-          <TextField {...email} style={styles.flex2} hintText="Hint Text" />
-        </div>
-
-        <div style={[styles.innerFlex, styles.space]}>
-          <label style={[styles.flex1, styles.label]}>Telephone</label>
-          <TextField {...telephone} style={styles.flex2} hintText="Hint Text" />
-        </div>
-
-        <div style={styles.space}>
-          <RaisedButton
-            type="submit"
-            disabled={submitting}
-            primary={true}
-            className="SubmitItems"
-            label={"Submit"}
-            style={styles.flex2}
-          >
-
-          </RaisedButton>
-        </div>
-
-      </form>
     );
   }
 }

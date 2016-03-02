@@ -13,16 +13,17 @@ import io from 'socket.io-client';
 let socket = io.connect('http://192.168.99.100:9005');
 
 
-export default class CropImage extends React.Component {
+export default class CropImageDialog extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { open: true };
+    console.log(props);
+    this.state = { open: this.props.open };
   }
 
   render() {
     let handleClose = () => {
-      this.setState({open: false});
+      this.setState({open: !this.props.open});
     };
 
     let x = () => {
