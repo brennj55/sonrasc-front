@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
-import { modalDisplay } from './modal.js';
+import UploadInvoice from './UploadInvoice';
 
-const rootReducer = combineReducers({
-  form: formReducer,
-  modalDisplay: modalDisplay
+const SonrascApp = combineReducers({
+  UploadInvoice
 });
 
-export default rootReducer;
+export default SonrascApp;
