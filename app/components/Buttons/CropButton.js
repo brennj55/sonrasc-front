@@ -20,7 +20,6 @@ class CropButton extends Component {
 
   render() {
     const { type, open, disabled } = this.props;
-    console.log(this.props);
 
     return (
       <div>

@@ -13,7 +13,6 @@ class CropImageDialog extends Component {
 
   render() {
     const { open, title } = this.props;
-    console.log(this.props);
 
     return (
       <Dialog
