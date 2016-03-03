@@ -8,10 +8,10 @@ export function selectImage(image) {
 }
 
 export const CROP_IMAGE_AREA = "CROP_IMAGE";
-export function cropImage(targetArea) {
+export function cropImage(imageData, boundary) {
   return {
     type: CROP_IMAGE_AREA,
-    targetArea,
+    imageData,
     boundary
   };
 }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Cropper from 'react-cropper';
+
 import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
-
 import CropBoxDialogActions from '../../containers/Dialogs/CropDialogActions';
+
+import CropTooler from '../../containers/Dialogs/CropTooler';
 
 class CropImageDialog extends Component {
   constructor(props) {
@@ -17,10 +18,10 @@ class CropImageDialog extends Component {
       <Dialog
         ref='Dialog'
         open={open}
-        actions={<CropBoxDialogActions />}
+        actions={<CropBoxDialogActions  />}
         title={title}
       >
-        Hello.
+        <CropTooler />
       </Dialog>
     );
   }

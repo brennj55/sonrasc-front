@@ -27,7 +27,8 @@ function cropImage(state = cropImageInitialState, action) {
     case CROP_IMAGE_AREA:
       return Object.assign({}, state, {
         targetArea: action.targetArea,
-        boundary: action.boundary
+        boundary: action.boundary,
+        imageData: action.imageData
       });
 
     case REQUEST_CROPPED_DATA:
@@ -38,7 +39,7 @@ function cropImage(state = cropImageInitialState, action) {
     case RECIEVE_CROPPED_DATA:
       return Object.assign({}, state, {
         isFetching: false,
-        data: action.data,
+        imageData: action.imageData,
         lastUpdated: action.recievedAt
       });
 

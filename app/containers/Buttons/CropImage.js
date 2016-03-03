@@ -4,6 +4,7 @@ import { toggleCroppingDialog, openCroppingDialog } from '../../actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    disabled: state.UploadInvoice.image === "",
     open: ownProps.open === state.UploadInvoice.dialogVisibilityOfCropImageTool
   }
 };

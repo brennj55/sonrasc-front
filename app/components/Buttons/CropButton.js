@@ -19,16 +19,16 @@ class CropButton extends Component {
   }
 
   render() {
-    const { type, open } = this.props;
+    const { type, open, disabled } = this.props;
 
     return (
-      <div
-        onClick={this.handleClick}
-      >
+      <div>
         <FlatButton
           label="Crop"
           secondary={true}
           icon={<ImageCrop />}
+          disabled={disabled}
+          onClick={this.handleClick}
         />
         <CropImageBox type={type} open={open} />
       </div>
