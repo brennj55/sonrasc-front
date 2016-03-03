@@ -11,8 +11,8 @@ import Items from './Items';
 
 import TextField from 'material-ui/lib/text-field';
 
-const UploadInvoice = () => (
-  <form encType="multipart/form-data">
+const UploadInvoice = ({ socket }) => (
+  <form encType="multipart/form-data" socket={socket}>
     <h1>Upload Invoice</h1>
     <BusinessSelection />
     <UploadImage image={''} />

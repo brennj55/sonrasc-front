@@ -1,9 +1,9 @@
 import React from 'react';
-import UploadInvoice from './UploadInvoice';
+import UploadInvoiceContainer from '../containers/UploadInvoiceContainer';
 
 const App = () => (
   <div>
-    <UploadInvoice />
+    <UploadInvoiceContainer />
   </div>
 );
 

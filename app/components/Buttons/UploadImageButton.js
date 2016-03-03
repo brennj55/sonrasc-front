@@ -11,7 +11,8 @@ const styles = {
   },
 
   ImageInput: {
-    cursor: 'pointer',
+    cursor: 'pointer'
+    ,
     position: 'absolute',
     top: 0,
     bottom: 0,
