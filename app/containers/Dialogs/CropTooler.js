@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { cropImage } from '../../actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const type = state.UploadInvoice.dialogVisibilityOfCropImageTool.cropType;
   return {
-    type: type,
     image: state.UploadInvoice.image
   }
 };

@@ -17,19 +17,17 @@ export function cropImage(imageData, boundary) {
 }
 
 export const REQUEST_CROPPED_DATA = "REQUEST_CROPPED_DATA";
-export function requestCroppedData(targetArea, boundary) {
+export function requestCroppedData() {
   return {
-    type: REQUEST_CROPPED_DATA,
-    targetArea,
-    boundary
+    type: REQUEST_CROPPED_DATA
   }
 }
 
 export const RECIEVE_CROPPED_DATA = "RECIEVE_CROPPED_DATA";
-export function recieveCroppedData(targetArea, json) {
+export function recieveCroppedData(cropType, json) {
   return {
     type: RECIEVE_CROPPED_DATA,
-    targetArea,
+    cropType,
     data: json.data.children.map(child => child.data),
     recievedAt: Date.now()
   };
@@ -49,6 +47,13 @@ export function openCroppingDialog(cropType) {
     type: OPEN_CROPPING_DIALOG,
     cropType
   };
+}
+
+export const CLEAR_DIALOG = "CLEAR_DIALOG";
+export function clearDialog() {
+  return {
+    type: CLEAR_DIALOG
+  }
 }
 
 export const TOGGLE_CROPPING_DIALOG = "TOGGLE_CROPPING_DIALOG";

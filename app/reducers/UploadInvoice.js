@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import {
   OPEN_CROPPING_DIALOG, TOGGLE_CROPPING_DIALOG,
-  SET_BUSINESS_FROM, SELECT_IMAGE,
+  SET_BUSINESS_FROM, SELECT_IMAGE, CLEAR_DIALOG,
   CROP_IMAGE_AREA, REQUEST_CROPPED_DATA, RECIEVE_CROPPED_DATA
 } from '../actions';
 
@@ -15,10 +15,11 @@ function image(state = '', action) {
 }
 
 const cropImageInitialState = {
-  targetArea: '',
+  cropType: '',
   boundary: {},
   isFetching: false,
-  data: {}
+  data: {},
+  open: false
 };
 
 function cropImage(state = cropImageInitialState, action) {
@@ -26,7 +27,6 @@ function cropImage(state = cropImageInitialState, action) {
 
     case CROP_IMAGE_AREA:
       return Object.assign({}, state, {
-        targetArea: action.targetArea,
         boundary: action.boundary,
         imageData: action.imageData
       });
@@ -36,6 +36,9 @@ function cropImage(state = cropImageInitialState, action) {
         isFetching: true
       });
 
+    case CLEAR_DIALOG:
+      return cropImageInitialState;
+
     case RECIEVE_CROPPED_DATA:
       return Object.assign({}, state, {
         isFetching: false,
@@ -43,19 +46,17 @@ function cropImage(state = cropImageInitialState, action) {
         lastUpdated: action.recievedAt
       });
 
-    default:
-      return state;
-  }
-}
-
-function dialogVisibilityOfCropImageTool(state = {
-  open: false, cropType: ""}, action) {
-  switch (action.type) {
     case OPEN_CROPPING_DIALOG:
-      return {open: true, cropType: action.cropType};
+      return Object.assign({}, state, {
+        open: true,
+        cropType: action.cropType
+      });
 
     case TOGGLE_CROPPING_DIALOG:
-      return {open: !state.open, cropType: action.cropType};
+      return Object.assign({}, state, {
+        open: !state.open,
+        cropType: action.cropType
+      });
 
     default:
       return state;
@@ -75,8 +76,7 @@ function business(state = "", action) {
 const UploadInvoice = combineReducers({
   image,
   cropImage,
-  business,
-  dialogVisibilityOfCropImageTool
+  business
 });
 
 export default UploadInvoice;

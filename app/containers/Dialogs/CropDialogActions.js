@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import CropImageDialog from '../../components/Dialogs/CropImageDialog';
 import { connect } from 'react-redux';
-import { toggleCroppingDialog } from '../../actions';
+import { clearDialog } from '../../actions';
+import { isEmpty } from 'lodash';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    open: ownProps.open ===
-      state.UploadInvoice.dialogVisibilityOfCropImageTool.open,
-    type: state.UploadInvoice.dialogVisibilityOfCropImageTool.cropType,
+    disabled: isEmpty(state.UploadInvoice.cropImage.boundary),
+    open: state.UploadInvoice.cropImage.open,
     boundary: state.UploadInvoice.cropImage.boundary
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCancelClick: () => dispatch(toggleCroppingDialog(''))
+    onCancelClick: () => dispatch(clearDialog())
   }
 };
 
@@ -26,7 +26,11 @@ class CropDialogActions extends Component {
   }
 
   render() {
-    const { onCancelClick, onCropClick } = this.props;
+    const {
+      onCancelClick,
+      onCropClick,
+      disabled
+    } = this.props;
 
     return (
       <div>
@@ -38,6 +42,7 @@ class CropDialogActions extends Component {
         <RaisedButton
           primary={true}
           label="Crop Image"
+          disabled={disabled}
         />
       </div>
     )
