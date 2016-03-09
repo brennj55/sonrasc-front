@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CropButton from '../../components/Buttons/CropButton';
-import { toggleCroppingDialog, openCroppingDialog } from '../../actions';
+import * as actions from '../../actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onClick: (cropType) => dispatch(toggleCroppingDialog(cropType))
+    onClick: (cropType) => dispatch(actions.toggleCroppingDialog(cropType))
   }
 };
 

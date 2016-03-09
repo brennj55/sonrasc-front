@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import CropImageDialog from '../../components/Dialogs/CropImageDialog';
 import { connect } from 'react-redux';
-import { clearDialog } from '../../actions';
+import * as actions from '../../actions';
 import { isEmpty } from 'lodash';
 
 const mapStateToProps = (state) => {
   return {
+    imageData: state.UploadInvoice.cropImage.imageData,
+    cropType: state.UploadInvoice.cropImage.cropType,
     disabled: isEmpty(state.UploadInvoice.cropImage.boundary),
     open: state.UploadInvoice.cropImage.open,
     boundary: state.UploadInvoice.cropImage.boundary
@@ -15,7 +17,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCancelClick: () => dispatch(clearDialog())
+    onCancelClick: () => dispatch(actions.clearDialog()),
+    onCropClick: (cropType, imageData) => {
+      dispatch(actions.fetchCroppedData(cropType, imageData))
+    }
   }
 };
 
@@ -23,6 +28,14 @@ class CropDialogActions extends Component {
 
   constructor(props) {
     super(props);
+    this.cropClick = this.cropClick.bind(this);
+  }
+
+  cropClick() {
+    let cropType = this.props.cropType;
+    let imageData = this.props.imageData;
+    let boundary = this.props.boundary;
+    this.props.onCropClick(cropType, imageData);
   }
 
   render() {
@@ -43,6 +56,7 @@ class CropDialogActions extends Component {
           primary={true}
           label="Crop Image"
           disabled={disabled}
+          onClick={this.cropClick}
         />
       </div>
     )

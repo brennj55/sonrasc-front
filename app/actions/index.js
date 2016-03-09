@@ -1,3 +1,5 @@
+import io from 'socket.io-client';
+const socket = io.connect('http://192.168.99.100:9005');
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
 export function selectImage(image) {
@@ -17,9 +19,10 @@ export function cropImage(imageData, boundary) {
 }
 
 export const REQUEST_CROPPED_DATA = "REQUEST_CROPPED_DATA";
-export function requestCroppedData() {
+export function requestCroppedData(cropType) {
   return {
-    type: REQUEST_CROPPED_DATA
+    type: REQUEST_CROPPED_DATA,
+    cropType
   }
 }
 
@@ -28,8 +31,26 @@ export function recieveCroppedData(cropType, json) {
   return {
     type: RECIEVE_CROPPED_DATA,
     cropType,
-    data: json.data.children.map(child => child.data),
+    data: json,
     recievedAt: Date.now()
+  };
+}
+
+function shouldFetchCroppedData(state) {
+  if (state.UploadInvoice.cropImage.isFetching) return false;
+  else return true;
+}
+
+export function fetchCroppedData(cropType, imageData) {
+  return (dispatch, getState) => {
+    if (shouldFetchCroppedData(getState())) {
+      dispatch(requestCroppedData(cropType));
+      socket.emit('image-cropping', {imageData: imageData});
+      return socket.on('extracted-text', data => {
+        console.log(data);
+        dispatch(recieveCroppedData(cropType, data));
+      });
+    }
   };
 }
 

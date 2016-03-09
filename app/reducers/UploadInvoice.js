@@ -42,7 +42,7 @@ function cropImage(state = cropImageInitialState, action) {
     case RECIEVE_CROPPED_DATA:
       return Object.assign({}, state, {
         isFetching: false,
-        imageData: action.imageData,
+        data: Object.assign({}, state.data, {[action.cropType]: action.data}),
         lastUpdated: action.recievedAt
       });
 
