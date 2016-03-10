@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 import {
   OPEN_CROPPING_DIALOG, TOGGLE_CROPPING_DIALOG,
   SET_BUSINESS_FROM, SELECT_IMAGE, CLEAR_DIALOG,
-  CROP_IMAGE_AREA, REQUEST_CROPPED_DATA, RECIEVE_CROPPED_DATA
+  CROP_IMAGE_AREA, REQUEST_CROPPED_DATA, RECIEVE_CROPPED_DATA,
+  UPDATE_UPLOAD_FORM
 } from '../actions';
 
 function image(state = '', action) {
@@ -21,6 +22,18 @@ const cropImageInitialState = {
   data: {},
   open: false
 };
+
+function form(state = {}, action) {
+  switch (action.type) {
+    case UPDATE_UPLOAD_FORM:
+      return Object.assign({}, state, {
+        [action.key]: {value: action.value, boundary: action.boundary}
+      });
+
+    default:
+      return state;
+  }
+}
 
 function cropImage(state = cropImageInitialState, action) {
   switch (action.type) {
@@ -75,6 +88,7 @@ function business(state = "", action) {
 
 const UploadInvoice = combineReducers({
   image,
+  form,
   cropImage,
   business
 });

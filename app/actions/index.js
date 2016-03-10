@@ -41,17 +41,28 @@ function shouldFetchCroppedData(state) {
   else return true;
 }
 
-export function fetchCroppedData(cropType, imageData) {
+export function fetchCroppedData(cropType, imageData, boundary) {
   return (dispatch, getState) => {
     if (shouldFetchCroppedData(getState())) {
       dispatch(requestCroppedData(cropType));
       socket.emit('image-cropping', {imageData: imageData});
       return socket.on('extracted-text', data => {
         console.log(data);
+        dispatch(updateUploadForm(cropType, data, boundary));
         dispatch(recieveCroppedData(cropType, data));
       });
     }
   };
+}
+
+export const UPDATE_UPLOAD_FORM = "UPDATE_UPLOAD_FORM";
+export function updateUploadForm(dataType, value, boundary) {
+  return {
+    type: UPDATE_UPLOAD_FORM,
+    key: dataType,
+    value: value,
+    boundary: boundary
+  }
 }
 
 export const SET_BUSINESS_FROM = "SET_BUSINESS_FROM";
