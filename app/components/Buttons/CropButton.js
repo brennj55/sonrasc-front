@@ -10,7 +10,7 @@ class CropButton extends Component {
   }
 
   getType() {
-    return this.props.type;
+    return this.props.cropType;
   }
 
   handleClick() {
@@ -19,7 +19,7 @@ class CropButton extends Component {
   }
 
   render() {
-    const { type, open, disabled } = this.props;
+    const { disabled, cropType } = this.props;
 
     return (
       <div>
@@ -30,7 +30,7 @@ class CropButton extends Component {
           disabled={disabled}
           onClick={this.handleClick}
         />
-        <CropImageBox type={type} open={open} />
+        <CropImageBox cropType={cropType} />
       </div>
     );
   }

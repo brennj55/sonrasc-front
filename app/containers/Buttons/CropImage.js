@@ -4,7 +4,6 @@ import * as actions from '../../actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    type: ownProps.type,
     disabled: state.UploadInvoice.image === ""
   }
 };

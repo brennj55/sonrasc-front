@@ -9,7 +9,7 @@ const Address = () => (
   <div>
     <label>Business From Address</label>
     <TextField hintText="Hint Text" />
-    <CropImage type="address" />
+    <CropImage cropType="address" />
   </div>
 );
 

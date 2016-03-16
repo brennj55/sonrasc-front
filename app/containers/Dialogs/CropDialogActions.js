@@ -5,21 +5,20 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { isEmpty } from 'lodash';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
+    active: ownProps.cropType === state.UploadInvoice.cropImage.cropType,
     imageData: state.UploadInvoice.cropImage.imageData,
-    cropType: state.UploadInvoice.cropImage.cropType,
-    disabled: isEmpty(state.UploadInvoice.cropImage.boundary),
-    open: state.UploadInvoice.cropImage.open,
+    cropDisabled: isEmpty(state.UploadInvoice.cropImage.boundary),
     boundary: state.UploadInvoice.cropImage.boundary
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onCancelClick: () => dispatch(actions.clearDialog()),
     onCropClick: (cropType, imageData, boundary) => {
-      dispatch(actions.fetchCroppedData(cropType, imageData, boundary))
+      dispatch(actions.fetchCroppedData(cropType, imageData, boundary));
     }
   }
 };
@@ -32,21 +31,23 @@ class CropDialogActions extends Component {
   }
 
   cropClick() {
-    let cropType = this.props.cropType;
     let imageData = this.props.imageData;
     let boundary = this.props.boundary;
-    this.props.onCropClick(cropType, imageData, boundary);
+    let cropType = this.props.cropType;
+    if (this.props.active) {
+      this.props.onCropClick(cropType, imageData, boundary);
+    }
   }
 
   render() {
     const {
       onCancelClick,
-      onCropClick,
-      disabled
+      cropDisabled,
+      cropType
     } = this.props;
 
     return (
-      <div>
+      <div cropType={cropType}>
         <RaisedButton
           secondary={true}
           label="Cancel"
@@ -55,7 +56,7 @@ class CropDialogActions extends Component {
         <RaisedButton
           primary={true}
           label="Crop Image"
-          disabled={disabled}
+          disabled={cropDisabled}
           onClick={this.cropClick}
         />
       </div>

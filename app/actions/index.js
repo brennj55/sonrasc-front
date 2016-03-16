@@ -19,10 +19,9 @@ export function cropImage(imageData, boundary) {
 }
 
 export const REQUEST_CROPPED_DATA = "REQUEST_CROPPED_DATA";
-export function requestCroppedData(cropType) {
+export function requestCroppedData() {
   return {
-    type: REQUEST_CROPPED_DATA,
-    cropType
+    type: REQUEST_CROPPED_DATA
   }
 }
 
@@ -41,17 +40,17 @@ function shouldFetchCroppedData(state) {
   else return true;
 }
 
-export function fetchCroppedData(cropType, imageData, boundary) {
+export function fetchCroppedData(type, imageData, boundary) {
   return (dispatch, getState) => {
-    if (shouldFetchCroppedData(getState())) {
-      dispatch(requestCroppedData(cropType));
-      socket.emit('image-cropping', {imageData: imageData});
-      return socket.on('extracted-text', data => {
-        console.log(data);
-        dispatch(updateUploadForm(cropType, data, boundary));
-        dispatch(recieveCroppedData(cropType, data));
-      });
-    }
+    console.log(type);
+    socket.emit('image-cropping', {imageData: imageData, cropType: type});
+    socket.on('extracted-text', data => {
+      socket.removeEventListener('extracted-text');
+      console.log(data);
+      dispatch(updateUploadForm(type, data, boundary));
+      dispatch(recieveCroppedData(type, data));
+      dispatch(clearDialog());
+    });
   };
 }
 
@@ -71,14 +70,6 @@ export function setBusinessFrom(business) {
     type: SET_BUSINESS_FROM,
     business
   }
-}
-
-export const OPEN_CROPPING_DIALOG = "OPEN_CROPPING_DIALOG";
-export function openCroppingDialog(cropType) {
-  return {
-    type: OPEN_CROPPING_DIALOG,
-    cropType
-  };
 }
 
 export const CLEAR_DIALOG = "CLEAR_DIALOG";

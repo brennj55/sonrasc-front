@@ -11,12 +11,12 @@ import Items from './Items';
 
 import TextField from 'material-ui/lib/text-field';
 
-const UploadInvoice = ({ socket }) => (
-  <form encType="multipart/form-data" socket={socket}>
+const UploadInvoice = ({ date }) => (
+  <form encType="multipart/form-data">
     <h1>Upload Invoice</h1>
     <BusinessSelection />
     <UploadImage image={''} />
-    <DatePickerField />
+    <DatePickerField date={date} />
     <Address />
     <Items items={[]} />
   </form>

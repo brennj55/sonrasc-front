@@ -6,12 +6,23 @@ import SonrascApp from './reducers';
 import App from './components/App';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-
 import thunkMiddleware from 'redux-thunk';
+
+const logger = store => next => action => {
+  if (action.type !== "CROP_IMAGE") {
+    console.log('dispatching', action);
+    let result = next(action);
+    console.log('next state', store.getState());
+    return result;
+  }
+  else {
+    return next(action);
+  }
+};
 
 injectTapEventPlugin();
 let store = createStore(SonrascApp,
-  applyMiddleware(thunkMiddleware)
+  applyMiddleware(thunkMiddleware, logger)
 );
 
 render(
@@ -20,7 +31,3 @@ render(
   </Provider>,
   document.getElementById('container')
 );
-
-store.subscribe(() => {
-  console.log(store.getState());
-});
