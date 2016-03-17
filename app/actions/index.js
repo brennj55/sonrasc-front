@@ -82,6 +82,22 @@ export function toggleCroppingDialog(cropType) {
 export const ADD_NEW_ITEM = "ADD_NEW_ITEM";
 export function addItem() {
   return {
-    type: ADD_NEW_ITEM
+    type: ADD_NEW_ITEM,
+  }
+}
+
+export const UPDATE_ITEM = "UPDATE_ITEM";
+export function updateItem(value, field, id) {
+  return {
+    type: UPDATE_ITEM,
+    value, field, id
+  }
+}
+
+export const REMOVE_ITEM = "REMOVE_ITEM";
+export function removeItemByID(key) {
+  return {
+    type: REMOVE_ITEM,
+    key
   }
 }

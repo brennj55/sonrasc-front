@@ -1,5 +1,5 @@
 import React from 'react';
-import Item from './Item';
+import ItemContainer from '../../containers/Fields/ItemContainer';
 
 import Table from 'material-ui/lib/table/table';
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
@@ -32,12 +32,14 @@ const Items = ({ items, onClick }) => (
       </TableHeader>
 
       <TableBody>
-        {items.map(item =>
-          <Item
+        {items.toArray().map((item, key) =>
+          <ItemContainer
               headers={header}
-              key={item.id}
+              key={key}
+              id={key}
             />
         )}
+        {items.toArray().map((item, key) => console.log(item, key))}
       </TableBody>
 
     </Table>

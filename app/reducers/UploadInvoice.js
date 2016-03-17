@@ -2,9 +2,10 @@ import { combineReducers } from 'redux';
 import {
   TOGGLE_CROPPING_DIALOG, SELECT_IMAGE, CLEAR_DIALOG,
   CROP_IMAGE_AREA, REQUEST_CROPPED_DATA, RECIEVE_CROPPED_DATA,
-  UPDATE_UPLOAD_FORM, ADD_NEW_ITEM
+  UPDATE_UPLOAD_FORM, ADD_NEW_ITEM, REMOVE_ITEM, UPDATE_ITEM
 } from '../actions';
 import Immutable from 'immutable';
+import { pick } from 'lodash';
 
 function image(state = '', action) {
   switch (action.type) {
@@ -26,17 +27,36 @@ function form(state = formInitialState, action) {
   }
 }
 
-let itemsInitialState = [];
+let itemsInitialState = Immutable.List();
 function items(state = itemsInitialState, action) {
   switch (action.type) {
     case ADD_NEW_ITEM:
-      return [
-        ...state,
-        {}
-      ];
+      return state.set(state.size, {});
+
+    case UPDATE_ITEM:
+      return state.updateIn([action.id], (object) =>
+        Object.assign({}, object, {[action.field]: action.value})
+      );
+
+    case REMOVE_ITEM:
+        return state.delete(action.key);
 
       default:
         return state;
+  }
+}
+
+let itemsByIdInitialState = Immutable.List();
+function itemsById(state = itemsByIdInitialState, action) {
+  switch (action.type) {
+    case ADD_NEW_ITEM:
+      return state.set(state.size);
+
+    case REMOVE_ITEM:
+      return state.delete(action.key);
+
+    default:
+      return state;
   }
 }
 
@@ -87,7 +107,8 @@ const UploadInvoice = combineReducers({
   image,
   form,
   cropImage,
-  items
+  items,
+  itemsById
 });
 
 export default UploadInvoice;

@@ -1,30 +1,35 @@
-import React from 'react';
-import CropButton from '../Buttons/CropButton';
+import React, { Component } from 'react';
+import CropImage from '../../containers/Buttons/CropImage';
+import RemoveItem from '../../containers/Buttons/RemoveItem';
+
 import TableRow from 'material-ui/lib/table/table-row';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
-import FlatButton from 'material-ui/lib/flat-button';
-import TextField from 'material-ui/lib/text-field';
+import ItemProperty from '../../containers/Fields/ItemProperty';
 
-import ActionDelete from 'material-ui/lib/svg-icons/action/delete';
 
-const RemoveItemButton = () => (
-  <FlatButton
-    label="Remove"
-    secondary={true}
-    icon={<ActionDelete />}
-  />
-);
+class Item extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-const Item = ({ headers }) => (
-  <TableRow>
-    {headers.map(header =>
-      <TableRowColumn>
-        <TextField />
-      </TableRowColumn>
-    )}
-    <TableRowColumn><CropButton cropType="item" /></TableRowColumn>
-    <TableRowColumn><RemoveItemButton /></TableRowColumn>
-  </TableRow>
-);
+  render() {
+    const { id, headers } = this.props;
+
+    return (
+      <TableRow>
+        {headers.map(header =>
+          <TableRowColumn key={header}>
+            <ItemProperty
+              id={id}
+              header={header}
+            />
+          </TableRowColumn>
+        )}
+        <TableRowColumn><CropImage cropType="item" /></TableRowColumn>
+        <TableRowColumn><RemoveItem id={id} /></TableRowColumn>
+      </TableRow>
+    );
+  }
+}
 
 export default Item;

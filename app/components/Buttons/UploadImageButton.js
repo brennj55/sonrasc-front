@@ -52,6 +52,7 @@ class UploadImageButton extends Component {
           <input
             type='file'
             ref='image'
+            accept="image/*"
             onChange={ this.handleClick }
             style={ styles.ImageInput }
           />
