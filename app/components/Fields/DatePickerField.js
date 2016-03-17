@@ -6,7 +6,7 @@ export const formatDate = (date) => {
   return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
 };
 
-const DatePickerField = ({ date }) => (
+const DatePickerField = ({ date, onChange }) => (
   <div>
     <label>Date of Invoice</label>
     <DatePicker
@@ -14,6 +14,7 @@ const DatePickerField = ({ date }) => (
       autoOk={true}
       formatDate={formatDate}
       value={date}
+      onChange={onChange}
     />
     <CropImage cropType="date" />
   </div>

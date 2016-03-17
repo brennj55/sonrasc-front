@@ -26,7 +26,7 @@ const Items = ({ items, onClick }) => (
   <div>
     <h2>Items</h2>
     <FlatButton onClick={onClick}>Add Item</FlatButton>
-    <Table>
+    <Table style={{position: 'relative'}}>
       <TableHeader displaySelectAll={false}>
         <TableHead />
       </TableHeader>
