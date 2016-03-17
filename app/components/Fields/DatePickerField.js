@@ -15,7 +15,7 @@ const DatePickerField = ({ date }) => (
       formatDate={formatDate}
       value={date}
     />
-    <CropImage id={1} cropType="date" />
+    <CropImage cropType="date" />
   </div>
 );
 

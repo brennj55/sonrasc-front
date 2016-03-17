@@ -5,10 +5,17 @@ import CropImage from '../../containers/Buttons/CropImage';
 
 import TextField from 'material-ui/lib/text-field';
 
-const Address = () => (
+const Address = ({ address, onUpdate }) => (
   <div>
     <label>Business From Address</label>
-    <TextField hintText="Hint Text" />
+    <div>
+      <TextField
+        hintText="Hint Text"
+        multiLine={true}
+        value={address}
+        onChange={onUpdate}
+      />
+    </div>
     <CropImage cropType="address" />
   </div>
 );

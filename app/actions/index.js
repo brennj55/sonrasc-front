@@ -64,14 +64,6 @@ export function updateUploadForm(dataType, value, boundary) {
   }
 }
 
-export const SET_BUSINESS_FROM = "SET_BUSINESS_FROM";
-export function setBusinessFrom(business) {
-  return {
-    type: SET_BUSINESS_FROM,
-    business
-  }
-}
-
 export const CLEAR_DIALOG = "CLEAR_DIALOG";
 export function clearDialog() {
   return {
@@ -85,4 +77,11 @@ export function toggleCroppingDialog(cropType) {
     type: TOGGLE_CROPPING_DIALOG,
     cropType
   };
+}
+
+export const ADD_NEW_ITEM = "ADD_NEW_ITEM";
+export function addItem() {
+  return {
+    type: ADD_NEW_ITEM
+  }
 }

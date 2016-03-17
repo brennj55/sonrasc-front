@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
 import {
-  TOGGLE_CROPPING_DIALOG,
-  SET_BUSINESS_FROM, SELECT_IMAGE, CLEAR_DIALOG,
+  TOGGLE_CROPPING_DIALOG, SELECT_IMAGE, CLEAR_DIALOG,
   CROP_IMAGE_AREA, REQUEST_CROPPED_DATA, RECIEVE_CROPPED_DATA,
-  UPDATE_UPLOAD_FORM
+  UPDATE_UPLOAD_FORM, ADD_NEW_ITEM
 } from '../actions';
 import Immutable from 'immutable';
 
@@ -24,6 +23,20 @@ function form(state = formInitialState, action) {
 
     default:
       return state;
+  }
+}
+
+let itemsInitialState = [];
+function items(state = itemsInitialState, action) {
+  switch (action.type) {
+    case ADD_NEW_ITEM:
+      return [
+        ...state,
+        {}
+      ];
+
+      default:
+        return state;
   }
 }
 
@@ -70,20 +83,11 @@ function cropImage(state = cropImageInitialState, action) {
   }
 }
 
-function business(state = "", action) {
-  switch (action.type) {
-    case SET_BUSINESS_FROM:
-      return action.business
-
-    default:
-      return state;
-  }
-}
-
 const UploadInvoice = combineReducers({
   image,
   form,
-  cropImage
+  cropImage,
+  items
 });
 
 export default UploadInvoice;

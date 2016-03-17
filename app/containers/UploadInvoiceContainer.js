@@ -6,9 +6,16 @@ const checkIfNewDateAvailable = (state) => {
   else return new Date(state.UploadInvoice.form.get('date').value);
 };
 
+const checkIfNewAddressAvailable = (state) => {
+  if (!state.UploadInvoice.form.has('address')) return null;
+  else return state.UploadInvoice.form.get('address').value;
+}
+
 const mapStateToProps = (state, ownProps) => {
   return {
-    date: checkIfNewDateAvailable(state)
+    date: checkIfNewDateAvailable(state),
+    address: checkIfNewAddressAvailable(state),
+    items: state.UploadInvoice.items
   };
 };
 
