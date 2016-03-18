@@ -23,9 +23,9 @@ class Item extends Component {
               id={id}
               header={header}
             />
+            <CropImage cropType={'Item/' + id + '/' + header} />
           </TableRowColumn>
         )}
-        <TableRowColumn><CropImage cropType="item" /></TableRowColumn>
         <TableRowColumn><RemoveItem id={id} /></TableRowColumn>
       </TableRow>
     );

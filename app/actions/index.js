@@ -42,11 +42,18 @@ function shouldFetchCroppedData(state) {
 
 export function fetchCroppedData(type, imageData, boundary) {
   return (dispatch, getState) => {
-    console.log(type);
+
     socket.emit('image-cropping', {imageData: imageData, cropType: type});
     socket.on('extracted-text', data => {
-      socket.removeEventListener('extracted-text');
       console.log(data);
+      socket.removeEventListener('extracted-text');
+
+      if (type.includes('Item')) {
+        console.log('an item!');
+        let split = type.split('/');
+        dispatch(updateItem(data, split[2], split[1]));
+      }
+
       dispatch(updateUploadForm(type, data, boundary));
       dispatch(recieveCroppedData(type, data));
       dispatch(clearDialog());
