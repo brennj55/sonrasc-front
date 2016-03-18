@@ -1,23 +1,23 @@
 import React, { Component, PropTypes } from 'react';
-
 import BusinessSelection from './BusinessSelection';
 import CropImage from '../../containers/Buttons/CropImage';
-
 import TextField from 'material-ui/lib/text-field';
+import Radium from 'radium';
+import styles from '../../styles/flex.js';
 
-const Address = ({ address, onUpdate }) => (
-  <div>
-    <label>Business From Address</label>
-    <div>
+let Address = ({ address, onUpdate }) => (
+  <div style={[styles.innerFlex, styles.space]}>
+    <label style={[styles.flex1, styles.label]}>Address of Business</label>
       <TextField
-        hintText="Hint Text"
+        hintText=""
         multiLine={true}
         value={address}
         onChange={onUpdate}
+        style={styles.cropFlex}
       />
-    </div>
     <CropImage cropType="address" />
   </div>
 );
 
+Address = Radium(Address);
 export default Address;

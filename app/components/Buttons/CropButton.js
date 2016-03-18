@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import FlatButton from 'material-ui/lib/flat-button';
 import ImageCrop from 'material-ui/lib/svg-icons/image/crop';
 import CropImageBox from '../../containers/Dialogs/CropImageBox';
+import Radium from 'radium';
+import styles from '../../styles/flex.js';
 
 class CropButton extends Component {
   constructor(props) {
@@ -19,16 +21,17 @@ class CropButton extends Component {
   }
 
   render() {
-    const { disabled, cropType } = this.props;
+    const { disabled, cropType, style } = this.props;
 
     return (
-      <div>
+      <div style={[styles.innerFlex, styles.space]}>
         <FlatButton
           label="Crop"
           secondary={true}
           icon={<ImageCrop />}
           disabled={disabled}
           onClick={this.handleClick}
+          style={styles.buttonFlex}
         />
         <CropImageBox cropType={cropType} />
       </div>
@@ -36,4 +39,5 @@ class CropButton extends Component {
   }
 }
 
+CropButton = Radium(CropButton);
 export default CropButton;
