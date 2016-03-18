@@ -4,9 +4,11 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import SonrascApp from './reducers';
 import App from './components/App';
+import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-
 import thunkMiddleware from 'redux-thunk';
+
+import UploadInvoiceContainer from './containers/UploadInvoiceContainer';
 
 const logger = store => next => action => {
   if (action.type !== "CROP_IMAGE") {
@@ -27,7 +29,11 @@ let store = createStore(SonrascApp,
 
 render(
   <Provider store={store}>
-    <App />
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <Route path="/invoices/upload-invoice" component={UploadInvoiceContainer} />
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('container')
 );
