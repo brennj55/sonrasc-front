@@ -4,10 +4,13 @@ import { selectImage } from '../../actions';
 
 import FlatButton from 'material-ui/lib/flat-button';
 import ImageAddAPhoto from 'material-ui/lib/svg-icons/image/add-a-photo';
+import Radium from 'radium';
+import styles from '../../styles/flex.js';
 
-const styles = {
+const fileStyle = {
   button: {
     margin: 12,
+    flex: '1 1 45%'
   },
 
   ImageInput: {
@@ -42,19 +45,20 @@ class UploadImageButton extends Component {
 
   render() {
     return (
-      <div>
-        <label>Upload Invoice Image</label>
+      <div style={[styles.innerFlex, styles.space]}>
+        <label style={[styles.flex1, styles.label]}>Invoice Image</label>
         <FlatButton
+          label="Upload a file"
           primary={true}
           icon={<ImageAddAPhoto />}
-          style={styles.button}
+          style={fileStyle.button}
         >
           <input
             type='file'
             ref='image'
             accept="image/*"
             onChange={ this.handleClick }
-            style={ styles.ImageInput }
+            style={ fileStyle.ImageInput }
           />
         </FlatButton>
       </div>
@@ -62,4 +66,5 @@ class UploadImageButton extends Component {
   }
 }
 
+UploadImageButton = Radium(UploadImageButton);
 export default UploadImageButton;
