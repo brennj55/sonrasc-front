@@ -4,7 +4,7 @@ import * as actions from '../../actions';
 
 const mapStateToProps = (state, ownProps) => {
   let items = state.UploadInvoice.items;
-  let value = items.get(ownProps.id)[ownProps.header];
+  let value = (items.get(ownProps.id)[ownProps.header] || "");
   return {
     value: value
   };

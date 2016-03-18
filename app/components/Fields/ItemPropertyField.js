@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/lib/text-field';
 
+
 class ItemPropertyField extends Component {
   constructor(props) {
     super(props);

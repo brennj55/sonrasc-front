@@ -9,8 +9,8 @@ import TableBody from 'material-ui/lib/table/table-body';
 
 import FlatButton from 'material-ui/lib/flat-button';
 
-let headers = ['Name', 'Price', 'Quantity', 'VAT', 'Total', ''];
-let header = ['Name', 'Price', 'Quantity', 'VAT', 'Total'];
+let headers = ['Name', 'Price', 'Quantity', 'Total', ''];
+let header = ['Name', 'Price', 'Quantity', 'Total'];
 
 const TableHead = () => (
   <TableRow>
