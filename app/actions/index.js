@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+import { packageInvoice } from '../utils/packageInvoice';
 const socket = io.connect('http://192.168.99.100:9005');
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
@@ -43,17 +44,18 @@ function shouldFetchCroppedData(state) {
 export function fetchCroppedData(type, imageData, boundary) {
   return (dispatch, getState) => {
 
+    console.log(type);
     socket.emit('image-cropping', {imageData: imageData, cropType: type});
     socket.on('extracted-text', data => {
-      console.log(data);
+
       socket.removeEventListener('extracted-text');
-
+      console.log(data);
       if (type.includes('Item')) {
-        console.log('an item!');
-        let split = type.split('/');
-        dispatch(updateItem(data, split[2], split[1]));
+        let itemType = type.split('/');
+        let ID = itemType.length - 2;
+        let FIELD = itemType.length - 1;
+        dispatch(update(data, itemType[FIELD], itemType[ID]));
       }
-
       dispatch(updateUploadForm(type, data, boundary));
       dispatch(recieveCroppedData(type, data));
       dispatch(clearDialog());
@@ -93,6 +95,18 @@ export function addItem() {
   }
 }
 
+export function update(value, field, id) {
+  return (dispatch, getState) => {
+    dispatch(updateItem(value, field, id));
+    dispatch(updateUploadForm("Item/" + id + "/" + field, value));
+    if (field === 'Price' || field === 'Quantity') {
+      let item = getState().UploadInvoice.items.get(id);
+      dispatch(updateItem(item.Quantity * item.Price, 'Total', id));
+      dispatch(updateUploadForm("Item/" + id + "/Total", item.Quantity * item.Price));
+    }
+  };
+}
+
 export const UPDATE_ITEM = "UPDATE_ITEM";
 export function updateItem(value, field, id) {
   return {
@@ -107,4 +121,11 @@ export function removeItemByID(key) {
     type: REMOVE_ITEM,
     key
   }
+}
+
+export const UPLOAD_INVOICE = "UPLOAD_INVOICE";
+export function uploadInvoice() {
+  return (dispatch, getState) => {
+    packageInvoice(getState());
+  };
 }

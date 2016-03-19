@@ -35,9 +35,7 @@ function items(state = itemsInitialState, action) {
 
     case UPDATE_ITEM:
       return state.updateIn([action.id], (object) =>
-        Object.assign({}, object, {[action.field]: action.value,
-          Total: object.Quantity * object.Price
-        })
+        Object.assign({}, object, {[action.field]: action.value})
       );
 
     case REMOVE_ITEM:

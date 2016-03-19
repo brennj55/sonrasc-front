@@ -14,7 +14,9 @@ class App extends Component {
         <Header />
         <div id="appContainer">
           <NavContainer />
-          {children}
+          <div className="container">
+            {children}
+          </div>
         </div>
       </StyleRoot>
     );

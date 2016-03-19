@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onChange: (value, field, id) => dispatch(actions.updateItem(value, field, id))
+    onChange: (value, field, id) => dispatch(actions.update(value, field, id))
   };
 };
 

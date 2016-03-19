@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { selectImage } from '../../actions';
-
 import FlatButton from 'material-ui/lib/flat-button';
 import ImageAddAPhoto from 'material-ui/lib/svg-icons/image/add-a-photo';
 import Radium from 'radium';
