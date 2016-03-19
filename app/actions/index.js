@@ -41,6 +41,15 @@ function shouldFetchCroppedData(state) {
   else return true;
 }
 
+function checkIfItem(type, data, dispatch) {
+  if (type.includes('Item')) {
+    let itemType = type.split('/');
+    let ID = itemType.length - 2;
+    let FIELD = itemType.length - 1;
+    dispatch(update(data, itemType[FIELD], itemType[ID]));
+  }
+}
+
 export function fetchCroppedData(type, imageData, boundary) {
   return (dispatch, getState) => {
 
@@ -50,12 +59,7 @@ export function fetchCroppedData(type, imageData, boundary) {
 
       socket.removeEventListener('extracted-text');
       console.log(data);
-      if (type.includes('Item')) {
-        let itemType = type.split('/');
-        let ID = itemType.length - 2;
-        let FIELD = itemType.length - 1;
-        dispatch(update(data, itemType[FIELD], itemType[ID]));
-      }
+      checkIfItem(type, data, dispatch);
       dispatch(updateUploadForm(type, data, boundary));
       dispatch(recieveCroppedData(type, data));
       dispatch(clearDialog());

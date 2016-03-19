@@ -16,6 +16,10 @@ const styles = {
     padding: '1em 0',
   },
 
+  marginSpace: {
+    margin: '2em 0'
+  },
+
   header: {
     width: '100%',
     paddingBottom: '0.3em',
@@ -38,6 +42,11 @@ const styles = {
     alignItems: 'baseline',
     flexWrap: 'wrap',
     justifyContent: 'space-around'
+  },
+
+  spaceBetween: {
+    display: 'flex',
+    justifyContent: 'space-between'
   },
 
   innerFlexNoWrap: {
