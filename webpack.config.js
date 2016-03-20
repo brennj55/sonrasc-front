@@ -13,8 +13,11 @@ module.exports = [{
     },
 
     plugins: [
-      new webpack.HotModuleReplacementPlugin()
-   ],
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.DefinePlugin({
+        'process.env.WEB_OCR_API_PORT': JSON.stringify(process.env.WEB_OCR_API_PORT_9005_TCP_PORT)
+      })
+    ],
 
     devtool: 'eval-source-map',
     module: {

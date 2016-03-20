@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import { packageInvoice } from '../utils/packageInvoice';
-const socket = io.connect('http://192.168.99.100:9005');
+const socket = io.connect(location.hostname + ":" + process.env.WEB_OCR_API_PORT);
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
 export function selectImage(image) {
@@ -56,7 +56,6 @@ export function fetchCroppedData(type, imageData, boundary) {
     console.log(type);
     socket.emit('image-cropping', {imageData: imageData, cropType: type});
     socket.on('extracted-text', data => {
-
       socket.removeEventListener('extracted-text');
       console.log(data);
       checkIfItem(type, data, dispatch);
