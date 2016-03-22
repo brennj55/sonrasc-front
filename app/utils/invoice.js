@@ -1,4 +1,4 @@
-export function packageInvoice(state) {
+export function packageInvoiceForStorage(state) {
   let image = state.UploadInvoice.image;
   let items = state.UploadInvoice.items;
   let form = state.UploadInvoice.form;

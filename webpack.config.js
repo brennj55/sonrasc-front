@@ -15,7 +15,8 @@ module.exports = [{
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new webpack.DefinePlugin({
-        'process.env.WEB_OCR_API_PORT': JSON.stringify(process.env.WEB_OCR_API_PORT_9005_TCP_PORT)
+        'process.env.WEB_OCR_API_PORT': JSON.stringify(process.env.WEB_OCR_API_PORT_9005_TCP_PORT),
+        'process.env.DB_API_PORT:': JSON.stringify(process.env.DB_API_PORT_7004_TCP_PORT)
       })
     ],
 

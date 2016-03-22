@@ -35,7 +35,7 @@ form {
     align-items: flex-start;
     overflow-x: hidden;
     padding-left: 256px;
-    padding-top: 64px;
+    padding-top: 100px;
   }
 
   /* Always show the nav on larger displays. */

@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import { packageInvoiceForStorage } from '../utils/invoice.js';
 const OCR_API_SOCKET = io.connect(location.hostname + ":" + process.env.WEB_OCR_API_PORT);
-const DB_API_SOCKET = io.connect(location.hostname + ":" + process.env.DB_API_PORT);
+const DB_API_SOCKET = io.connect(location.hostname + ":7004");
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
 export function selectImage(image) {

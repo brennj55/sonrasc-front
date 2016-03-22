@@ -4,11 +4,11 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
 
-    '@media (min-width: 42rem)': {
+    '@media (minWidth: 42rem)': {
       margin: '48px 72px'
     },
 
-    '@media (min-width: 65em)': {
+    '@media (minWidth: 65em)': {
     }
   },
 
@@ -41,7 +41,11 @@ const styles = {
     display: 'flex',
     alignItems: 'baseline',
     flexWrap: 'wrap',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+
+    '@media (max-width: 1000px)': {
+      flexDirection: 'column',
+    }
   },
 
   spaceBetween: {
@@ -72,7 +76,11 @@ const styles = {
   },
 
   flex1: {
-    flex: '1 1 45%'
+    flex: '1 1 45%',
+
+    '@media (maxWidth: 1000px)': {
+      flex: '1 1 100%',
+    }
   },
 
   cropFlex: {
@@ -90,7 +98,11 @@ const styles = {
   columnContainer: {
     flex: '1 1 45%',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+
+    '@media (maxWidth: 1000px)': {
+      flex: '1 1 100%',
+    }
   }
 };
 
