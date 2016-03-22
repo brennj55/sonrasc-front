@@ -1,6 +1,7 @@
 import io from 'socket.io-client';
-import { packageInvoice } from '../utils/packageInvoice';
-const socket = io.connect(location.hostname + ":" + process.env.WEB_OCR_API_PORT);
+import { packageInvoiceForStorage } from '../utils/invoice.js';
+const OCR_API_SOCKET = io.connect(location.hostname + ":" + process.env.WEB_OCR_API_PORT);
+const DB_API_SOCKET = io.connect(location.hostname + ":" + process.env.DB_API_PORT);
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
 export function selectImage(image) {
@@ -52,12 +53,9 @@ function checkIfItem(type, data, dispatch) {
 
 export function fetchCroppedData(type, imageData, boundary) {
   return (dispatch, getState) => {
-
-    console.log(type);
-    socket.emit('image-cropping', {imageData: imageData, cropType: type});
-    socket.on('extracted-text', data => {
-      socket.removeEventListener('extracted-text');
-      console.log(data);
+    OCR_API_SOCKET.emit('image-cropping', {imageData: imageData, cropType: type});
+    OCR_API_SOCKET.on('extracted-text', data => {
+      OCR_API_SOCKET.removeEventListener('extracted-text');
       checkIfItem(type, data, dispatch);
       dispatch(updateUploadForm(type, data, boundary));
       dispatch(recieveCroppedData(type, data));
@@ -129,6 +127,7 @@ export function removeItemByID(key) {
 export const UPLOAD_INVOICE = "UPLOAD_INVOICE";
 export function uploadInvoice() {
   return (dispatch, getState) => {
-    packageInvoice(getState());
+    let form = packageInvoiceForStorage(getState());
+    DB_API_SOCKET.emit('form-submit', form);
   };
 }
