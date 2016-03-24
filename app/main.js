@@ -9,6 +9,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import thunkMiddleware from 'redux-thunk';
 
 import UploadInvoiceContainer from './containers/UploadInvoiceContainer';
+import InvoiceGrid from './components/Grid/InvoiceGrid';
 
 const logger = store => next => action => {
   if (action.type !== "CROP_IMAGE") {
@@ -31,7 +32,8 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <Route path="/invoices/upload-invoice" component={UploadInvoiceContainer} />
+        <Route path="/invoices/upload" component={UploadInvoiceContainer} />
+        <Route path="/invoices" component={InvoiceGrid} />
       </Route>
     </Router>
   </Provider>,

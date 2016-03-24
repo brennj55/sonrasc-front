@@ -1,20 +1,20 @@
+import Immutable from 'immutable';
+import { keyBy } from 'lodash';
+
 export function packageInvoiceForStorage(state) {
   let image = state.UploadInvoice.image;
   let items = state.UploadInvoice.items;
+  let x = state.UploadInvoice.itemsById;
   let form = state.UploadInvoice.form;
 
   let itemsFromForm = form.filter((item, key) => key.includes('Item'));
-  let itemsWithBoundaries = itemsFromForm.map((item, key) => {
-    let indexes = key.split('/');
-    let newItem = items.toArray()[parseInt(indexes[1])];
-    if (item.boundary) {
-      return Object.assign({}, newItem, {boundary: item.boundary});
-    }
-  });
+  let keyedItems = itemsFromForm.map((item, key) => Object.assign({}, item, {key})).toJS();
+
+  console.log(x);
 
   return {
     image,
     form: form.filter((item, key) => !key.includes('Item')),
-    items: itemsWithBoundaries.toArray()
+    items: itemsFromForm
   };
 };

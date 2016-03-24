@@ -5,7 +5,7 @@ import {
   UPDATE_UPLOAD_FORM, ADD_NEW_ITEM, REMOVE_ITEM, UPDATE_ITEM
 } from '../actions';
 import Immutable from 'immutable';
-import { pick } from 'lodash';
+import { pick, range } from 'lodash';
 
 function image(state = '', action) {
   switch (action.type) {
@@ -46,14 +46,14 @@ function items(state = itemsInitialState, action) {
   }
 }
 
-let itemsByIdInitialState = Immutable.List();
+let itemsByIdInitialState = [];
 function itemsById(state = itemsByIdInitialState, action) {
   switch (action.type) {
     case ADD_NEW_ITEM:
-      return state.set(state.size);
+      return range(state.length + 1);
 
     case REMOVE_ITEM:
-      return state.delete(action.key);
+      return range(state.length - 1);
 
     default:
       return state;

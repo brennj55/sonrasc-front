@@ -103,6 +103,18 @@ const styles = {
     '@media (maxWidth: 1000px)': {
       flex: '1 1 100%',
     }
+  },
+
+  grid: {
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+    },
+    gridList: {
+      flex: '1 1 30%',
+       overflowY: 'auto',
+    },
   }
 };
 
