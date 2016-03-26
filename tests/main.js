@@ -1,3 +1,1 @@
-import { assert } from 'chai';
-
-console.log(assert);
+import tests from './UploadInvoice/uploadInvoice';
