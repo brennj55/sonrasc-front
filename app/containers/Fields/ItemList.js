@@ -15,7 +15,7 @@ const getTotalCost = (items) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    totalCost: (getTotalCost(state.UploadInvoice.items) || 0)
+    totalCost: (getTotalCost(state.UploadInvoice.items) || Number(0).toFixed(2))
   };
 };
 
