@@ -114,8 +114,8 @@ export function updateItemsTotal(id) {
 export const UPLOAD_INVOICE = "UPLOAD_INVOICE";
 export function uploadInvoice() {
   return (dispatch, getState) => {
-    //const DB_API_SOCKET = io.connect(location.hostname + ":7004");
-    //let form = packageInvoiceForStorage(getState());
-    //DB_API_SOCKET.emit('form-submit', form);
+    const DB_API_SOCKET = io.connect(location.hostname + ":7004");
+    let form = packageInvoiceForStorage(getState());
+    DB_API_SOCKET.emit('form-submit', form);
   };
 }
