@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import * as actions from '../../app/actions';
 import configureMockStore from 'redux-mock-store';
 import Immutable from 'immutable';
-import { items } from '../../app/reducers/UploadInvoice';
+import { items, image } from '../../app/reducers/UploadInvoice';
 import croppedImage from './testCropping.js';
 
 const mockStore = configureMockStore();
@@ -281,6 +281,23 @@ let tests = describe("Upload an Invoice", () => {
       expect(items(initalState, action)).to.deep.equal(expectedState);
     });
   });
+
+  describe('Image reducer', () => {
+    it('inital state should be an empty string', () => {
+      expect(image(undefined, {})).to.equal('');
+    });
+
+    it('the image should be returned when you select the image.', () => {
+      const imageBlobData = require('./testInvoice.js');
+      const action = {
+        type: actions.SELECT_IMAGE,
+        image: imageBlobData
+      };
+      expect(image('', action)).to.equal(imageBlobData);
+    });
+  });
+
+  
 });
 
 export default tests;

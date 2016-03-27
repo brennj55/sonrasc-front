@@ -7,7 +7,7 @@ import {
 import Immutable from 'immutable';
 import { pick, range } from 'lodash';
 
-function image(state = '', action) {
+export function image(state = '', action) {
   switch (action.type) {
     case SELECT_IMAGE:
       return action.image;
