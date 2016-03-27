@@ -6,7 +6,9 @@ import * as actions from '../../actions';
 import { isEmpty } from 'lodash';
 
 const checkIfIsItemAndUpdateTotal = (dispatch, cropType) => {
+  console.log('here');
   if (cropType.includes('Price') || cropType.includes('Quantity')) {
+    console.log('in here');
     const [_, id, __] = cropType.split('/');
     dispatch(actions.updateItemsTotal(id));
   }
@@ -25,8 +27,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onCancelClick: () => dispatch(actions.clearDialog()),
     onCropClick: (cropType, imageData, boundary) => {
-      dispatch(actions.fetchCroppedData(cropType, imageData, boundary));
-      checkIfIsItemAndUpdateTotal(dispatch, cropType);
+      dispatch(actions.fetchCroppedData(cropType, imageData, boundary))
+        .then(() => checkIfIsItemAndUpdateTotal(dispatch, cropType));
     }
   }
 };
