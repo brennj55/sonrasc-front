@@ -45,6 +45,7 @@
     "gulp": "^3.9.0",
     "chai": "*",
     "mocha": "*",
+    "redux-mock-store": "^1.0.2",
     "redux-devtools": "^3.0.1",
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.2",

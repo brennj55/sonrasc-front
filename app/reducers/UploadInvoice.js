@@ -28,15 +28,16 @@ function form(state = formInitialState, action) {
 }
 
 let itemsInitialState = Immutable.List();
-function items(state = itemsInitialState, action) {
+export function items(state = itemsInitialState, action) {
   switch (action.type) {
     case ADD_NEW_ITEM:
-      return state.set(state.size, {});
+      return state.push({});
 
     case UPDATE_ITEM:
-      return state.updateIn([action.id], (object) =>
-        Object.assign({}, object, {[action.field]: action.value})
-      );
+      return state.update(action.id, (obj) => {
+        //console.log(JSON.stringify(obj));
+        return Object.assign({}, obj, {[action.field]: {value: action.value, boundary: action.boundary}});
+      });
 
     case REMOVE_ITEM:
         return state.delete(action.key);

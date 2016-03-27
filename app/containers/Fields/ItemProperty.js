@@ -4,15 +4,15 @@ import * as actions from '../../actions';
 
 const mapStateToProps = (state, ownProps) => {
   let items = state.UploadInvoice.items;
-  let value = (items.get(ownProps.id)[ownProps.header] || "");
-  return {
-    value: value
-  };
+  let value = (items.get(ownProps.id)[ownProps.header] || "").value;
+  return { value };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onChange: (value, field, id) => dispatch(actions.update(value, field, id))
+    onChange: (value, field, id) => {
+      dispatch(actions.updateItem(value, field, id));
+    }
   };
 };
 

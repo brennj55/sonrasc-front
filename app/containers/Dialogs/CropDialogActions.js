@@ -17,9 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onCancelClick: () => dispatch(actions.clearDialog()),
-    onCropClick: (cropType, imageData, boundary) => {
-      dispatch(actions.fetchCroppedData(cropType, imageData, boundary));
-    }
+    onCropClick: (cropType, imageData, boundary) => dispatch(actions.fetchCroppedData(cropType, imageData, boundary))
   }
 };
 

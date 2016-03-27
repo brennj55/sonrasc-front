@@ -1,7 +1,5 @@
 import io from 'socket.io-client';
 import { packageInvoiceForStorage } from '../utils/invoice.js';
-const OCR_API_SOCKET = io.connect(location.hostname + ":" + process.env.WEB_OCR_API_PORT);
-const DB_API_SOCKET = io.connect(location.hostname + ":7004");
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
 export function selectImage(image) {
@@ -37,30 +35,19 @@ export function recieveCroppedData(cropType, json) {
   };
 }
 
-function shouldFetchCroppedData(state) {
-  if (state.UploadInvoice.cropImage.isFetching) return false;
-  else return true;
-}
-
-function checkIfItem(type, data, dispatch) {
-  if (type.includes('Item')) {
-    let itemType = type.split('/');
-    let ID = itemType.length - 2;
-    let FIELD = itemType.length - 1;
-    dispatch(update(data, itemType[FIELD], itemType[ID]));
-  }
-}
-
 export function fetchCroppedData(type, imageData, boundary) {
   return (dispatch, getState) => {
-    OCR_API_SOCKET.emit('image-cropping', {imageData: imageData, cropType: type});
-    OCR_API_SOCKET.on('extracted-text', data => {
-      OCR_API_SOCKET.removeEventListener('extracted-text');
-      checkIfItem(type, data, dispatch);
-      dispatch(updateUploadForm(type, data, boundary));
-      dispatch(recieveCroppedData(type, data));
-      dispatch(clearDialog());
-    });
+    return new Promise((resolve, reject) => {
+      const OCR_API_SOCKET = io.connect(location.hostname + ":" + process.env.WEB_OCR_API_PORT);
+      OCR_API_SOCKET.emit('image-cropping', {imageData: imageData, cropType: type});
+      OCR_API_SOCKET.on('extracted-text', data => {
+        if (!type.includes("Item")) resolve(dispatch(updateUploadForm(type, data, boundary)));
+        else {
+          const [itemToken, id, field] = type.split('/');
+          resolve(dispatch(updateItem(data, field, parseInt(id), boundary)));
+        }
+      });
+    }).then(() => dispatch(clearDialog()));
   };
 }
 
@@ -96,24 +83,19 @@ export function addItem() {
   }
 }
 
-export function update(value, field, id) {
-  return (dispatch, getState) => {
-    dispatch(updateItem(value, field, id));
-    dispatch(updateUploadForm("Item/" + id + "/" + field, value));
-    if (field === 'Price' || field === 'Quantity') {
-      let item = getState().UploadInvoice.items.get(id);
-      dispatch(updateItem(item.Quantity * item.Price, 'Total', id));
-      dispatch(updateUploadForm("Item/" + id + "/Total", item.Quantity * item.Price));
-    }
-  };
-}
-
 export const UPDATE_ITEM = "UPDATE_ITEM";
-export function updateItem(value, field, id) {
+export function updateItem(value, field, id, boundary) {
   return {
     type: UPDATE_ITEM,
-    value, field, id
+    value, field, id, boundary
   }
+}
+
+export function updateTotalForItem(id) {
+  return (dispatch, getState) => {
+    const item = getState().UploadInvoice.items.get(id);
+    console.log(item);
+  };
 }
 
 export const REMOVE_ITEM = "REMOVE_ITEM";
@@ -127,7 +109,8 @@ export function removeItemByID(key) {
 export const UPLOAD_INVOICE = "UPLOAD_INVOICE";
 export function uploadInvoice() {
   return (dispatch, getState) => {
-    let form = packageInvoiceForStorage(getState());
-    DB_API_SOCKET.emit('form-submit', form);
+    //const DB_API_SOCKET = io.connect(location.hostname + ":7004");
+    //let form = packageInvoiceForStorage(getState());
+    //DB_API_SOCKET.emit('form-submit', form);
   };
 }
