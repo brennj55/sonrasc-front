@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
 import { packageInvoiceForStorage } from '../utils/invoice.js';
+import { has, round } from 'lodash';
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
 export function selectImage(image) {
@@ -91,19 +92,23 @@ export function updateItem(value, field, id, boundary) {
   }
 }
 
-export function updateTotalForItem(id) {
-  return (dispatch, getState) => {
-    const item = getState().UploadInvoice.items.get(id);
-    console.log(item);
-  };
-}
-
 export const REMOVE_ITEM = "REMOVE_ITEM";
 export function removeItemByID(key) {
   return {
     type: REMOVE_ITEM,
     key
   }
+}
+
+export function updateItemsTotal(id) {
+  return (dispatch, getState) => {
+    let item = getState().UploadInvoice.items.get(id);
+    console.log(item);
+    if (has(item, 'Quantity.value') && has(item, 'Price.value')) {
+      let total = item.Quantity.value * item.Price.value;
+      dispatch(updateItem(round(total, 2), "Total", id, {}));
+    }
+  };
 }
 
 export const UPLOAD_INVOICE = "UPLOAD_INVOICE";

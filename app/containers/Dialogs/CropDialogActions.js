@@ -5,6 +5,13 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { isEmpty } from 'lodash';
 
+const checkIfIsItemAndUpdateTotal = (dispatch, cropType) => {
+  if (cropType.includes('Price') || cropType.includes('Quantity')) {
+    const [_, id, __] = cropType.split('/');
+    dispatch(actions.updateItemsTotal(id));
+  }
+};
+
 const mapStateToProps = (state, ownProps) => {
   return {
     active: ownProps.cropType === state.UploadInvoice.cropImage.cropType,
@@ -17,7 +24,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onCancelClick: () => dispatch(actions.clearDialog()),
-    onCropClick: (cropType, imageData, boundary) => dispatch(actions.fetchCroppedData(cropType, imageData, boundary))
+    onCropClick: (cropType, imageData, boundary) => {
+      dispatch(actions.fetchCroppedData(cropType, imageData, boundary));
+      checkIfIsItemAndUpdateTotal(dispatch, cropType);
+    }
   }
 };
 

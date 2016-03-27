@@ -7,7 +7,7 @@ import { capitalize } from 'lodash';
 const title = (type) => {
   if (type.includes('/')) {
     let split = type.split('/');
-    return "Crop Image for " + capitalize(split[2]) + " of item " + split[1] + 1;
+    return "Crop Image for " + capitalize(split[2]) + " of item " + (parseInt(split[1]) + 1);
   }
   return "Crop Image for " + capitalize(type);
 };
