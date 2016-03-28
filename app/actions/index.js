@@ -111,11 +111,31 @@ export function updateItemsTotal(id) {
   };
 }
 
+export const UPLOAD_INVOICE_REQUEST = "UPLOAD_INVOICE_REQUEST";
+export function uploadInvoiceRequest() {
+  return {
+    type: UPLOAD_INVOICE_REQUEST
+  }
+}
+
+export const UPLOAD_INVOICE_SUCCESS = "UPLOAD_INVOICE_SUCCESS";
+export function uploadInvoiceSuccess() {
+  return {
+    type: UPLOAD_INVOICE_SUCCESS
+  }
+}
+
 export const UPLOAD_INVOICE = "UPLOAD_INVOICE";
 export function uploadInvoice() {
   return (dispatch, getState) => {
-    const DB_API_SOCKET = io.connect(location.hostname + ":7004");
-    let form = packageInvoiceForStorage(getState());
-    DB_API_SOCKET.emit('form-submit', form);
+    dispatch(uploadInvoiceRequest());
+    fetch('http://192.168.99.100:7004/api/invoices', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify(packageInvoiceForStorage(getState()))
+    }).then((res) => res.json())
+      .then((json) => dispatch(uploadInvoiceSuccess()));
   };
 }

@@ -15,7 +15,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     date: checkIfNewDateAvailable(state),
     address: checkIfNewAddressAvailable(state),
-    items: state.UploadInvoice.items
+    items: state.UploadInvoice.items,
+    uploading: state.UploadInvoice.upload.isUploading
   };
 };
 

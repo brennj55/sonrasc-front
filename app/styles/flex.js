@@ -12,6 +12,19 @@ const styles = {
     }
   },
 
+  centerFlex: {
+    minHeight: '60vh',
+    flexDirection: 'column',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center'
+  },
+
+  centerFlexItem: {
+    width: '50%'
+  },
+
   space: {
     padding: '1em 0',
   },

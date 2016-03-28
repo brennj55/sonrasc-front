@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 import {
   TOGGLE_CROPPING_DIALOG, SELECT_IMAGE, CLEAR_DIALOG,
   CROP_IMAGE_AREA, REQUEST_CROPPED_DATA, RECIEVE_CROPPED_DATA,
-  UPDATE_UPLOAD_FORM, ADD_NEW_ITEM, REMOVE_ITEM, UPDATE_ITEM
+  UPDATE_UPLOAD_FORM, ADD_NEW_ITEM, REMOVE_ITEM, UPDATE_ITEM,
+  UPLOAD_INVOICE_REQUEST, UPLOAD_INVOICE_SUCCESS
 } from '../actions';
 import Immutable from 'immutable';
 import { pick, range } from 'lodash';
@@ -104,12 +105,31 @@ function cropImage(state = cropImageInitialState, action) {
   }
 }
 
+const uploadInvoiceInitialState = {
+  isUploading: false,
+  uploaded: false
+};
+
+function upload(state = uploadInvoiceInitialState, action) {
+  switch (action.type) {
+    case UPLOAD_INVOICE_REQUEST:
+      return { isUploading: true, uploaded: false };
+
+    case UPLOAD_INVOICE_SUCCESS:
+      return { isUploading: false, uploaded: true };
+
+    default:
+      return state;
+  }
+}
+
 const UploadInvoice = combineReducers({
   image,
   form,
   cropImage,
   items,
-  itemsById
+  itemsById,
+  upload
 });
 
 export default UploadInvoice;

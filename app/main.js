@@ -10,6 +10,7 @@ import thunkMiddleware from 'redux-thunk';
 
 import UploadInvoiceContainer from './containers/UploadInvoiceContainer';
 import InvoiceGrid from './components/Grid/InvoiceGrid';
+import Spinner from './components/Layout/Spinner';
 
 const logger = store => next => action => {
   if (action.type !== "CROP_IMAGE") {
@@ -33,6 +34,7 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
+        <Route path="/test" component={Spinner} />
         <Route path="/invoices/upload" component={UploadInvoiceContainer} />
         <Route path="/invoices" component={InvoiceGrid} />
       </Route>

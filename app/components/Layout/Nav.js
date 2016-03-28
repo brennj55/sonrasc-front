@@ -30,7 +30,7 @@ class Nav extends Component {
         className={"navigation"}
       >
         <Link to="/"><MenuItem leftIcon={<ActionHome />}>Home</MenuItem></Link>
-        <MenuItem leftIcon={<ActionDashboard />}>Dashboards</MenuItem>
+        <Link to="/test"><MenuItem leftIcon={<ActionDashboard />}>Dashboards</MenuItem></Link>
         <MenuItem leftIcon={<PlacesBusinessCenter />}>Businesses</MenuItem>
         <Link to="/invoices"><MenuItem leftIcon={<ContentContentCopy />}>Invoices</MenuItem></Link>
         <Link to="/invoices/upload"><MenuItem leftIcon={<FileFileUpload />}>Upload Invoice</MenuItem></Link>
