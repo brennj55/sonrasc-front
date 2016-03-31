@@ -3,7 +3,8 @@ import {
   TOGGLE_CROPPING_DIALOG, SELECT_IMAGE, CLEAR_DIALOG,
   CROP_IMAGE_AREA, REQUEST_CROPPED_DATA, RECIEVE_CROPPED_DATA,
   UPDATE_UPLOAD_FORM, ADD_NEW_ITEM, REMOVE_ITEM, UPDATE_ITEM,
-  UPLOAD_INVOICE_REQUEST, UPLOAD_INVOICE_SUCCESS
+  UPLOAD_INVOICE_REQUEST, UPLOAD_INVOICE_SUCCESS, REQUEST_BUSINESSES_NAMES,
+  SUCCESSS_BUSINESSES_NAMES
 } from '../actions';
 import Immutable from 'immutable';
 import { pick, range } from 'lodash';
@@ -36,7 +37,6 @@ export function items(state = itemsInitialState, action) {
 
     case UPDATE_ITEM:
       return state.update(action.id, (obj) => {
-        //console.log(JSON.stringify(obj));
         return Object.assign({}, obj, {[action.field]: {value: action.value, boundary: action.boundary}});
       });
 
@@ -123,13 +123,36 @@ function upload(state = uploadInvoiceInitialState, action) {
   }
 }
 
+const businessesInitalState = {
+  isFetching: false,
+  names: []
+};
+
+function businesses(state = businessesInitalState, action) {
+  switch (action.type) {
+    case REQUEST_BUSINESSES_NAMES:
+      return {
+        isFetching: true, names: []
+      };
+
+    case SUCCESSS_BUSINESSES_NAMES:
+      return {
+        isFetching: false, names: action.businesses
+      };
+
+    default:
+      return state;
+  }
+}
+
 const UploadInvoice = combineReducers({
   image,
   form,
   cropImage,
   items,
   itemsById,
-  upload
+  upload,
+  businesses
 });
 
 export default UploadInvoice;

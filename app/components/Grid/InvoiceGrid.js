@@ -8,52 +8,52 @@ import styles from '../../styles/flex.js';
 
 const tilesData = [
   {
-    img: 'http://static1.squarespace.com/static/547384c2e4b080be34ce3327/t/547d264ce4b07da997f79d14/1417487950751/Katya_2014_SMJ_08.jpg',
+    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
     title: 'Breakfast',
     author: 'jill111',
   },
   {
-    img:'http://static1.squarespace.com/static/547384c2e4b080be34ce3327/t/547d264ce4b07da997f79d14/1417487950751/Katya_2014_SMJ_08.jpg',
+    img:'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
     title: 'Tasty burger',
     author: 'pashminu',
   },
   {
-    img: 'http://static1.squarespace.com/static/547384c2e4b080be34ce3327/t/547d264ce4b07da997f79d14/1417487950751/Katya_2014_SMJ_08.jpg',
+    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
     title: 'Camera',
     author: 'Danson67',
   },
   {
-    img:'http://static1.squarespace.com/static/547384c2e4b080be34ce3327/t/547d264ce4b07da997f79d14/1417487950751/Katya_2014_SMJ_08.jpg',
+    img:'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
     title: 'Morning',
     author: 'fancycrave1',
   },
   {
-    img:'http://static1.squarespace.com/static/547384c2e4b080be34ce3327/t/547d264ce4b07da997f79d14/1417487950751/Katya_2014_SMJ_08.jpg',
+    img:'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
     title: 'Hats',
     author: 'Hans',
   },
   {
-    img: 'http://static1.squarespace.com/static/547384c2e4b080be34ce3327/t/547d264ce4b07da997f79d14/1417487950751/Katya_2014_SMJ_08.jpg',
+    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
     title: 'Honey',
     author: 'fancycravel',
   },
   {
-    img: 'http://static1.squarespace.com/static/547384c2e4b080be34ce3327/t/547d264ce4b07da997f79d14/1417487950751/Katya_2014_SMJ_08.jpg',
+    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
     title: 'Vegetables',
     author: 'jisssllwww111',
   },
   {
-    img: 'http://static1.squarespace.com/static/547384c2e4b080be34ce3327/t/547d264ce4b07da997f79d14/1417487950751/Katya_2014_SMJ_08.jpg',
+    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
     title: 'Water plant',
     author: 'BkrmadzzzztyaKarki',
   },
   {
-    img: 'http://static1.squarespace.com/static/547384c2e4b080be34ce3327/t/547d264ce4b07da997f79d14/1417487950751/Katya_2014_SMJ_08.jpg',
+    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
     title: 'Vegetables',
     author: 'ssss',
   },
   {
-    img: 'http://static1.squarespace.com/static/547384c2e4b080be34ce3327/t/547d264ce4b07da997f79d14/1417487950751/Katya_2014_SMJ_08.jpg',
+    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
     title: 'Water plant',
     author: 'xxx',
   }

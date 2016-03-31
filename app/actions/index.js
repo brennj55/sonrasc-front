@@ -89,7 +89,7 @@ export function updateItem(value, field, id, boundary) {
   return {
     type: UPDATE_ITEM,
     value, field, id, boundary
-  }
+  };
 }
 
 export const REMOVE_ITEM = "REMOVE_ITEM";
@@ -97,7 +97,7 @@ export function removeItemByID(key) {
   return {
     type: REMOVE_ITEM,
     key
-  }
+  };
 }
 
 export function updateItemsTotal(id) {
@@ -115,14 +115,14 @@ export const UPLOAD_INVOICE_REQUEST = "UPLOAD_INVOICE_REQUEST";
 export function uploadInvoiceRequest() {
   return {
     type: UPLOAD_INVOICE_REQUEST
-  }
+  };
 }
 
 export const UPLOAD_INVOICE_SUCCESS = "UPLOAD_INVOICE_SUCCESS";
 export function uploadInvoiceSuccess() {
   return {
     type: UPLOAD_INVOICE_SUCCESS
-  }
+  };
 }
 
 export const UPLOAD_INVOICE = "UPLOAD_INVOICE";
@@ -137,5 +137,37 @@ export function uploadInvoice() {
       body: JSON.stringify(packageInvoiceForStorage(getState()))
     }).then((res) => res.json())
       .then((json) => dispatch(uploadInvoiceSuccess()));
+  };
+}
+
+export const REQUEST_BUSINESSES_NAMES = "REQUEST_BUSINESSES_NAMES";
+export function getBusinessesNamesRequest() {
+  return {
+    type: REQUEST_BUSINESSES_NAMES
+  };
+}
+
+export const SUCCESSS_BUSINESSES_NAMES = "SUCCESSS_BUSINESSES_NAMES";
+export function getBusinessesNamesSuccess(businesses) {
+  return {
+    type: SUCCESSS_BUSINESSES_NAMES,
+    businesses
+  };
+}
+
+export const GET_BUSINESSES_NAMES = "GET_BUSINESSES_NAMES";
+export function getBusinessesNames() {
+  return (dispatch) => {
+    dispatch(getBusinessesNamesRequest());
+    fetch('http://192.168.99.100:7004/api/businesses', {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    }).then((res) => res.json())
+      .then((json) => {
+        let businesses = json.payload.map((business) => business.value);
+        return dispatch(getBusinessesNamesSuccess(businesses));
+      });
   };
 }
