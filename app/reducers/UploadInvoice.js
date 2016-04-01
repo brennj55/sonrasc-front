@@ -4,7 +4,7 @@ import {
   CROP_IMAGE_AREA, REQUEST_CROPPED_DATA, RECIEVE_CROPPED_DATA,
   UPDATE_UPLOAD_FORM, ADD_NEW_ITEM, REMOVE_ITEM, UPDATE_ITEM,
   UPLOAD_INVOICE_REQUEST, UPLOAD_INVOICE_SUCCESS, REQUEST_BUSINESSES_NAMES,
-  SUCCESSS_BUSINESSES_NAMES
+  SUCCESSS_BUSINESSES_NAMES, REQUEST_INVOICE_DATA
 } from '../actions';
 import Immutable from 'immutable';
 import { pick, range } from 'lodash';
@@ -145,6 +145,17 @@ function businesses(state = businessesInitalState, action) {
   }
 }
 
+function getInvoiceData(state = { fetching: false }, action) {
+  switch (action.type) {
+
+    case REQUEST_INVOICE_DATA:
+      return { fetching: true }
+
+    default:
+      return state;
+  }
+}
+
 const UploadInvoice = combineReducers({
   image,
   form,
@@ -152,7 +163,8 @@ const UploadInvoice = combineReducers({
   items,
   itemsById,
   upload,
-  businesses
+  businesses,
+  getInvoiceData
 });
 
 export default UploadInvoice;

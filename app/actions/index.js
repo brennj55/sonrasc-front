@@ -171,3 +171,18 @@ export function getBusinessesNames() {
       });
   };
 }
+
+export const REQUEST_INVOICE_DATA = "REQUEST_INVOICE_DATA";
+export function invoiceDataRequest() {
+  return {
+    type: REQUEST_INVOICE_DATA
+  }
+}
+
+export const GET_BUSINESS_DATA = "GET_BUSINESS_DATA";
+export function getInvoiceData(business) {
+  return (dispatch) => {
+    dispatch(invoiceDataRequest());
+    //fetch('http://192.168.99.100:7004/api/businesses/');
+  }
+}

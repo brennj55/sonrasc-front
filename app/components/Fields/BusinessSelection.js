@@ -6,10 +6,15 @@ import styles from '../../styles/flex.js';
 class BusinessSelection extends Component {
   constructor(props) {
     super(props);
+    this.handleBusinessSelect = this.handleBusinessSelect.bind(this);
   }
 
   componentDidMount() {
     this.props.onInit();
+  }
+
+  handleBusinessSelect(business) {
+    this.props.onBusinessSelect(business);
   }
 
   render() {
@@ -21,6 +26,7 @@ class BusinessSelection extends Component {
         <AutoComplete
           dataSource={businesses}
           filter={AutoComplete.fuzzyFilter}
+          onNewRequest={(business) => this.handleBusinessSelect(business)}
           onUpdateInput={onUpdate}
           style={styles.flex1}
         />

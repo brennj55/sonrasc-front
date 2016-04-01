@@ -3,27 +3,10 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import SonrascApp from './reducers';
-import App from './components/App';
-import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import thunkMiddleware from 'redux-thunk';
-
-import UploadInvoiceContainer from './containers/UploadInvoiceContainer';
-import InvoiceGrid from './components/Grid/InvoiceGrid';
-import Spinner from './components/Layout/Spinner';
-
-const logger = store => next => action => {
-  if (action.type !== "CROP_IMAGE") {
-    console.log('dispatching', action);
-    let result = next(action);
-    console.log('next state', store.getState());
-    console.log('items:', store.getState().UploadInvoice.items.toJS());
-    return result;
-  }
-  else {
-    return next(action);
-  }
-};
+import logger from './utils/Logger';
+import routes from './utils/Routes';
 
 injectTapEventPlugin();
 let store = createStore(SonrascApp,
@@ -32,13 +15,7 @@ let store = createStore(SonrascApp,
 
 render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={App}>
-        <Route path="/test" component={Spinner} />
-        <Route path="/invoices/upload" component={UploadInvoiceContainer} />
-        <Route path="/invoices" component={InvoiceGrid} />
-      </Route>
-    </Router>
+    { routes }
   </Provider>,
   document.getElementById('container')
 );

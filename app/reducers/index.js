@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
+import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router';
 import UploadInvoice from './UploadInvoice';
 
 const SonrascApp = combineReducers({
-  UploadInvoice
+  UploadInvoice,
+  router: routerStateReducer
 });
 
 export default SonrascApp;
