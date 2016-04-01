@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
 import { packageInvoiceForStorage } from '../utils/invoice.js';
+import { browserHistory } from 'react-router'
 import { has, round } from 'lodash';
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
@@ -8,6 +9,13 @@ export function selectImage(image) {
     type: SELECT_IMAGE,
     image
   };
+}
+
+export const CLEAR_IMAGE = "CLEAR_IMAGE";
+export function clearImage() {
+  return {
+    type: CLEAR_IMAGE
+  }
 }
 
 export const CROP_IMAGE_AREA = "CROP_IMAGE";
@@ -62,6 +70,13 @@ export function updateUploadForm(dataType, value, boundary) {
   }
 }
 
+export const CLEAR_UPLOAD_FORM = "CLEAR_UPLOAD_FORM";
+export function clearUploadFormFields() {
+  return {
+    type: CLEAR_UPLOAD_FORM
+  }
+}
+
 export const CLEAR_DIALOG = "CLEAR_DIALOG";
 export function clearDialog() {
   return {
@@ -100,6 +115,13 @@ export function removeItemByID(key) {
   };
 }
 
+export const CLEAR_ITEMS = "CLEAR_ITEMS";
+export function clearItems() {
+  return {
+    type: CLEAR_ITEMS
+  };
+}
+
 export function updateItemsTotal(id) {
   return (dispatch, getState) => {
     let item = getState().UploadInvoice.items.get(id);
@@ -125,6 +147,16 @@ export function uploadInvoiceSuccess() {
   };
 }
 
+export function clearUploadFormStateAndChangePage() {
+  return (dispatch) => {
+    dispatch(clearImage());
+    dispatch(clearItems());
+    dispatch(clearUploadFormFields());
+    console.log('hi i am about to go to a new route?');
+    browserHistory.push('/invoices');
+  };
+}
+
 export const UPLOAD_INVOICE = "UPLOAD_INVOICE";
 export function uploadInvoice() {
   return (dispatch, getState) => {
@@ -136,7 +168,8 @@ export function uploadInvoice() {
       }),
       body: JSON.stringify(packageInvoiceForStorage(getState()))
     }).then((res) => res.json())
-      .then((json) => dispatch(uploadInvoiceSuccess()));
+      .then((json) => dispatch(uploadInvoiceSuccess()))
+      .then(() => dispatch(clearUploadFormStateAndChangePage()));
   };
 }
 

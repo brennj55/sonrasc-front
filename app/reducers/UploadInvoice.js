@@ -1,18 +1,16 @@
 import { combineReducers } from 'redux';
-import {
-  TOGGLE_CROPPING_DIALOG, SELECT_IMAGE, CLEAR_DIALOG,
-  CROP_IMAGE_AREA, REQUEST_CROPPED_DATA, RECIEVE_CROPPED_DATA,
-  UPDATE_UPLOAD_FORM, ADD_NEW_ITEM, REMOVE_ITEM, UPDATE_ITEM,
-  UPLOAD_INVOICE_REQUEST, UPLOAD_INVOICE_SUCCESS, REQUEST_BUSINESSES_NAMES,
-  SUCCESSS_BUSINESSES_NAMES, REQUEST_INVOICE_DATA
-} from '../actions';
+import * as actions from '../actions';
 import Immutable from 'immutable';
 import { pick, range } from 'lodash';
 
 export function image(state = '', action) {
   switch (action.type) {
-    case SELECT_IMAGE:
+    case actions.SELECT_IMAGE:
       return action.image;
+
+    case actions.CLEAR_IMAGE:
+      return '';
+
     default:
       return state;
   }
@@ -21,8 +19,11 @@ export function image(state = '', action) {
 let formInitialState = Immutable.Map();
 function form(state = formInitialState, action) {
   switch (action.type) {
-    case UPDATE_UPLOAD_FORM:
+    case actions.UPDATE_UPLOAD_FORM:
       return state.set(action.key, {value: action.value, boundary: action.boundary});
+
+    case actions.CLEAR_UPLOAD_FORM:
+      return formInitialState;
 
     default:
       return state;
@@ -32,29 +33,32 @@ function form(state = formInitialState, action) {
 let itemsInitialState = Immutable.List();
 export function items(state = itemsInitialState, action) {
   switch (action.type) {
-    case ADD_NEW_ITEM:
+    case actions.ADD_NEW_ITEM:
       return state.push({});
 
-    case UPDATE_ITEM:
+    case actions.UPDATE_ITEM:
       return state.update(action.id, (obj) => {
         return Object.assign({}, obj, {[action.field]: {value: action.value, boundary: action.boundary}});
       });
 
-    case REMOVE_ITEM:
-        return state.delete(action.key);
+    case actions.REMOVE_ITEM:
+      return state.delete(action.key);
 
-      default:
-        return state;
+    case actions.CLEAR_ITEMS:
+      return itemsInitialState;
+
+    default:
+      return state;
   }
 }
 
 let itemsByIdInitialState = [];
 function itemsById(state = itemsByIdInitialState, action) {
   switch (action.type) {
-    case ADD_NEW_ITEM:
+    case actions.ADD_NEW_ITEM:
       return range(state.length + 1);
 
-    case REMOVE_ITEM:
+    case actions.REMOVE_ITEM:
       return range(state.length - 1);
 
     default:
@@ -73,28 +77,28 @@ const cropImageInitialState = {
 function cropImage(state = cropImageInitialState, action) {
   switch (action.type) {
 
-    case CROP_IMAGE_AREA:
+    case actions.CROP_IMAGE_AREA:
       return Object.assign({}, state, {
         boundary: action.boundary,
         imageData: action.imageData
       });
 
-    case REQUEST_CROPPED_DATA:
+    case actions.REQUEST_CROPPED_DATA:
       return Object.assign({}, state, {
         isFetching: true
       });
 
-    case CLEAR_DIALOG:
+    case actions.CLEAR_DIALOG:
       return cropImageInitialState;
 
-    case RECIEVE_CROPPED_DATA:
+    case actions.RECIEVE_CROPPED_DATA:
       return Object.assign({}, state, {
         isFetching: false,
         data: Object.assign({}, state.data, {[action.cropType]: action.data}),
         lastUpdated: action.recievedAt
       });
 
-    case TOGGLE_CROPPING_DIALOG:
+    case actions.TOGGLE_CROPPING_DIALOG:
       return Object.assign({}, state, {
         open: !state.open,
         cropType: action.cropType
@@ -112,10 +116,10 @@ const uploadInvoiceInitialState = {
 
 function upload(state = uploadInvoiceInitialState, action) {
   switch (action.type) {
-    case UPLOAD_INVOICE_REQUEST:
+    case actions.UPLOAD_INVOICE_REQUEST:
       return { isUploading: true, uploaded: false };
 
-    case UPLOAD_INVOICE_SUCCESS:
+    case actions.UPLOAD_INVOICE_SUCCESS:
       return { isUploading: false, uploaded: true };
 
     default:
@@ -130,12 +134,12 @@ const businessesInitalState = {
 
 function businesses(state = businessesInitalState, action) {
   switch (action.type) {
-    case REQUEST_BUSINESSES_NAMES:
+    case actions.REQUEST_BUSINESSES_NAMES:
       return {
         isFetching: true, names: []
       };
 
-    case SUCCESSS_BUSINESSES_NAMES:
+    case actions.SUCCESSS_BUSINESSES_NAMES:
       return {
         isFetching: false, names: action.businesses
       };
@@ -148,7 +152,7 @@ function businesses(state = businessesInitalState, action) {
 function getInvoiceData(state = { fetching: false }, action) {
   switch (action.type) {
 
-    case REQUEST_INVOICE_DATA:
+    case actions.REQUEST_INVOICE_DATA:
       return { fetching: true }
 
     default:
