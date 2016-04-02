@@ -2,9 +2,11 @@ import BusinessSelection from '../../components/Fields/BusinessSelection';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
+const getNames = (businesses) => businesses.map(name => name.business);
+
 const mapStateToProps = (state) => {
   return {
-    businesses: state.UploadInvoice.businesses.names
+    businesses: getNames(state.UploadInvoice.businesses.names)
   }
 };
 

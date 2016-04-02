@@ -15,7 +15,8 @@ injectTapEventPlugin();
 let store = createStore(SonrascApp,
   applyMiddleware(
     thunkMiddleware,
-    logger
+    logger,
+    routerMiddleware(browserHistory)
   )
 );
 

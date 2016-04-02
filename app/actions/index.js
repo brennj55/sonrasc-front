@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import { packageInvoiceForStorage } from '../utils/invoice.js';
-import { browserHistory } from 'react-router'
+import { push } from 'react-router-redux'
 import { has, round } from 'lodash';
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
@@ -153,7 +153,7 @@ export function clearUploadFormStateAndChangePage() {
     dispatch(clearItems());
     dispatch(clearUploadFormFields());
     console.log('hi i am about to go to a new route?');
-    browserHistory.push('/invoices');
+    dispatch(push('/invoices'));
   };
 }
 
@@ -198,9 +198,9 @@ export function getBusinessesNames() {
         'Content-Type': 'application/json'
       })
     }).then((res) => res.json())
-      .then((json) => {
-        let businesses = json.payload.map((business) => business.value);
-        return dispatch(getBusinessesNamesSuccess(businesses));
+      .then((businesses) => {
+        console.log(businesses.payload);
+        return dispatch(getBusinessesNamesSuccess(businesses.payload));
       });
   };
 }
@@ -214,8 +214,11 @@ export function invoiceDataRequest() {
 
 export const GET_BUSINESS_DATA = "GET_BUSINESS_DATA";
 export function getInvoiceData(business) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(invoiceDataRequest());
+    let businesses = getState().UploadInvoice.businesses.names;
+    let businessTag = businesses.filter(bsns => business === bsns.business);
+    let id = businessTag[0]._id;
     //fetch('http://192.168.99.100:7004/api/businesses/');
   }
 }
