@@ -1,6 +1,6 @@
 import React from 'react';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
-import UploadInvoiceContainer from '../containers/UploadInvoiceContainer';
+import UploadInvoiceContainer from '../containers/Upload/UploadInvoiceContainer';
 import InvoiceGridContainer from '../containers/Grid/InvoiceGridContainer';
 import App from '../components/App';
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import UploadInvoice from '../components/UploadInvoice';
+import UploadInvoice from '../../components/Upload/UploadInvoice';
 
 const checkIfNewDateAvailable = (state) => {
   if (state.UploadInvoice.form.has('date')) return new Date(state.UploadInvoice.form.get('date').value);

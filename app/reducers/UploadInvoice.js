@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as actions from '../actions';
+import { uploadInvoice as actions } from '../actions';
 import Immutable from 'immutable';
 import { pick, range } from 'lodash';
 
@@ -149,7 +149,7 @@ function businesses(state = businessesInitalState, action) {
   }
 }
 
-function getInvoiceData(state = { fetching: false }, action) {
+function invoiceData(state = { fetching: false }, action) {
   switch (action.type) {
 
     case actions.REQUEST_INVOICE_DATA:
@@ -168,7 +168,7 @@ const UploadInvoice = combineReducers({
   itemsById,
   upload,
   businesses,
-  getInvoiceData
+  invoiceData
 });
 
 export default UploadInvoice;

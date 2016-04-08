@@ -3,6 +3,7 @@ import GridList from 'material-ui/lib/grid-list/grid-list';
 import GridTile from 'material-ui/lib/grid-list/grid-tile';
 import StarBorder from 'material-ui/lib/svg-icons/toggle/star-border';
 import IconButton from 'material-ui/lib/icon-button';
+import Spinner from '../Layout/Spinner';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 
@@ -28,9 +29,9 @@ class InvoiceGrid extends Component {
   }
 
   render() {
-    const { tilesData, uploading } = this.props;
+    const { tilesData, fetching } = this.props;
 
-    if (!uploading) {
+    if (!fetching) {
       return (
         <div style={styles.grid.root}>
           <h1 style={styles.header}>Invoices Uploaded</h1>

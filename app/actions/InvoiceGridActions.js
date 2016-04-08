@@ -1,8 +1,16 @@
-const GET_INVOICES_REQUEST = "GET_INVOICES_REQUEST";
+export const GET_INVOICES_REQUEST = "GET_INVOICES_REQUEST";
 export function getInvoicesRequest() {
   return {
     type: GET_INVOICES_REQUEST
   }
+}
+
+export const GET_INVOICES_SUCCESS = "GET_INVOICES_SUCCESS";
+export function getInvoicesSuccess(invoices) {
+  return {
+    type: GET_INVOICES_SUCCESS,
+    invoices
+  };
 }
 
 export function getInvoicesForGrid() {
@@ -14,6 +22,9 @@ export function getInvoicesForGrid() {
         'Content-Type': 'application/json'
       })
     }).then(res => res.json())
-      .then(x => console.log(x));
+      .then(x => {
+        console.log(x);
+        dispatch(getInvoicesSuccess(x));
+      });
   };
 }

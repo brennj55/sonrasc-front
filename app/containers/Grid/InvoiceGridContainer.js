@@ -4,13 +4,14 @@ import * as actions from '../../actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    tilesData: []
+    tilesData: [],
+    fetching: state.InvoiceGrid.invoices.fetching
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onInit: () => dispatch(actions.invoiceGrid.getInvoices())
+    onInit: () => dispatch(actions.invoiceGrid.getInvoicesForGrid())
   };
 };
 
