@@ -6,10 +6,10 @@ export function getInvoicesRequest() {
 }
 
 export const GET_INVOICES_SUCCESS = "GET_INVOICES_SUCCESS";
-export function getInvoicesSuccess(invoices) {
+export function getInvoicesSuccess(data) {
   return {
     type: GET_INVOICES_SUCCESS,
-    invoices
+    data
   };
 }
 

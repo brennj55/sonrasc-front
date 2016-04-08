@@ -4,7 +4,7 @@ import * as actions from '../../actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    tilesData: [],
+    tilesData: state.InvoiceGrid.invoices.data,
     fetching: state.InvoiceGrid.invoices.fetching
   };
 };

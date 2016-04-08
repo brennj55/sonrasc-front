@@ -53,7 +53,7 @@ let Items = ({ items, onClick, totalCost }) => (
 
     <h3 style={[styles.subheader, styles.marginSpace, styles.spaceBetween]}>
       Total Cost
-      <span>{totalCost}</span>
+      <span>€{totalCost}</span>
     </h3>
   </div>
 );

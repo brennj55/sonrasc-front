@@ -1,20 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import GridList from 'material-ui/lib/grid-list/grid-list';
 import GridTile from 'material-ui/lib/grid-list/grid-tile';
-import StarBorder from 'material-ui/lib/svg-icons/toggle/star-border';
-import IconButton from 'material-ui/lib/icon-button';
 import Spinner from '../Layout/Spinner';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
+import { printDate } from '../../utils/date';
 
 const tiles = (tilesData) => tilesData.map(tile => (
     <GridTile
-      key={tile.author}
-      title={tile.title}
-      subtitle={<span>by <b>{tile.author}</b></span>}
-      actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
+      key={tile._id}
+      title={tile.business.value}
+      subtitle={printDate(new Date(tile.date.value))}
     >
-      <img src={tile.img} />
+      <img src={tile.image} />
     </GridTile>
   )
 );
