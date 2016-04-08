@@ -125,8 +125,9 @@ const styles = {
       justifyContent: 'space-around',
     },
     gridList: {
+      paddingTop: '5px',
       flex: '1 1 30%',
-       overflowY: 'auto',
+      overflowY: 'auto',
     },
   }
 };

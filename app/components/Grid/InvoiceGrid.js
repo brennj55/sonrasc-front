@@ -2,18 +2,20 @@ import React, { Component, PropTypes } from 'react';
 import GridList from 'material-ui/lib/grid-list/grid-list';
 import GridTile from 'material-ui/lib/grid-list/grid-tile';
 import Spinner from '../Layout/Spinner';
+import { Link } from 'react-router';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 import { printDate } from '../../utils/date';
 
 const tiles = (tilesData) => tilesData.map(tile => (
-    <GridTile
-      key={tile._id}
-      title={tile.business.value}
-      subtitle={printDate(new Date(tile.date.value))}
-    >
-      <img src={tile.image} />
-    </GridTile>
+    <Link to={"/invoices/" + tile._id} key={tile._id}>
+      <GridTile
+        title={tile.business.value}
+        subtitle={printDate(new Date(tile.date.value))}
+      >
+        <img src={tile.image} />
+      </GridTile>
+    </Link>
   )
 );
 
