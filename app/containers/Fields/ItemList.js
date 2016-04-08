@@ -21,7 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onClick: (event) => dispatch(actions.addItem())
+    onClick: (event) => dispatch(actions.uploadInvoice.addItem())
   }
 };
 

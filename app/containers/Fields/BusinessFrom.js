@@ -12,11 +12,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onUpdate: (businessName) => dispatch(actions.updateUploadForm('business', businessName)),
-    onInit: () => dispatch(actions.getBusinessesNames()),
+    onUpdate: (businessName) => dispatch(actions.uploadInvoice.updateUploadForm('business', businessName)),
+    onInit: () => dispatch(actions.uploadInvoice.getBusinessesNames()),
     onBusinessSelect: (business) => {
-      dispatch(actions.updateUploadForm('business', business)),
-      dispatch(actions.getInvoiceData(business))
+      dispatch(actions.uploadInvoice.updateUploadForm('business', business)),
+      dispatch(actions.uploadInvoice.getInvoiceData(business))
     }
   }
 };

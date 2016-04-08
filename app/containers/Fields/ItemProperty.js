@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onChange: (value, field, id) => {
       dispatch(actions.updateItem(value, field, id));
       if (field === 'Quantity' || field === 'Price') {
-        dispatch(actions.updateItemsTotal(id));
+        dispatch(actions.uploadInvoice.updateItemsTotal(id));
       }
     }
   };

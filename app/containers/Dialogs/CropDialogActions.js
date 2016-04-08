@@ -10,7 +10,7 @@ const checkIfIsItemAndUpdateTotal = (dispatch, cropType) => {
   if (cropType.includes('Price') || cropType.includes('Quantity')) {
     console.log('in here');
     const [_, id, __] = cropType.split('/');
-    dispatch(actions.updateItemsTotal(id));
+    dispatch(actions.uploadInvoice.updateItemsTotal(id));
   }
 };
 
@@ -25,9 +25,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onCancelClick: () => dispatch(actions.clearDialog()),
+    onCancelClick: () => dispatch(actions.uploadInvoice.clearDialog()),
     onCropClick: (cropType, imageData, boundary) => {
-      dispatch(actions.fetchCroppedData(cropType, imageData, boundary))
+      dispatch(actions.uploadInvoice.fetchCroppedData(cropType, imageData, boundary))
         .then(() => checkIfIsItemAndUpdateTotal(dispatch, cropType));
     }
   }

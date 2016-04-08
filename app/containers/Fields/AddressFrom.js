@@ -4,7 +4,7 @@ import * as actions from '../../actions';
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onUpdate: (event) => dispatch(actions.updateUploadForm('address', event.target.value))
+    onUpdate: (event) => dispatch(actions.uploadInvoice.updateUploadForm('address', event.target.value))
   }
 };
 

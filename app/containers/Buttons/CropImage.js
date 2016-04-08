@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onClick: (cropType) => dispatch(actions.toggleCroppingDialog(cropType))
+    onClick: (cropType) => dispatch(actions.uploadInvoice.toggleCroppingDialog(cropType))
   }
 };
 

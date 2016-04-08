@@ -6,79 +6,53 @@ import IconButton from 'material-ui/lib/icon-button';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 
-const tilesData = [
-  {
-    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
-    title: 'Breakfast',
-    author: 'jill111',
-  },
-  {
-    img:'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
-    title: 'Tasty burger',
-    author: 'pashminu',
-  },
-  {
-    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
-    title: 'Camera',
-    author: 'Danson67',
-  },
-  {
-    img:'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
-    title: 'Morning',
-    author: 'fancycrave1',
-  },
-  {
-    img:'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
-    title: 'Hats',
-    author: 'Hans',
-  },
-  {
-    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
-    title: 'Honey',
-    author: 'fancycravel',
-  },
-  {
-    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
-    title: 'Vegetables',
-    author: 'jisssllwww111',
-  },
-  {
-    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
-    title: 'Water plant',
-    author: 'BkrmadzzzztyaKarki',
-  },
-  {
-    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
-    title: 'Vegetables',
-    author: 'ssss',
-  },
-  {
-    img: 'http://paperproinc.com/wp-content/uploads/2012/06/Paper-Pro-Invoice.png',
-    title: 'Water plant',
-    author: 'xxx',
-  }
-];
-
-const InvoiceGrid = () => (
-  <div style={styles.grid.root}>
-    <h1 style={styles.header}>Invoices Uploaded</h1>
-    <GridList
-      cellHeight={250}
-      cols={3}
-      style={styles.grid.gridList}
+const tiles = (tilesData) => tilesData.map(tile => (
+    <GridTile
+      key={tile.author}
+      title={tile.title}
+      subtitle={<span>by <b>{tile.author}</b></span>}
+      actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
     >
-      {tilesData.map(tile => (
-        <GridTile
-          key={tile.author}
-          title={tile.title}
-          subtitle={<span>by <b>{tile.author}</b></span>}
-          actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
-        >
-          <img src={tile.img} />
-        </GridTile>
-      ))}
-    </GridList>
-  </div>
+      <img src={tile.img} />
+    </GridTile>
+  )
 );
 
+class InvoiceGrid extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.onInit();
+  }
+
+  render() {
+    const { tilesData, uploading } = this.props;
+
+    if (!uploading) {
+      return (
+        <div style={styles.grid.root}>
+          <h1 style={styles.header}>Invoices Uploaded</h1>
+          <GridList
+            cellHeight={250}
+            cols={3}
+            style={styles.grid.gridList}
+          >
+            { tiles(tilesData) }
+          </GridList>
+        </div>
+      );
+    }
+
+    else return (
+      <div style={styles.grid.root}>
+        <h1 style={styles.header}>Invoices Uploaded</h1>
+        <Spinner />
+      </div>
+    );
+  }
+}
+
+InvoiceGrid = Radium(InvoiceGrid);
 export default InvoiceGrid;

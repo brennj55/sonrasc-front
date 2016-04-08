@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onClick: () => dispatch(actions.uploadInvoice())
+    onClick: () => dispatch(actions.uploadInvoice.uploadInvoice())
   }
 };
 

@@ -1,6 +1,6 @@
 import CropTool from '../../components/Dialogs/CropTool';
 import { connect } from 'react-redux';
-import { cropImage } from '../../actions';
+import * as actions from '../../actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onCrop: (imageData, boundary) =>
-      dispatch(cropImage(imageData, boundary))
+      dispatch(actions.uploadInvoice.cropImage(imageData, boundary))
   }
 };
 

@@ -1,10 +1,6 @@
 import { connect } from 'react-redux';
-import { selectImage } from '../../actions';
+import * as actions from '../../actions';
 import UploadImageButton from '../../components/Buttons/UploadImageButton';
-
-//only let jpgs/pngs in.
-//error on wrong file type.
-//notification that image was uploaded.
 
 const getFileData = (image) => {
   return new Promise((resolve, reject) => {
@@ -21,7 +17,7 @@ const getFileData = (image) => {
 
 const getImageData = (image, dispatch) => {
   getFileData(image).then((res) => {
-    dispatch(selectImage(res));
+    dispatch(actions.uploadInvoice.selectImage(res));
   }, (error) => console.error("Error dispatching image."));
 };
 
