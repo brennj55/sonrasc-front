@@ -11,7 +11,6 @@ module.exports = [{
     filename: './build/bundle.js',
     sourceMapFilename: 'bundle.map'
   },
-
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
