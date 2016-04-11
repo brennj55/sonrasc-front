@@ -21,6 +21,23 @@ const styles = {
     alignContent: 'center'
   },
 
+  centerFlexRow: {
+    flexDirection: 'row',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center'
+  },
+
+  loginForm: {
+    display: 'flex',
+    flexDirection: 'column',
+    margin: '2em',
+    padding: '2em',
+    justifyContent: 'space-between',
+    height: '300px'
+  },
+
   centerFlexItem: {
     width: '50%'
   },
