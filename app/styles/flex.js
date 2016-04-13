@@ -29,13 +29,13 @@ const styles = {
     alignContent: 'center'
   },
 
-  loginForm: {
+  boxForm: {
     display: 'flex',
     flexDirection: 'column',
     margin: '2em',
     padding: '2em',
     justifyContent: 'space-between',
-    height: '300px'
+    minHeight: '300px'
   },
 
   centerFlexItem: {

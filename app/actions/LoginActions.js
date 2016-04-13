@@ -37,5 +37,5 @@ export function loginUser(credentials) {
 
   return (dispatch) => {
     dispatch(requestLogin(credentials));
-  }
+  };
 }

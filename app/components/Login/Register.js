@@ -3,10 +3,9 @@ import TextField from 'material-ui/lib/text-field';
 import Paper from 'material-ui/lib/paper';
 import RaisedButton from 'material-ui/lib/raised-button';
 import Radium from 'radium';
-import { Router, Route, Link } from 'react-router';
 import styles from '../../styles/flex.js';
 
-class Login extends Component {
+class Register extends Component {
 
   constructor(props) {
     super(props);
@@ -16,13 +15,18 @@ class Login extends Component {
   handleClick() {
     let username = this.refs.username.refs.input.value;
     let password = this.refs.password.refs.input.value;
+    let confirmPassword = this.refs.confirmPassword.refs.input.value;
+
+    if (confirmPassword === password) {
+      this.props.onRegister(username, password);
+    }
   }
 
   render() {
     return (
       <div style={[styles.base, styles.centerFlex]}>
           <Paper style={styles.boxForm}>
-            <h1 style={styles.header}>Login</h1>
+            <h1 style={styles.header}>Register an Account</h1>
             <TextField
               hintText="Username"
               ref="username"
@@ -35,17 +39,22 @@ class Login extends Component {
               floatingLabelText="Password"
               type="password"
             />
+            <TextField
+              hintText="Confirm Password"
+              ref="confirmPassword"
+              floatingLabelText="Confirm Password"
+              type="password"
+            />
             <RaisedButton
-              label="Login"
+              label="Register"
               primary={true}
               onClick={this.handleClick}
             />
-            <Link to="/register">Register a new account</Link>
           </Paper>
       </div>
     );
   }
 }
 
-Login = Radium(Login);
-export default Login;
+Register = Radium(Register);
+export default Register;
