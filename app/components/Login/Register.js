@@ -15,10 +15,16 @@ class Register extends Component {
   handleClick() {
     let username = this.refs.username.refs.input.value;
     let password = this.refs.password.refs.input.value;
+    let firstName = this.refs.firstName.refs.input.value;
+    let lastName = this.refs.surname.refs.input.value;
+    let business = this.refs.business.refs.input.value;
     let confirmPassword = this.refs.confirmPassword.refs.input.value;
 
+
     if (confirmPassword === password) {
-      this.props.onRegister(username, password);
+      this.props.onRegister(username, password, {
+        firstName, lastName, business
+      });
     }
   }
 
@@ -31,6 +37,24 @@ class Register extends Component {
               hintText="Username"
               ref="username"
               floatingLabelText="Username"
+              type="text"
+            />
+            <TextField
+              hintText="Your Business Name"
+              ref="business"
+              floatingLabelText="Your Business Name"
+              type="text"
+            />
+            <TextField
+              hintText="First Name"
+              ref="firstName"
+              floatingLabelText="First Name"
+              type="text"
+            />
+            <TextField
+              hintText="Surname"
+              ref="surname"
+              floatingLabelText="Surname"
               type="text"
             />
             <TextField

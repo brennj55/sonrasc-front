@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onRegister: (user, pass) => dispatch(actions.registerActions.registerUser(user, pass))
+    onRegister: (user, pass, data) => dispatch(actions.registerActions.registerUser(user, pass, data))
   };
 };
 
