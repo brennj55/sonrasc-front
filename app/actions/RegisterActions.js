@@ -8,7 +8,7 @@ export const registerUser = (username, password, data) => {
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
-      credentials: "include",
+      credentials: "same-origin",
       body: JSON.stringify({username, password,
         firstName: data.firstName,
         lastName: data.lastName,

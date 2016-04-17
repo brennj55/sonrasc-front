@@ -1,3 +1,5 @@
+import { push } from 'react-router-redux';
+
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 function requestLogin(creds) {
   return {
@@ -30,17 +32,20 @@ function loginError(message) {
 
 export function loginUser(credentials) {
   return (dispatch) => {
-    dispatch(requestLogin(credentials));
+    //dispatch(requestLogin(credentials));
     fetch('http://192.168.99.100:7004/api/login', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
       credentials: "include",
-      body: JSON.stringify({username, password})
-    }).then(res => res.json())
-      .then(json => {
+      body: JSON.stringify({username: credentials.username, password: credentials.password})
+    }).then(res => {
+      console.log(res);
+      return res.json();
+    }).then(json => {
         console.log(json);
+        if (json.success) dispatch(push("/invoices/upload"));
       });
   };
 };

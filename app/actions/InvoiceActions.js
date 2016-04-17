@@ -20,7 +20,8 @@ export function getInvoice(key) {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'
-      })
+      }),
+      credentials: "same-origin"
     }).then(res => res.json())
       .then(x => {
         console.log(x);
