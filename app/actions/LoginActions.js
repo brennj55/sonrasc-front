@@ -29,13 +29,18 @@ function loginError(message) {
 }
 
 export function loginUser(credentials) {
-  let config = {
-    method: 'POST',
-    headers: { 'Content-Type':'application/x-www-form-urlencoded' },
-    body: `username=${credentials.username}&{creds.password}`
-  };
-
   return (dispatch) => {
     dispatch(requestLogin(credentials));
+    fetch('http://192.168.99.100:7004/api/login', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      credentials: "include",
+      body: JSON.stringify({username, password})
+    }).then(res => res.json())
+      .then(json => {
+        console.log(json);
+      });
   };
-}
+};

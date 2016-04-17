@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import { packageInvoiceForStorage } from '../utils/invoice.js';
-import { push } from 'react-router-redux'
+import { push } from 'react-router-redux';
 import { has, round } from 'lodash';
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
