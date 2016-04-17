@@ -8,14 +8,16 @@ export const registerUser = (username, password, data) => {
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
-      credentials: "same-origin",
+      credentials: "include",
       body: JSON.stringify({username, password,
         firstName: data.firstName,
         lastName: data.lastName,
         business: data.business
       })
-    }).then(res => res.json())
-      .then(json => {
+    }).then(res => {
+      return res.json();
+    }).then(json => {
+        console.log(json);
         if (json.success) dispatch(push("/invoices/upload"));
       });
   };

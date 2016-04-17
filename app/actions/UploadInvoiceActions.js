@@ -196,7 +196,8 @@ export function getBusinessesNames() {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'
-      })
+      }),
+      credentials: "include"
     }).then((res) => res.json())
       .then((businesses) => {
         console.log(businesses.payload);
@@ -223,7 +224,8 @@ export function getInvoiceData(business) {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'
-      })
+      }),
+      credentials: "include"
     }).then(res => res.json())
       .then(x => console.log(x));
   }

@@ -20,7 +20,8 @@ export function getInvoicesForGrid() {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'
-      })
+      }),
+      credentials: "include",
     }).then(res => res.json())
       .then(x => {
         console.log(x);

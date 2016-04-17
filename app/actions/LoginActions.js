@@ -38,7 +38,7 @@ export function loginUser(credentials) {
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
-      credentials: "include",
+      credentials: 'include',
       body: JSON.stringify({username: credentials.username, password: credentials.password})
     }).then(res => {
       console.log(res);
