@@ -19,6 +19,9 @@ export const registerUser = (username, password, data) => {
     }).then(json => {
         console.log(json);
         if (json.success) dispatch(push("/invoices/upload"));
-      });
+      }
+    ).catch(error => {
+      console.log(error);
+    });
   };
 };

@@ -29,7 +29,7 @@ class Nav extends Component {
         style={styles.base}
         className={"navigation"}
       >
-        <Link to="/"><MenuItem leftIcon={<ActionHome />}>Home</MenuItem></Link>
+        <Link to="/build/"><MenuItem leftIcon={<ActionHome />}>Home</MenuItem></Link>
         <Link to="/test"><MenuItem leftIcon={<ActionDashboard />}>Dashboards</MenuItem></Link>
         <MenuItem leftIcon={<PlacesBusinessCenter />}>Businesses</MenuItem>
         <Link to="/invoices"><MenuItem leftIcon={<ContentContentCopy />}>Invoices</MenuItem></Link>
