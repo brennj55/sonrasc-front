@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleRoot } from 'radium';
-import Header from './Layout/Header';
+import HeaderContainer from '../containers/Layout/HeaderContainer';
 import NavContainer from '../containers/Layout/NavContainer';
 import '../styles/main.css';
 
@@ -11,7 +11,7 @@ class App extends Component {
 
     return (
       <StyleRoot>
-        <Header />
+        <HeaderContainer />
         <div id="appContainer">
           <NavContainer />
           <div className="container">

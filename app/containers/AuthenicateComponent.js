@@ -30,7 +30,6 @@ export default function requireAuthentication(Component) {
         }
         </div>
       )
-
     }
   }
 
