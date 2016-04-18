@@ -29,9 +29,9 @@ class Nav extends Component {
         style={styles.base}
         className={"navigation"}
       >
-        <Link to="/build/"><MenuItem leftIcon={<ActionHome />}>Home</MenuItem></Link>
-        <Link to="/test"><MenuItem leftIcon={<ActionDashboard />}>Dashboards</MenuItem></Link>
-        <MenuItem leftIcon={<PlacesBusinessCenter />}>Businesses</MenuItem>
+        {/*<Link to="/build/"><MenuItem leftIcon={<ActionHome />}>Home</MenuItem></Link>*/}
+        <Link to="/dashboards"><MenuItem leftIcon={<ActionDashboard />}>Dashboards</MenuItem></Link>
+        <Link to="/businesses"><MenuItem leftIcon={<PlacesBusinessCenter />}>Businesses</MenuItem></Link>
         <Link to="/invoices"><MenuItem leftIcon={<ContentContentCopy />}>Invoices</MenuItem></Link>
         <Link to="/invoices/upload"><MenuItem leftIcon={<FileFileUpload />}>Upload Invoice</MenuItem></Link>
         <Divider />

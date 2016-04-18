@@ -4,11 +4,19 @@ import Colors from 'material-ui/lib/styles/colors';
 import Avatar from 'material-ui/lib/avatar';
 import '../../styles/main.css';
 
-const Header = ({ name, src }) => (
+const userData = (isAuthenticated, name, src) => {
+  console.log('looks where i am', isAuthenticated);
+    if (isAuthenticated) return (<div className="textboxFlex">
+      <span className="headerText">{ name }</span>
+      <Avatar src={src} />
+    </div>);
+}
+
+const Header = ({ isAuthenticated, name, src }) => (
   <AppBar
     title="Sonrasc"
     style={{background: Colors.deepPurple600, position: 'fixed'}}
-    iconElementRight={<div className="textboxFlex"> <span className="headerText">{ name }</span> <Avatar src={src} /> </div>}
+    iconElementRight={userData(isAuthenticated, name, src)}
   />
 );
 
