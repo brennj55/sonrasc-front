@@ -56,6 +56,10 @@ const styles = {
     padding: '1em 0',
   },
 
+  spacePadding2em: {
+    padding: '2em 0'
+  },
+
   marginSpace: {
     margin: '2em 0'
   },

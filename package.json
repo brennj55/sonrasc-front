@@ -26,6 +26,7 @@
     "history": "1.17.0",
     "immutable": "3.7.6",
     "material-ui": "^0.14.3",
+    "moment": "^2.13.0",
     "react": "^0.14.6",
     "react-chartjs": "^0.7.3",
     "react-cropper": "0.6.0",
