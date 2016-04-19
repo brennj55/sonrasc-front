@@ -29,6 +29,12 @@ const styles = {
     alignContent: 'center'
   },
 
+  flexRow: {
+    flexDirection: 'row',
+    display: 'flex',
+    width: '100%'
+  },
+
   boxForm: {
     display: 'flex',
     flexDirection: 'column',
@@ -40,6 +46,10 @@ const styles = {
 
   centerFlexItem: {
     width: '50%'
+  },
+
+  centerFlexItemSmall: {
+    flex: "1 1 50%"
   },
 
   space: {

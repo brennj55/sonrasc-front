@@ -6,10 +6,11 @@ const handleSliderChange = (values) => console.log(values);
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    maxValue: ownProps.maxValue,
-    minValue: ownProps.minValue,
+    maxValue: ownProps.maxValue || new Date().getFullYear(),
+    minValue: ownProps.minValue || 0,
+    disabled: state.Dashboards.slider.values.min === 0,
     value: state.Dashboards.slider.values,
-    step: ownProps.step
+    step: ownProps.step || 1
   }
 };
 

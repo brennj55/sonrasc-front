@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { dashboardActions } from '../actions';
 
-const sliderInitialState = { values: { min: 2000, max: 2020 }};
+const sliderInitialState = { values: { min: 0, max: new Date().getFullYear() }};
 function slider(state = sliderInitialState, action) {
   switch (action.type) {
 

@@ -1,7 +1,9 @@
 import ChartInit from './ChartInit';
 import React, { Component, PropTypes } from 'react';
+import IconButton from 'material-ui/lib/icon-button';
 let Chart = require('chart.js');
 var LineChart = require("react-chartjs").Line;
+
 
 var chartOptions = {
   responsive: true
@@ -11,18 +13,8 @@ var data = {
 	labels: ["January", "February", "March", "April", "May", "June", "July"],
 	datasets: [
 		{
-			label: "My First dataset",
-			fillColor: "rgba(220,220,220,0.2)",
-			strokeColor: "rgba(220,220,220,1)",
-			pointColor: "rgba(220,220,220,1)",
-			pointStrokeColor: "#fff",
-			pointHighlightFill: "#fff",
-			pointHighlightStroke: "rgba(220,220,220,1)",
-			data: [65, 59, 80, 81, 56, 55, 40, 13]
-		},
-		{
 			label: "My Second dataset",
-			fillColor: "rgba(151,187,205,0.2)",
+			fillColor: "rgba(0,0,0,0.0)",
 			strokeColor: "rgba(151,187,205,1)",
 			pointColor: "rgba(151,187,205,1)",
 			pointStrokeColor: "#fff",
