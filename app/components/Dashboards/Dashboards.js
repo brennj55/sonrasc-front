@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import Spinner from '../Layout/Spinner';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
+import LineGraph from './Graphs/LineGraph';
+import RangeSliderContainer from '../../containers/Fields/RangeSliderContainer';
 
 class Dashboards extends Component {
 
@@ -15,22 +17,19 @@ class Dashboards extends Component {
 
   render() {
     const { fetching } = this.props;
-    if (!fetching) {
-      return (
-        <div style={styles.base}>
-          <h1 style={[styles.header, styles.spaceBetween]}>
-            Dashboards
-          </h1>
-
+    return (
+      <div style={styles.base}>
+        <h1 style={[styles.header]}>Dashboards</h1>
+        <div style={styles.space}>
+          <LineGraph />
+          <RangeSliderContainer
+            minValue={2000}
+            maxValue={2020}
+            step={1}
+          />
         </div>
-      );
-    }
-
-    else return (
-      <div style={styles.grid.root}>
-        <h1 style={styles.header}>Dashboards</h1>
-        <Spinner />
       </div>
+
     );
   }
 }

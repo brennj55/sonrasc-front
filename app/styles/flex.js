@@ -146,6 +146,22 @@ const styles = {
       flex: '1 1 30%',
       overflowY: 'auto',
     },
+  },
+
+  svgContainer: {
+    display: 'inline-block',
+    position: 'relative',
+    width: '100%',
+    paddingBottom: '100%',
+    verticalAlign: 'middle',
+    overflow: 'hidden'
+  },
+
+  svgContent: {
+    display: 'inline-block',
+    position: 'absolute',
+    top: 0,
+    left: 0
   }
 };
 
