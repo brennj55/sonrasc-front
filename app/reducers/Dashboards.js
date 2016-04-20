@@ -41,7 +41,6 @@ function slider(state = sliderInitialState, action) {
 const costsOverTimeInitialState = {
   graphType: '',
   labels: [],
-  allLabels: [],
   data: [],
   allData: []
 };
@@ -54,27 +53,25 @@ function graphData(state = costsOverTimeInitialState, action) {
 
     case dashboardActions.SET_GRAPH_DATA:
       if (state.graphType === action.graphType) {
-        return Object.assign({}, state, { allData: action.data, data: action.data });
-      }
-      else return state;
-
-    case dashboardActions.SET_LABEL_DATA:
-      if (state.graphType === action.graphType) {
-        return Object.assign({}, state, { labels: action.labels, allLabels: action.labels });
+        return Object.assign({}, state, {
+          allData: action.data,
+          data: action.data.map(d => d.y),
+          labels: action.data.map(d => d.x)
+        });
       }
       else return state;
 
     case dashboardActions.FILTER_GRAPH_DATA:
       if (state.graphType === action.graphType) {
-        const points = zipObject(state.allLabels, state.allData);
-        const filteredPoints = filter(points, (point, label) => action.min <= toSafeInteger(label) && action.max >= toSafeInteger(label) && !isUndefined(point) && !isUndefined(label));
-        const f = state.allLabels.filter(label => action.min <= toSafeInteger(label) && action.max >= toSafeInteger(label));
-        console.log(f, filteredPoints, points);
+        console.log(action.min, action.max)
+        const filteredPoints = filter(state.allData, point => action.min <= point.x && point.x <= action.max);
+        console.log(filteredPoints);
         return Object.assign({}, state, {
-          labels: f,
-          data: filteredPoints
+          data: filteredPoints.map(point => point.y),
+          labels: filteredPoints.map(point => point.x)
         });
       }
+      else return state;
 
     default:
       return state;

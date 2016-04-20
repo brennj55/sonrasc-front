@@ -31,14 +31,6 @@ export function setGraphData(data, graphType) {
   }
 }
 
-export const SET_LABEL_DATA = "SET_LABEL_DATA";
-export function setGraphLabels(labels, graphType) {
-  return {
-    type: SET_LABEL_DATA,
-    labels, graphType
-  }
-}
-
 export const FILTER_GRAPH_DATA = "FILTER_GRAPH_DATA";
 export function filterGraphData(min, max, graphType) {
   return {

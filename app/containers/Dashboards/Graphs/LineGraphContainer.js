@@ -4,8 +4,15 @@ import * as actions from '../../../actions';
 import { groupByYear } from '../../../utils/date.js';
 import { min, max } from 'lodash';
 
-const TEST_DATA = [1, 2, 3, 4, 5, 6, 8, 9];
-const LABEL_DATA = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020];
+const TEST_DATA = [
+	{x: 2011, y: 3943},
+	{x: 2012, y: 2342},
+	{x: 2013, y: 2434},
+	{x: 2014, y: 1111},
+	{x: 2015, y: 39384},
+	{x: 2016, y: 23432},
+	{x: 2017, y: 2344532}
+];
 
 const getGraphData = (state, ownProps) => {
 	return {
@@ -26,11 +33,11 @@ const getGraphData = (state, ownProps) => {
 };
 
 const init = (dispatch, graphType) => {
-	let minLabel = min(LABEL_DATA);
-	let maxLabel = max(LABEL_DATA);
+	let xs = TEST_DATA.map(d => d.x);
+	let minLabel = min(xs);
+	let maxLabel = max(xs);
 	dispatch(actions.dashboardActions.setGraphType(graphType));
 	dispatch(actions.dashboardActions.setGraphData(TEST_DATA, graphType));
-	dispatch(actions.dashboardActions.setGraphLabels(LABEL_DATA, graphType));
 	dispatch(actions.dashboardActions.initSliderValues(minLabel, maxLabel, graphType));
 	dispatch(actions.dashboardActions.setSliderValues(minLabel, maxLabel, graphType));
 }
