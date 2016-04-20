@@ -38,3 +38,11 @@ export function setGraphLabels(labels, graphType) {
     labels, graphType
   }
 }
+
+export const FILTER_GRAPH_DATA = "FILTER_GRAPH_DATA";
+export function filterGraphData(min, max, graphType) {
+  return {
+    type: FILTER_GRAPH_DATA,
+    min, max, graphType
+  }
+}

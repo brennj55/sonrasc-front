@@ -6,7 +6,7 @@ import styles from '../../styles/flex.js';
 
 let TimePeriodSelection = () => (
   <div style={[{ marginTop: '2em' }, styles.flexRow]}>
-    <RadioButtonGroup name="shipSpeed" defaultSelected="not_light" style={styles.flexRow}>
+    <RadioButtonGroup name="shipSpeed" defaultSelected="year" style={styles.flexRow}>
       <RadioButton
         value="day"
         label="Day"

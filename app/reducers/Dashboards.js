@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 import { dashboardActions } from '../actions';
+import { zipObject, filter, toSafeInteger, isUndefined } from 'lodash';
 
 const sliderInitialState = {
   values: { min: 0, max: 0 },
   minValue: 0,
-  maxValue: 0,
+  maxValue: 1,
   graphType: ''
 };
 
@@ -40,6 +41,7 @@ function slider(state = sliderInitialState, action) {
 const costsOverTimeInitialState = {
   graphType: '',
   labels: [],
+  allLabels: [],
   data: [],
   allData: []
 };
@@ -58,9 +60,21 @@ function graphData(state = costsOverTimeInitialState, action) {
 
     case dashboardActions.SET_LABEL_DATA:
       if (state.graphType === action.graphType) {
-        return Object.assign({}, state, { labels: action.labels });
+        return Object.assign({}, state, { labels: action.labels, allLabels: action.labels });
       }
       else return state;
+
+    case dashboardActions.FILTER_GRAPH_DATA:
+      if (state.graphType === action.graphType) {
+        const points = zipObject(state.allLabels, state.allData);
+        const filteredPoints = filter(points, (point, label) => action.min <= toSafeInteger(label) && action.max >= toSafeInteger(label) && !isUndefined(point) && !isUndefined(label));
+        const f = state.allLabels.filter(label => action.min <= toSafeInteger(label) && action.max >= toSafeInteger(label));
+        console.log(f, filteredPoints, points);
+        return Object.assign({}, state, {
+          labels: f,
+          data: filteredPoints
+        });
+      }
 
     default:
       return state;
