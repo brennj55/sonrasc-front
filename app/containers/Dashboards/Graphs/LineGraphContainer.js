@@ -5,13 +5,13 @@ import { groupByYear } from '../../../utils/date.js';
 import { min, max } from 'lodash';
 
 const TEST_DATA = [
-	{x: 2011, y: 3943},
-	{x: 2012, y: 2342},
-	{x: 2013, y: 2434},
-	{x: 2014, y: 1111},
-	{x: 2015, y: 39384},
-	{x: 2016, y: 23432},
-	{x: 2017, y: 2344532}
+	{x: new Date(2011, 1, 1).getTime(), y: 3943},
+	{x: new Date(2012, 1, 1).getTime(), y: 2342},
+	{x: new Date(2013, 1, 1).getTime(), y: 2434},
+	{x: new Date(2014, 1, 1).getTime(), y: 1111},
+	{x: new Date(2015, 1, 1).getTime(), y: 39384},
+	{x: new Date(2016, 1, 1).getTime(), y: 23432},
+	{x: new Date(2017, 1, 1).getTime(), y: 2344532}
 ];
 
 const getGraphData = (state, ownProps) => {

@@ -8,7 +8,7 @@ let GraphError = () => (
     color: '#B9B9B9',
     textAlign: 'center',
     padding: '4em 0'
-  }]}>Please <Link to="/invoices/upload">upload data</Link> to populate this graph</h1>
+  }]}>No data found</h1>
 );
 
 GraphError = Radium(GraphError);
