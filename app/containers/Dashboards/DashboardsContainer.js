@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onInit: () => console.log("Dashboard me up scotty")
+    onInit: () => 2
   };
 };
 

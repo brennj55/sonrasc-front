@@ -8,18 +8,20 @@ class RangeSlider extends Component {
 
   render() {
     const { minValue, maxValue, value,
-      step, onChange, style, disabled } = this.props;
+      step, onChange, style, disabled, graphType } = this.props;
 
     return (
-      <InputRange
-        maxValue={maxValue}
-        minValue={minValue}
-        value={value}
-        step={step}
-        disabled={disabled}
-        onChange={onChange}
-        style={style}
-      />
+      <div graphType={graphType}>
+        <InputRange
+          maxValue={maxValue}
+          minValue={minValue}
+          value={value}
+          step={step}
+          disabled={disabled}
+          onChange={onChange}
+          style={style}
+        />
+      </div>
     );
   }
 }

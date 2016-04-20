@@ -18,7 +18,7 @@ class LineGraph extends Component {
   }
 
   componentDidMount() {
-    this.props.onInit(this.props.type);
+    this.props.onInit(this.props.graphType);
   }
 
   render() {

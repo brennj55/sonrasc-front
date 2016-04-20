@@ -5,11 +5,12 @@ import Avatar from 'material-ui/lib/avatar';
 import '../../styles/main.css';
 
 const userData = (isAuthenticated, name, src) => {
-  console.log('looks where i am', isAuthenticated);
-    if (isAuthenticated) return (<div className="textboxFlex">
+  if (isAuthenticated) return (
+    <div className="textboxFlex">
       <span className="headerText">{ name }</span>
       <Avatar src={src} />
-    </div>);
+    </div>
+  );
 }
 
 const Header = ({ isAuthenticated, name, src }) => (

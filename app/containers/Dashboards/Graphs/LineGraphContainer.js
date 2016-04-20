@@ -2,6 +2,10 @@ import LineGraph from '../../../components/Dashboards/Graphs/LineGraph';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import { groupByYear } from '../../../utils/date.js';
+import { min, max } from 'lodash';
+
+const TEST_DATA = [1, 2, 3, 4, 5, 6, 8, 9, 2823];
+const LABEL_DATA = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020];
 
 const getGraphData = (state, ownProps) => { return {
 	labels: state.Dashboards.CostOverTime.graphData.labels,
@@ -19,8 +23,17 @@ const getGraphData = (state, ownProps) => { return {
 	]
 }};
 
+const init = (dispatch, graphType) => {
+	let minLabel = min(LABEL_DATA);
+	let maxLabel = max(LABEL_DATA);
+	dispatch(actions.dashboardActions.setGraphType(graphType));
+	dispatch(actions.dashboardActions.setGraphData(TEST_DATA, graphType));
+	dispatch(actions.dashboardActions.setGraphLabels(LABEL_DATA, graphType));
+	dispatch(actions.dashboardActions.initSliderValues(minLabel, maxLabel, graphType));
+	dispatch(actions.dashboardActions.setSliderValues(minLabel, maxLabel, graphType));
+}
+
 const mapStateToProps = (state, ownProps) => {
-	console.log(state.Dashboards.CostOverTime);
   return {
     data: getGraphData(state, ownProps)
   };
@@ -28,7 +41,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onInit: (type) => dispatch(actions.dashboardActions.setGraphType(type))
+    onInit: (type) => init(dispatch, type)
   };
 };
 

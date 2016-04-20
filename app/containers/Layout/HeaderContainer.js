@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import Header from '../../components/Layout/Header';
 
 const getFullName = (auth) => {
-  console.log(auth.isAuthenticated, 'im in me mums car', auth);
   if (auth.user) {
     console.log(auth.user.firstName + " " + auth.user.lastName);
     return auth.user.firstName + " " + auth.user.lastName;
