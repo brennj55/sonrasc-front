@@ -1,6 +1,7 @@
 import RangeSlider from '../../../components/Fields/RangeSlider';
 import { connect } from 'react-redux';
 import * as actions from '../../../actions';
+import moment from 'moment';
 
 const handleSliderChange = (dispatch, ownProps, values) => {
   dispatch(actions.dashboardActions.setSliderValues(values.min, values.max, ownProps.graphType));
@@ -14,7 +15,8 @@ const mapStateToProps = (state, ownProps) => {
     minValue: state.Dashboards.CostOverTime.slider.minValue,
     disabled: state.Dashboards.CostOverTime.slider.values.min === 0,
     value: values,
-    step: 1
+    step: 1,
+    formatLabel: (x) => moment(x).locale('en-gb').format('L')
   }
 };
 

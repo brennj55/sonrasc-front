@@ -31,7 +31,7 @@
     "react-chartjs": "^0.7.3",
     "react-cropper": "0.6.0",
     "react-dom": "^0.14.6",
-    "react-input-range": "^0.7.0",
+    "react-input-range": "https://github.com/brennj55/react-input-range/tarball/47eb8e508bccec1aefd59d74fd00b166f4791a49",
     "react-redux": "^4.0.6",
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.1",
