@@ -8,6 +8,7 @@ import styles from '../../styles/flex.js';
 import { printDate } from '../../utils/date';
 import Business from 'material-ui/lib/svg-icons/communication/business';
 import IconButton from 'material-ui/lib/icon-button';
+import NoDataError from '../Errors/NoDataError';
 
 let tiles = (businesses, styleFunc, onClick) => businesses.map(business =>
   <GridTile
@@ -36,13 +37,15 @@ class Businesses extends Component {
       return (
         <div style={styles.grid.root}>
           <h1 style={styles.header}>Businesses</h1>
-          <GridList
-            cellHeight={250}
-            cols={3}
-            style={styles.grid.gridList}
-          >
-            { businesses? tiles(businesses, styleFunc, onBusinessClick) : <p>No superman here.</p> }
-          </GridList>
+          { businesses.length > 0?
+            <GridList
+              cellHeight={250}
+              cols={3}
+              style={styles.grid.gridList}
+            >
+              { tiles(businesses, styleFunc, onBusinessClick) }
+            </GridList>
+          : <NoDataError />}
         </div>
       );
     }

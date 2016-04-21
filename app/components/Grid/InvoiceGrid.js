@@ -5,6 +5,7 @@ import Spinner from '../Layout/Spinner';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 import { printDate } from '../../utils/date';
+import NoDataError from '../Errors/NoDataError';
 
 const tiles = (tilesData, onClick) => tilesData.map(tile => (
   <GridTile
@@ -35,6 +36,7 @@ class InvoiceGrid extends Component {
       return (
         <div style={styles.grid.root}>
           <h1 style={styles.header}>Invoices Uploaded</h1>
+          { tilesData.length > 0?
           <GridList
             cellHeight={250}
             cols={3}
@@ -42,6 +44,7 @@ class InvoiceGrid extends Component {
           >
             { tiles(tilesData, onClick) }
           </GridList>
+          : <NoDataError />}
         </div>
       );
     }

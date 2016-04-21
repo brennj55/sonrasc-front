@@ -14,7 +14,7 @@ const getColour = () => {
 const mapStateToProps = (state, ownProps) => {
   return {
     fetching: false,
-    businesses: state.BusinessGrid.businesses.data,
+    businesses: state.BusinessGrid.businesses.data || [],
     styleFunc: (id) => getColour()
   };
 };
