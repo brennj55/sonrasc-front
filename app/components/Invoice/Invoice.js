@@ -15,19 +15,31 @@ class Invoice extends Component {
   }
 
   render() {
-    const { date, fetching, onClickBackButton } = this.props;
+    const { date, fetching, onClickBackButton,
+      totalCost, uploadedBy } = this.props;
+
     if (!fetching) {
       return (
         <div style={styles.base}>
           <h1 style={[styles.header, styles.spaceBetween]}>
             Invoice
-            <FlatButton 
+            <FlatButton
               label="Go back"
               secondary={true}
               onClick={onClickBackButton}
             />
           </h1>
-          <p>Hello is it on {date}</p>
+
+          <span>Date sent</span> {date}
+          <span>Uploaded by</span> {uploadedBy}
+
+          <div style={[styles.space]}>
+            <h2 style={[styles.subheader, styles.spaceBetween]}>Items</h2>
+            <h3 style={[styles.subheader, styles.marginSpace, styles.spaceBetween]}>
+              Total Cost
+              <span>€{totalCost.toFixed(2)}</span>
+            </h3>
+          </div>
         </div>
       );
     }

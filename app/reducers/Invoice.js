@@ -1,11 +1,32 @@
 import { combineReducers } from 'redux';
 import { invoiceActions as actions } from '../actions';
 
-function invoice(state = { fetching: false, invoice: {} }, action) {
+function name(state = { fetching: false, user: '' }, action) {
+  switch (action.type) {
+
+    case actions.GET_NAME_REQUEST:
+      return Object.assign({}, state, { fetching: true });
+
+    case actions.SET_WHO_UPLOADED_INVOICE:
+      return Object.assign({}, state, { user: action.name });
+
+    default:
+      return state;
+  }
+}
+
+const invoiceInitialState = {
+  fetching: false,
+  data: {
+    date: { value: new Date(0) }
+  }
+};
+
+function invoice(state = invoiceInitialState, action) {
   switch (action.type) {
 
     case actions.GET_INVOICE_REQUEST:
-      return { fetching: true }
+      return Object.assign({}, state, { fetching: true });
 
     case actions.GET_INVOICE_SUCCESS:
       return {
@@ -19,7 +40,8 @@ function invoice(state = { fetching: false, invoice: {} }, action) {
 }
 
 const Invoice = combineReducers({
-  invoice
+  invoice,
+  name
 });
 
 export default Invoice;
