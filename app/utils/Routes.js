@@ -14,10 +14,8 @@ import DashboardsContainer from '../containers/Dashboards/DashboardsContainer';
 
 const routes = (
   <Route path="/build/" component={App}>
-    {/*<IndexRoute component={LoginContainer} />*/}
-    <IndexRoute component={DashboardsContainer} />
+    <IndexRoute component={LoginContainer} />
     <Route path="/register" component={RegisterContainer} />
-
     <Route path="/dashboards" component={requireAuthentication(DashboardsContainer)} />
     <Route path="/businesses" component={requireAuthentication(BusinessesContainer)} />
     <Route path="/invoices/upload" component={requireAuthentication(UploadInvoiceContainer)} />

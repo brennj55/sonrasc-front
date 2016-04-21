@@ -28,6 +28,7 @@ class LineGraph extends Component {
         <LineChart
           data={data}
           options={chartOptions}
+          redraw
         />
       );
     }

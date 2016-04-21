@@ -11,12 +11,17 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
   }
 
   handleClick() {
     let username = this.refs.username.refs.input.value;
     let password = this.refs.password.refs.input.value;
     this.props.onLogin(username, password);
+  }
+
+  handleRegister() {
+    this.props.onRegisterClick();
   }
 
   render() {
@@ -36,12 +41,22 @@ class Login extends Component {
               floatingLabelText="Password"
               type="password"
             />
-            <RaisedButton
-              label="Login"
-              primary={true}
-              onClick={this.handleClick}
-            />
-            <Link to="/register">Register a new account</Link>
+            <div style={{margin: '.5em 0'}}>
+              <RaisedButton
+                label="Login"
+                primary={true}
+                style={{width: '100%'}}
+                onClick={this.handleClick}
+              />
+            </div>
+            <div style={{marginTop: '.5em'}}>
+              <RaisedButton
+                label="Register"
+                secondary={true}
+                style={{width: '100%'}}
+                onClick={this.handleRegister}
+              />
+            </div>
           </Paper>
       </div>
     );

@@ -11,10 +11,10 @@ let CostOverTimeGraph = () => (
     <h2 style={[styles.subheader]}>Total Cost Over Time</h2>
     <LineGraphContainer graphType="COSTS_OVER_TIME" />
     <CostOverTimeRangeSliderContainer graphType="COSTS_OVER_TIME" />
-    <div style={styles.spacePadding2em}>
+    {/*<div style={styles.spacePadding2em}>
       Aggregate by...
       <TimePeriodSelection />
-    </div>
+    </div>*/}
   </div>
 );
 

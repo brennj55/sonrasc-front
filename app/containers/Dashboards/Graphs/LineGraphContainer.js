@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../../actions';
 import { groupByYear } from '../../../utils/date.js';
 import { min, max } from 'lodash';
+import moment from 'moment';
 
 const TEST_DATA = [
 	{x: new Date(2011, 1, 1).getTime(), y: 3943},
@@ -16,7 +17,7 @@ const TEST_DATA = [
 
 const getGraphData = (state, ownProps) => {
 	return {
-		labels: state.Dashboards.CostOverTime.graphData.labels,
+		labels: state.Dashboards.CostOverTime.graphData.labels.map((x) => moment(x).locale('en-gb').format('L')),
 		datasets: [
 			{
 				label: "My Second dataset",
