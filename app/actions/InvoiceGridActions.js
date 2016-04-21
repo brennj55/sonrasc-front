@@ -23,9 +23,9 @@ export function getInvoicesForGrid() {
       }),
       credentials: "include",
     }).then(res => res.json())
-      .then(x => {
-        console.log(x);
-        dispatch(getInvoicesSuccess(x));
+      .then(json => {
+        console.log(json);
+        dispatch(getInvoicesSuccess(json));
       });
   };
 }

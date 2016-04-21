@@ -6,8 +6,6 @@ import Radium from 'radium';
 import styles from '../../styles/flex.js';
 import { printDate } from '../../utils/date';
 
-// <Link to={"/invoices/" + tile._id} key={tile._id}>
-
 const tiles = (tilesData, onClick) => tilesData.map(tile => (
   <GridTile
     key={tile._id}

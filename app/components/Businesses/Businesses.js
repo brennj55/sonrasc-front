@@ -6,6 +6,19 @@ import { Link } from 'react-router';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 import { printDate } from '../../utils/date';
+import Business from 'material-ui/lib/svg-icons/communication/business';
+import IconButton from 'material-ui/lib/icon-button';
+
+let tiles = (businesses, styleFunc, onClick) => businesses.map(business =>
+  <GridTile
+    key={business._id}
+    title={business.business}
+    actionIcon={<IconButton><Business color="white"/></IconButton>}
+    actionPosition="left"
+    onClick={() => onClick(business._id)}
+    style={styleFunc(business._id)}
+  />
+);
 
 class Businesses extends Component {
   constructor(props) {
@@ -17,7 +30,7 @@ class Businesses extends Component {
   }
 
   render() {
-    const { fetching } = this.props;
+    const { fetching, businesses, styleFunc, onBusinessClick } = this.props;
 
     if (!fetching) {
       return (
@@ -28,6 +41,7 @@ class Businesses extends Component {
             cols={3}
             style={styles.grid.gridList}
           >
+            { businesses? tiles(businesses, styleFunc, onBusinessClick) : <p>No superman here.</p> }
           </GridList>
         </div>
       );

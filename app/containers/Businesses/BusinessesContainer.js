@@ -2,16 +2,27 @@ import Businesses from '../../components/Businesses/Businesses';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
+const randomColour = () => "#" + ((1<<24)*Math.random()|0).toString(16);
+
+const getColour = () => {
+  return {
+    background: randomColour(),
+    cursor: 'pointer'
+  };
+}
+
 const mapStateToProps = (state, ownProps) => {
   return {
-    fetching: false
+    fetching: false,
+    businesses: state.BusinessGrid.businesses.data,
+    styleFunc: (id) => getColour()
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onInit: () => console.log("SAY WHAT YOU WANT SAVE YOUR SOUL")
-    //dispatch(actions.invoiceGrid.getInvoicesForGrid())
+    onInit: () => dispatch(actions.businessGrid.getBusinessesForGrid()),
+    onBusinessClick: (id) => console.log(id)
   };
 };
 
