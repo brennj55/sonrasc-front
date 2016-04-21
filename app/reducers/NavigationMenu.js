@@ -7,6 +7,9 @@ function navigationMenu(state = { open: false }, action) {
     case actions.TOGGLE_NAVIGATION:
       return { open: !state.open }
 
+    case actions.CLOSE_NAVIGATION:
+      return { open: false }
+
     default:
       return state;
   }

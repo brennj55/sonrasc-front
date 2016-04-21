@@ -1,4 +1,6 @@
 import { push } from 'react-router-redux';
+import * as navigationActions from './NavigationMenuActions';
+const URL = 'http://' + location.hostname;
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 function requestLogin(creds) {
@@ -23,28 +25,69 @@ export function loginError(message) {
   };
 }
 
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
+function requestLogout() {
+  return {
+    type: LOGOUT_REQUEST
+  };
+}
+
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+function recieveLogout() {
+  return {
+    type: LOGOUT_SUCCESS
+  };
+}
+
+const checkIfLoginSuccess = (dispatch, json) => {
+  if (json.success) {
+    dispatch(receiveLogin(json.user));
+    dispatch(navigationActions.toggleNavigation());
+    dispatch(push("/invoices/upload"));
+  }
+  else {
+    dispatch(loginError("Incorrect details."));
+  }
+};
+
+const getLoginPostObject = (credentials) => {
+  return {
+    method: 'POST',
+    headers: new Headers({'Content-Type': 'application/json'}),
+    credentials: 'include',
+    body: JSON.stringify({username: credentials.username, password: credentials.password})
+  };
+};
+
 export function loginUser(credentials) {
   return (dispatch) => {
     dispatch(requestLogin());
-    fetch('http://192.168.99.100:7004/api/login', {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      }),
-      credentials: 'include',
-      body: JSON.stringify({username: credentials.username, password: credentials.password})
-    }).then(res => {
-      console.log(res);
-      return res.json();
-    }).then(json => {
-        console.log(json);
-        if (json.success) {
-          dispatch(receiveLogin(json.user));
-          dispatch(push("/invoices/upload"));
-        }
-        else {
-          dispatch(loginError("Incorrect details."));
-        }
-      });
+    fetch(URL + ':7004/api/login', getLoginPostObject(credentials))
+      .then(res => res.json())
+      .then(json => checkIfLoginSuccess(dispatch, json));
+  };
+}
+
+const getLogoutGetObject = () => {
+  return {
+    method: 'GET',
+    credentials: 'include'
   };
 };
+
+const checkIfLogoutSuccess = (dispatch, json) => {
+  if (json.success) {
+    dispatch(recieveLogout());
+    dispatch(navigationActions.closeNavigation());
+    dispatch(push("/build/"));
+  }
+};
+
+export function logoutUser() {
+  return (dispatch) => {
+    dispatch(requestLogout());
+    fetch(URL + ':7004/api/logout', getLogoutGetObject())
+      .then(res => res.json())
+      .then(json => checkIfLogoutSuccess(dispatch, json));
+  };
+}

@@ -4,3 +4,10 @@ export function toggleNavigation() {
     type: TOGGLE_NAVIGATION
   };
 }
+
+export const CLOSE_NAVIGATION = "CLOSE_NAVIGATION";
+export function closeNavigation() {
+  return {
+    type: CLOSE_NAVIGATION
+  }
+}

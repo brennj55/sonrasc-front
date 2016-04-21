@@ -24,6 +24,18 @@ function authenication(state = {isFetching: false, isAuthenticated: false, messa
         message: action.message
       };
 
+    case loginActions.LOGOUT_REQUEST:
+      return {
+        isFetching: true,
+        isAuthenticated: true
+      }
+
+    case loginActions.LOGOUT_SUCCESS:
+      return {
+        isFetching: false,
+        isAuthenticated: false
+      }
+
     default:
       return state;
   }

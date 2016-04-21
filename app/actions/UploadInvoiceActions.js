@@ -2,6 +2,7 @@ import io from 'socket.io-client';
 import { packageInvoiceForStorage } from '../utils/invoice.js';
 import { push } from 'react-router-redux';
 import { has, round } from 'lodash';
+const URL = 'http://' + location.hostname;
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
 export function selectImage(image) {
@@ -152,7 +153,6 @@ export function clearUploadFormStateAndChangePage() {
     dispatch(clearImage());
     dispatch(clearItems());
     dispatch(clearUploadFormFields());
-    console.log('hi i am about to go to a new route?');
     dispatch(push('/invoices'));
   };
 }
@@ -161,7 +161,7 @@ export const UPLOAD_INVOICE = "UPLOAD_INVOICE";
 export function uploadInvoice() {
   return (dispatch, getState) => {
     dispatch(uploadInvoiceRequest());
-    fetch('http://192.168.99.100:7004/api/invoices', {
+    fetch(URL + ':7004/api/invoices', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -192,7 +192,7 @@ export const GET_BUSINESSES_NAMES = "GET_BUSINESSES_NAMES";
 export function getBusinessesNames() {
   return (dispatch) => {
     dispatch(getBusinessesNamesRequest());
-    fetch('http://192.168.99.100:7004/api/businesses', {
+    fetch(URL + ':7004/api/businesses', {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -220,7 +220,7 @@ export function getInvoiceData(business) {
     let businesses = getState().UploadInvoice.businesses.names;
     let businessTag = businesses.filter(bsns => business === bsns.business);
     let id = businessTag[0]._id;
-    fetch('http://192.168.99.100:7004/api/businesses/' + id, {
+    fetch(URL + ':7004/api/businesses/' + id, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'
