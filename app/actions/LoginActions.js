@@ -16,7 +16,7 @@ function receiveLogin(user) {
 }
 
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
-function loginError(message) {
+export function loginError(message) {
   return {
     type: LOGIN_FAILURE,
     message
@@ -41,6 +41,9 @@ export function loginUser(credentials) {
         if (json.success) {
           dispatch(receiveLogin(json.user));
           dispatch(push("/invoices/upload"));
+        }
+        else {
+          dispatch(loginError("Incorrect details."));
         }
       });
   };

@@ -17,7 +17,9 @@ class Login extends Component {
   handleClick() {
     let username = this.refs.username.refs.input.value;
     let password = this.refs.password.refs.input.value;
-    this.props.onLogin(username, password);
+
+    if (!username || !password) this.props.onCredentialsError();
+    if (username && password) this.props.onLogin(username, password);
   }
 
   handleRegister() {
@@ -25,6 +27,8 @@ class Login extends Component {
   }
 
   render() {
+    const { userError, passwordError } = this.props;
+
     return (
       <div style={[styles.base, styles.centerFlex]}>
           <Paper style={styles.boxForm}>
@@ -32,16 +36,18 @@ class Login extends Component {
             <TextField
               hintText="Username"
               ref="username"
+              errorText={userError}
               floatingLabelText="Username"
               type="text"
             />
             <TextField
               hintText="Password"
               ref="password"
+              errorText={passwordError}
               floatingLabelText="Password"
               type="password"
             />
-            <div style={{margin: '.5em 0'}}>
+            <div style={{margin: '1em 0'}}>
               <RaisedButton
                 label="Login"
                 primary={true}
@@ -49,9 +55,9 @@ class Login extends Component {
                 onClick={this.handleClick}
               />
             </div>
-            <div style={{marginTop: '.5em'}}>
+            <div>
               <RaisedButton
-                label="Register"
+                label="Register your business"
                 secondary={true}
                 style={{width: '100%'}}
                 onClick={this.handleRegister}

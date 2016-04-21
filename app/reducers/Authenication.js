@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { loginActions, registerActions } from '../actions';
 
-function authenication(state = {isFetching: false, isAuthenticated: false }, action) {
+function authenication(state = {isFetching: false, isAuthenticated: false, message: '' }, action) {
   switch (action.type) {
 
     case loginActions.LOGIN_REQUEST:

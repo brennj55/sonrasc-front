@@ -5,13 +5,16 @@ import { push } from 'react-router-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    userError: state.authenication.message,
+    passwordError: state.authenication.message
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onLogin: (username, password) => dispatch(actions.loginActions.loginUser({ username, password })),
-    onRegisterClick: () => dispatch(push('/register'))
+    onRegisterClick: () => dispatch(push('/register')),
+    onCredentialsError: () => dispatch(actions.loginActions.loginError("Please fill in all details."))
   };
 };
 
