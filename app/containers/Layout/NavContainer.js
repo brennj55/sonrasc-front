@@ -3,7 +3,7 @@ import Nav from '../../components/Layout/Nav';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    open: true
+    open: state.navigationMenu.open && state.authenication.isAuthenticated
   };
 };
 

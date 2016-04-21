@@ -34,8 +34,6 @@ form {
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    /*overflow-x: hidden;*/
-    padding-left: 256px;
     padding-top: 100px;
   }
 

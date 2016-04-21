@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import * as actions from '../../actions';
 import Header from '../../components/Layout/Header';
 
 const getFullName = (auth) => {
@@ -15,8 +16,15 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onMenuTouch: () => dispatch(actions.navigationMenuActions.toggleNavigation())
+  };
+}
+
 const HeaderContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Header);
 
 export default HeaderContainer;
