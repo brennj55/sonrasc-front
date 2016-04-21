@@ -4,7 +4,6 @@ import Header from '../../components/Layout/Header';
 
 const getFullName = (auth) => {
   if (auth.user) {
-    console.log(auth.user.firstName + " " + auth.user.lastName);
     return auth.user.firstName + " " + auth.user.lastName;
   }
 };

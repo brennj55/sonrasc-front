@@ -176,6 +176,10 @@ const styles = {
     position: 'absolute',
     top: 0,
     left: 0
+  },
+
+  pointer: {
+    cursor: 'pointer'
   }
 };
 

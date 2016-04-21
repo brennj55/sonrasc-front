@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Spinner from '../Layout/Spinner';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
+import FlatButton from 'material-ui/lib/flat-button';
 
 class Invoice extends Component {
 
@@ -14,13 +15,17 @@ class Invoice extends Component {
   }
 
   render() {
-    const { date, fetching } = this.props;
+    const { date, fetching, onClickBackButton } = this.props;
     if (!fetching) {
       return (
         <div style={styles.base}>
           <h1 style={[styles.header, styles.spaceBetween]}>
             Invoice
-            <span>Go Back!</span>
+            <FlatButton 
+              label="Go back"
+              secondary={true}
+              onClick={onClickBackButton}
+            />
           </h1>
           <p>Hello is it on {date}</p>
         </div>

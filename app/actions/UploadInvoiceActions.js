@@ -166,6 +166,7 @@ export function uploadInvoice() {
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
+      credentials: 'include',
       body: JSON.stringify(packageInvoiceForStorage(getState()))
     }).then((res) => res.json())
       .then((json) => dispatch(uploadInvoiceSuccess()))
@@ -225,7 +226,7 @@ export function getInvoiceData(business) {
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
-      credentials: "include"
+      credentials: 'include',
     }).then(res => res.json())
       .then(x => console.log(x));
   }

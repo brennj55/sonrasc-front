@@ -21,7 +21,7 @@ export function getInvoice(key) {
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
-      credentials: "same-origin"
+      credentials: 'include'
     }).then(res => res.json())
       .then(x => {
         console.log(x);
