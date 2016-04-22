@@ -11,6 +11,7 @@ class Register extends Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.handleUsernameUnfocus = this.handleUsernameUnfocus.bind(this);
+    this.onValueOfUsernameChange = this.onValueOfUsernameChange.bind(this);
   }
 
   handleClick() {
@@ -30,12 +31,18 @@ class Register extends Component {
   }
 
   handleUsernameUnfocus(event) {
-    if (event.target.value.length > 0) this.props.onUsernameChange(event);
+    if (event.target.value.length > 0) this.props.onUsernameChange(event.target.value.trim());
+  }
+
+  onValueOfUsernameChange(event) {
+    this.props.onUsernameValueChange(event.target.value.trim());
   }
 
   render() {
-    const { onUsernameChange,
-      usernameFieldStyle, usernameText, onValueChange } = this.props;
+    const {
+      onUsernameChange, usernameFieldStyle,
+      usernameText, onUsernameValueChange, registrationButtonEnabled,
+      usernameValue } = this.props;
 
     return (
       <div style={[styles.base, styles.centerFlex]}>
@@ -47,7 +54,8 @@ class Register extends Component {
               floatingLabelText="Username"
               type="text"
               onBlur={this.handleUsernameUnfocus}
-              onChange={onValueChange}
+              onChange={this.onValueOfUsernameChange}
+              value={usernameValue}
               errorText={usernameText}
               errorStyle={usernameFieldStyle}
             />
@@ -85,6 +93,7 @@ class Register extends Component {
               label="Register"
               primary={true}
               onClick={this.handleClick}
+              disabled={registrationButtonEnabled}
             />
           </Paper>
       </div>

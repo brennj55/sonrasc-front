@@ -5,17 +5,31 @@ const USERNAME_FIELD_UNTOUCHED = 0;
 const USERNAME_FIELD_UNAVAILABLE = -1;
 const USERNAME_FIELD_AVAILABLE = 1;
 
-const initalRegistrationState =  { usernameAvailable: USERNAME_FIELD_UNTOUCHED };
+const initalRegistrationState =  {
+  usernameAvailable: USERNAME_FIELD_UNTOUCHED,
+  username: { value: '', valid: true },
+
+};
 function registration(state = initalRegistrationState, action) {
   switch (action.type) {
     case registerActions.USERNAME_UNAVAILALE:
-      return { usernameAvailable: USERNAME_FIELD_UNAVAILABLE };
+      return Object.assign({}, state, { usernameAvailable: USERNAME_FIELD_UNAVAILABLE });
 
     case registerActions.USERNAME_AVAILALE:
-      return { usernameAvailable: USERNAME_FIELD_AVAILABLE };
+      return Object.assign({}, state, { usernameAvailable: USERNAME_FIELD_AVAILABLE });
 
-    case registerActions.RESET_FIELD:
-      return initalRegistrationState;
+    case registerActions.USERNAME_UNTOUCHED:
+      return Object.assign({}, state, { usernameAvailable: USERNAME_FIELD_UNTOUCHED });
+
+    case registerActions.INVALID_FIELD:
+      return Object.assign({}, state, {
+        [action.field]: { value: action.value, valid: false }
+      });
+
+    case registerActions.SET_FIELD:
+      return Object.assign({}, state, {
+        [action.field]: { value: action.fieldValue, valid: true }
+      });
 
     default:
       return state;

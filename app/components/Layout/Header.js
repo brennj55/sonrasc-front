@@ -17,7 +17,7 @@ const Header = ({ isAuthenticated, name, src, onMenuTouch }) => (
   <AppBar
     title="Sonrasc"
     style={{background: Colors.deepPurple600, position: 'fixed'}}
-    onLeftIconButtonTouchTap={onMenuTouch}
+    onLeftIconButtonTouchTap={isAuthenticated? onMenuTouch : null}
     iconElementRight={userData(isAuthenticated, name, src)}
   />
 );

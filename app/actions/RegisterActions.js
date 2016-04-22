@@ -7,11 +7,11 @@ export function usernameUnavailable() {
   };
 }
 
-export const RESET_FIELD = "RESET_FIELD";
-export function resetField(field) {
+export const SET_FIELD = "SET_FIELD";
+export function setField(field, fieldValue) {
   return {
-    type: RESET_FIELD,
-    field
+    type: SET_FIELD,
+    field, fieldValue
   };
 }
 
@@ -20,6 +20,20 @@ export function usernameAvailable() {
   return {
     type: USERNAME_AVAILALE
   };
+}
+
+export const USERNAME_UNTOUCHED = "USERNAME_UNTOUCHED";
+export function untouchUsername() {
+  return {
+    type: USERNAME_UNTOUCHED
+  };
+}
+
+export const INVALID_FIELD = "INVALID_FIELD";
+export function invalidField(field, value) {
+  return {
+    type: INVALID_FIELD, field, value
+  }
 }
 
 export const checkIfUsernameAvailable = (username) => {
