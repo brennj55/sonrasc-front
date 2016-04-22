@@ -13,6 +13,7 @@ class Register extends Component {
     this.handleUsernameUnfocus = this.handleUsernameUnfocus.bind(this);
     this.onValueOfUsernameChange = this.onValueOfUsernameChange.bind(this);
     this.handleBusinessUnfocus = this.handleBusinessUnfocus.bind(this);
+    this.checkIsValidPassword = this.checkIsValidPassword.bind(this);
   }
 
   handleClick() {
@@ -23,12 +24,9 @@ class Register extends Component {
     let business = this.refs.business.refs.input.value;
     let confirmPassword = this.refs.confirmPassword.refs.input.value;
 
-
-    if (confirmPassword === password) {
-      this.props.onRegister(username, password, {
-        firstName, lastName, business
-      });
-    }
+    this.props.onRegister(username, password, {
+      firstName, lastName, business
+    });
   }
 
   handleUsernameUnfocus(event) {
@@ -43,11 +41,25 @@ class Register extends Component {
     if (event.target.value.length > 0) this.props.onBusinessChange(event.target.value.trim());
   }
 
+  checkIsValidPassword(event) {
+    let password = this.refs.password.refs.input.value;
+    let confirmPassword = this.refs.confirmPassword.refs.input.value;
+
+    if (confirmPassword === password && password.length > 0) {
+      this.props.passwordIsSame();
+    }
+    else {
+      this.props.passwordsNotTheSame();
+    }
+  }
+
   render() {
     const {
       onUsernameChange, usernameFieldStyle,
       usernameText, onUsernameValueChange, registrationButtonEnabled,
-      usernameValue, businessFieldStyle, businessText } = this.props;
+      usernameValue, businessFieldStyle, businessText,
+      passwordText, passwordStyle
+    } = this.props;
 
     return (
       <div style={[styles.base, styles.centerFlex]}>
@@ -90,15 +102,22 @@ class Register extends Component {
               ref="password"
               floatingLabelText="Password"
               type="password"
+              onChange={this.checkIsValidPassword}
+              errorText={passwordText}
+              errorStyle={passwordStyle}
             />
             <TextField
               hintText="Confirm Password"
               ref="confirmPassword"
               floatingLabelText="Confirm Password"
               type="password"
+              onChange={this.checkIsValidPassword}
+              errorText={passwordText}
+              errorStyle={passwordStyle}
             />
             <RaisedButton
               label="Register"
+              style={{margin: '1em 0'}}
               primary={true}
               onClick={this.handleClick}
               disabled={registrationButtonEnabled}

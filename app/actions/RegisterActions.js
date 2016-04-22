@@ -121,3 +121,17 @@ export const registerUser = (username, password, data) => {
     });
   };
 };
+
+export const VALID_PASSWORD = "VALID_PASSWORD";
+export function validPassword() {
+  return {
+    type: VALID_PASSWORD
+  }
+}
+
+export const INVALID_PASSWORD = "INVALID_PASSWORD";
+export function invalidPassword() {
+  return {
+    type: INVALID_PASSWORD
+  }
+}

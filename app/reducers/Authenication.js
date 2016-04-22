@@ -9,7 +9,7 @@ const initalRegistrationState =  {
   usernameAvailable: FIELD_UNTOUCHED,
   businessAvailable: FIELD_UNTOUCHED,
   username: { value: '', valid: true },
-
+  validPassword: true
 };
 function registration(state = initalRegistrationState, action) {
   switch (action.type) {
@@ -34,6 +34,16 @@ function registration(state = initalRegistrationState, action) {
     case registerActions.INVALID_FIELD:
       return Object.assign({}, state, {
         [action.field]: { value: action.value, valid: false }
+      });
+
+    case registerActions.INVALID_PASSWORD:
+      return Object.assign({}, state, {
+        validPassword: false
+      });
+
+    case registerActions.VALID_PASSWORD:
+      return Object.assign({}, state, {
+        validPassword: true
       });
 
     case registerActions.SET_FIELD:

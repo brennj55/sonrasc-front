@@ -39,7 +39,12 @@ const isBusinessValidAndAvailable = (registration) => {
 
 const checkIfEnableded = (registration) => {
   console.log(registration);
-  return !(registration.usernameAvailable === 1 && registration.username.valid);
+  return !(
+       registration.usernameAvailable === 1
+    && registration.username.valid
+    && registration.businessAvailable === 1
+    && registration.validPassword
+  );
 };
 
 const handleUsernameChange = (dispatch, value) => {
@@ -50,13 +55,27 @@ const handleUsernameChange = (dispatch, value) => {
   if (!value.match(usernameRegex)) dispatch(actions.registerActions.invalidField('username', value));
 };
 
+const isPasswordGivenValid = (registration) => {
+  if (!registration.validPassword) return {
+    text: "Passwords don't match",
+    style: {color: Colors.red500 }
+  };
+  else return {
+    text: "",
+    style: {}
+  };
+};
+
 const mapStateToProps = (state, ownProps) => {
   const registration = state.Authenication.registration;
   const isUsernameForUse = isUsernameValidAndAvailable(registration);
   const isBusinessForUse = isBusinessValidAndAvailable(registration);
+  const isPasswordValid = isPasswordGivenValid(registration);
 
   return {
     usernameFieldStyle: isUsernameForUse.style,
+    passwordStyle: isPasswordValid.style,
+    passwordText: isPasswordValid.text,
     usernameText: isUsernameForUse.text,
     busiessFieldStyle: isBusinessForUse.style,
     businessText: isBusinessForUse.text,
@@ -70,7 +89,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onRegister: (user, pass, data) => dispatch(actions.registerActions.registerUser(user, pass, data)),
     onUsernameChange: (value) => dispatch(actions.registerActions.checkIfUsernameAvailable(value)),
     onUsernameValueChange: (value) => handleUsernameChange(dispatch, value),
-    onBusinessChange: (value) => dispatch(actions.registerActions.checkIfBusinessAvailable(value))
+    onBusinessChange: (value) => dispatch(actions.registerActions.checkIfBusinessAvailable(value)),
+    passwordsNotTheSame: () => dispatch(actions.registerActions.invalidPassword()),
+    passwordIsSame: () => dispatch(actions.registerActions.validPassword())
   }
 };
 
