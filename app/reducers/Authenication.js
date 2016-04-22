@@ -1,25 +1,35 @@
 import { combineReducers } from 'redux';
 import { loginActions, registerActions } from '../actions';
 
-const USERNAME_FIELD_UNTOUCHED = 0;
-const USERNAME_FIELD_UNAVAILABLE = -1;
-const USERNAME_FIELD_AVAILABLE = 1;
+const FIELD_UNTOUCHED = 0;
+const FIELD_UNAVAILABLE = -1;
+const FIELD_AVAILABLE = 1;
 
 const initalRegistrationState =  {
-  usernameAvailable: USERNAME_FIELD_UNTOUCHED,
+  usernameAvailable: FIELD_UNTOUCHED,
+  businessAvailable: FIELD_UNTOUCHED,
   username: { value: '', valid: true },
 
 };
 function registration(state = initalRegistrationState, action) {
   switch (action.type) {
     case registerActions.USERNAME_UNAVAILALE:
-      return Object.assign({}, state, { usernameAvailable: USERNAME_FIELD_UNAVAILABLE });
+      return Object.assign({}, state, { usernameAvailable: FIELD_UNAVAILABLE });
 
     case registerActions.USERNAME_AVAILALE:
-      return Object.assign({}, state, { usernameAvailable: USERNAME_FIELD_AVAILABLE });
+      return Object.assign({}, state, { usernameAvailable: FIELD_AVAILABLE });
 
     case registerActions.USERNAME_UNTOUCHED:
-      return Object.assign({}, state, { usernameAvailable: USERNAME_FIELD_UNTOUCHED });
+      return Object.assign({}, state, { usernameAvailable: FIELD_UNTOUCHED });
+
+      case registerActions.BUSINESS_UNAVAILALE:
+        return Object.assign({}, state, { businessAvailable: FIELD_UNAVAILABLE });
+
+      case registerActions.BUSINESS_AVAILALE:
+        return Object.assign({}, state, { businessAvailable: FIELD_AVAILABLE });
+
+      case registerActions.BUSIENSS_UNTOUCHED:
+        return Object.assign({}, state, { businessAvailable: FIELD_UNTOUCHED });
 
     case registerActions.INVALID_FIELD:
       return Object.assign({}, state, {

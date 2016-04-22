@@ -12,6 +12,7 @@ class Register extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleUsernameUnfocus = this.handleUsernameUnfocus.bind(this);
     this.onValueOfUsernameChange = this.onValueOfUsernameChange.bind(this);
+    this.handleBusinessUnfocus = this.handleBusinessUnfocus.bind(this);
   }
 
   handleClick() {
@@ -38,11 +39,15 @@ class Register extends Component {
     this.props.onUsernameValueChange(event.target.value.trim());
   }
 
+  handleBusinessUnfocus(event) {
+    if (event.target.value.length > 0) this.props.onBusinessChange(event.target.value.trim());
+  }
+
   render() {
     const {
       onUsernameChange, usernameFieldStyle,
       usernameText, onUsernameValueChange, registrationButtonEnabled,
-      usernameValue } = this.props;
+      usernameValue, businessFieldStyle, businessText } = this.props;
 
     return (
       <div style={[styles.base, styles.centerFlex]}>
@@ -64,6 +69,9 @@ class Register extends Component {
               ref="business"
               floatingLabelText="Your Business Name"
               type="text"
+              onBlur={this.handleBusinessUnfocus}
+              errorText={businessText}
+              errorStyle={businessFieldStyle}
             />
             <TextField
               hintText="First Name"

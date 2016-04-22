@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import Colors from 'material-ui/lib/styles/colors';
 
-const isValidAndAvailable = (registration) => {
+const isUsernameValidAndAvailable = (registration) => {
 
-  if (!registration.username.valid && registration.username.length > 0) return {
+  if (!registration.username.valid || registration.username.length > 0) return {
     text: "Invalid Username",
     style: {color: Colors.red500}
   };
@@ -26,6 +26,17 @@ const isValidAndAvailable = (registration) => {
   }
 };
 
+const isBusinessValidAndAvailable = (registration) => {
+  if (registration.businessAvailable === -1) return {
+    text: "Business Name Unavailable",
+    style: {color: Colors.green500 }
+  }
+  else return {
+    text: "",
+    style: {}
+  }
+}
+
 const checkIfEnableded = (registration) => {
   console.log(registration);
   return !(registration.usernameAvailable === 1 && registration.username.valid);
@@ -41,11 +52,14 @@ const handleUsernameChange = (dispatch, value) => {
 
 const mapStateToProps = (state, ownProps) => {
   const registration = state.Authenication.registration;
-  const isForUse = isValidAndAvailable(registration);
+  const isUsernameForUse = isUsernameValidAndAvailable(registration);
+  const isBusinessForUse = isBusinessValidAndAvailable(registration);
 
   return {
-    usernameFieldStyle: isForUse.style,
-    usernameText: isForUse.text,
+    usernameFieldStyle: isUsernameForUse.style,
+    usernameText: isUsernameForUse.text,
+    busiessFieldStyle: isBusinessForUse.style,
+    businessText: isBusinessForUse.text,
     registrationButtonEnabled: checkIfEnableded(state.Authenication.registration),
     usernameValue: registration.username.value
   };
@@ -55,7 +69,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onRegister: (user, pass, data) => dispatch(actions.registerActions.registerUser(user, pass, data)),
     onUsernameChange: (value) => dispatch(actions.registerActions.checkIfUsernameAvailable(value)),
-    onUsernameValueChange: (value) => handleUsernameChange(dispatch, value)
+    onUsernameValueChange: (value) => handleUsernameChange(dispatch, value),
+    onBusinessChange: (value) => dispatch(actions.registerActions.checkIfBusinessAvailable(value))
   }
 };
 
