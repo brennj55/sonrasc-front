@@ -3,6 +3,15 @@ import Spinner from '../Layout/Spinner';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 import FlatButton from 'material-ui/lib/flat-button';
+import ItemsTable from './ItemsTable';
+
+
+let InvoiceField = ({ labelText, value, key }) => (
+  <div key={key} style={[styles.innerFlex, styles.space]}>
+    <label style={[styles.flex1, styles.label]}>{labelText}</label>
+    <span style={styles.flex1}>{value}</span>
+  </div>
+);
 
 class Invoice extends Component {
 
@@ -15,8 +24,19 @@ class Invoice extends Component {
   }
 
   render() {
-    const { date, fetching, onClickBackButton,
-      totalCost, uploadedBy } = this.props;
+    const {
+      date, fetching, onClickBackButton,
+      totalCost, uploadedBy, address,
+      business, items
+    } = this.props;
+
+    let fields = [
+      {value: business, labelText: "Invoice sent from"},
+      {value: date, labelText: "Date sent"},
+      {value: uploadedBy, labelText: "Uploaded by"},
+      {value: address, labelText: "Address of business"}
+    ];
+
 
     if (!fetching) {
       return (
@@ -30,11 +50,18 @@ class Invoice extends Component {
             />
           </h1>
 
-          <span>Date sent</span> {date}
-          <span>Uploaded by</span> {uploadedBy}
+          {fields.map((field, key) => (
+            <InvoiceField
+              value={field.value}
+              labelText={field.labelText}
+              key={key}
+            />))
+          }
 
           <div style={[styles.space]}>
             <h2 style={[styles.subheader, styles.spaceBetween]}>Items</h2>
+            <ItemsTable items={items} />
+
             <h3 style={[styles.subheader, styles.marginSpace, styles.spaceBetween]}>
               Total Cost
               <span>€{totalCost.toFixed(2)}</span>
@@ -53,5 +80,6 @@ class Invoice extends Component {
   }
 }
 
+InvoiceField = Radium(InvoiceField);
 Invoice = Radium(Invoice);
 export default Invoice;

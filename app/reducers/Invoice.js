@@ -18,7 +18,10 @@ function name(state = { fetching: false, user: '' }, action) {
 const invoiceInitialState = {
   fetching: false,
   data: {
-    date: { value: new Date(0) }
+    business: { value: '' },
+    items: [],
+    date: { value: new Date(0) },
+    address: { value: '' }
   }
 };
 
