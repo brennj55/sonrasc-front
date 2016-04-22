@@ -4,7 +4,7 @@ import * as actions from '../../actions';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onClick: (id) => dispatch(actions.removeItemByID(id))
+    onClick: (id) => dispatch(actions.uploadInvoice.removeItemByID(id))
   }
 };
 

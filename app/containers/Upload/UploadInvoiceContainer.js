@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import UploadInvoice from '../components/UploadInvoice';
+import UploadInvoice from '../../components/Upload/UploadInvoice';
 
 const checkIfNewDateAvailable = (state) => {
   if (state.UploadInvoice.form.has('date')) return new Date(state.UploadInvoice.form.get('date').value);
@@ -15,7 +15,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     date: checkIfNewDateAvailable(state),
     address: checkIfNewAddressAvailable(state),
-    items: state.UploadInvoice.items
+    items: state.UploadInvoice.items,
+    uploading: state.UploadInvoice.upload.isUploading
   };
 };
 

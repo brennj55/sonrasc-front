@@ -22,6 +22,7 @@ class ItemPropertyField extends Component {
 
     return (
       <TextField
+        multiLine={true}
         onChange={(event) => this.handleChange(header, event.target.value)}
         value={value}
       />

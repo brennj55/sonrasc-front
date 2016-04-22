@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
-import {
-  TOGGLE_CROPPING_DIALOG, SELECT_IMAGE, CLEAR_DIALOG,
-  CROP_IMAGE_AREA, REQUEST_CROPPED_DATA, RECIEVE_CROPPED_DATA,
-  UPDATE_UPLOAD_FORM, ADD_NEW_ITEM, REMOVE_ITEM, UPDATE_ITEM
-} from '../actions';
+import { uploadInvoice as actions } from '../actions';
 import Immutable from 'immutable';
-import { pick } from 'lodash';
+import { pick, range } from 'lodash';
 
-function image(state = '', action) {
+export function image(state = '', action) {
   switch (action.type) {
-    case SELECT_IMAGE:
+    case actions.SELECT_IMAGE:
       return action.image;
+
+    case actions.CLEAR_IMAGE:
+      return '';
+
     default:
       return state;
   }
@@ -19,8 +19,11 @@ function image(state = '', action) {
 let formInitialState = Immutable.Map();
 function form(state = formInitialState, action) {
   switch (action.type) {
-    case UPDATE_UPLOAD_FORM:
+    case actions.UPDATE_UPLOAD_FORM:
       return state.set(action.key, {value: action.value, boundary: action.boundary});
+
+    case actions.CLEAR_UPLOAD_FORM:
+      return formInitialState;
 
     default:
       return state;
@@ -28,34 +31,35 @@ function form(state = formInitialState, action) {
 }
 
 let itemsInitialState = Immutable.List();
-function items(state = itemsInitialState, action) {
+export function items(state = itemsInitialState, action) {
   switch (action.type) {
-    case ADD_NEW_ITEM:
-      return state.set(state.size, {});
+    case actions.ADD_NEW_ITEM:
+      return state.push({});
 
-    case UPDATE_ITEM:
-      return state.updateIn([action.id], (object) =>
-        Object.assign({}, object, {[action.field]: action.value,
-          Total: object.Quantity * object.Price
-        })
-      );
+    case actions.UPDATE_ITEM:
+      return state.update(action.id, (obj) => {
+        return Object.assign({}, obj, {[action.field]: {value: action.value, boundary: action.boundary}});
+      });
 
-    case REMOVE_ITEM:
-        return state.delete(action.key);
+    case actions.REMOVE_ITEM:
+      return state.delete(action.key);
 
-      default:
-        return state;
+    case actions.CLEAR_ITEMS:
+      return itemsInitialState;
+
+    default:
+      return state;
   }
 }
 
-let itemsByIdInitialState = Immutable.List();
+let itemsByIdInitialState = [];
 function itemsById(state = itemsByIdInitialState, action) {
   switch (action.type) {
-    case ADD_NEW_ITEM:
-      return state.set(state.size);
+    case actions.ADD_NEW_ITEM:
+      return range(state.length + 1);
 
-    case REMOVE_ITEM:
-      return state.delete(action.key);
+    case actions.REMOVE_ITEM:
+      return range(state.length - 1);
 
     default:
       return state;
@@ -73,32 +77,83 @@ const cropImageInitialState = {
 function cropImage(state = cropImageInitialState, action) {
   switch (action.type) {
 
-    case CROP_IMAGE_AREA:
+    case actions.CROP_IMAGE_AREA:
       return Object.assign({}, state, {
         boundary: action.boundary,
         imageData: action.imageData
       });
 
-    case REQUEST_CROPPED_DATA:
+    case actions.REQUEST_CROPPED_DATA:
       return Object.assign({}, state, {
         isFetching: true
       });
 
-    case CLEAR_DIALOG:
+    case actions.CLEAR_DIALOG:
       return cropImageInitialState;
 
-    case RECIEVE_CROPPED_DATA:
+    case actions.RECIEVE_CROPPED_DATA:
       return Object.assign({}, state, {
         isFetching: false,
         data: Object.assign({}, state.data, {[action.cropType]: action.data}),
         lastUpdated: action.recievedAt
       });
 
-    case TOGGLE_CROPPING_DIALOG:
+    case actions.TOGGLE_CROPPING_DIALOG:
       return Object.assign({}, state, {
         open: !state.open,
         cropType: action.cropType
       });
+
+    default:
+      return state;
+  }
+}
+
+const uploadInvoiceInitialState = {
+  isUploading: false,
+  uploaded: false
+};
+
+function upload(state = uploadInvoiceInitialState, action) {
+  switch (action.type) {
+    case actions.UPLOAD_INVOICE_REQUEST:
+      return { isUploading: true, uploaded: false };
+
+    case actions.UPLOAD_INVOICE_SUCCESS:
+      return { isUploading: false, uploaded: true };
+
+    default:
+      return state;
+  }
+}
+
+const businessesInitalState = {
+  isFetching: false,
+  names: []
+};
+
+function businesses(state = businessesInitalState, action) {
+  switch (action.type) {
+    case actions.REQUEST_BUSINESSES_NAMES:
+      return {
+        isFetching: true, names: []
+      };
+
+    case actions.SUCCESSS_BUSINESSES_NAMES:
+      return {
+        isFetching: false, names: action.businesses
+      };
+
+    default:
+      return state;
+  }
+}
+
+function invoiceData(state = { fetching: false }, action) {
+  switch (action.type) {
+
+    case actions.REQUEST_INVOICE_DATA:
+      return { fetching: true }
 
     default:
       return state;
@@ -110,7 +165,10 @@ const UploadInvoice = combineReducers({
   form,
   cropImage,
   items,
-  itemsById
+  itemsById,
+  upload,
+  businesses,
+  invoiceData
 });
 
 export default UploadInvoice;

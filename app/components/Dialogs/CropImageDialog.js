@@ -12,13 +12,13 @@ class CropImageDialog extends Component {
   }
 
   render() {
-    const { open, title, cropType } = this.props;
+    const { open, title, cropType, actions } = this.props;
 
     return (
       <Dialog
         ref='Dialog'
         open={open}
-        actions={<CropBoxDialogActions cropType={cropType} />}
+        actions={actions}
         title={title}
       >
         <CropTooler />

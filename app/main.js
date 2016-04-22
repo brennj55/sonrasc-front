@@ -3,37 +3,26 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import SonrascApp from './reducers';
-import App from './components/App';
-import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
+import { browserHistory, Router } from 'react-router';
+import { createHistory } from 'history';
 import thunkMiddleware from 'redux-thunk';
-
-import UploadInvoiceContainer from './containers/UploadInvoiceContainer';
-
-const logger = store => next => action => {
-  if (action.type !== "CROP_IMAGE") {
-    console.log('dispatching', action);
-    let result = next(action);
-    console.log('next state', store.getState());
-    return result;
-  }
-  else {
-    return next(action);
-  }
-};
+import logger from './utils/Logger';
+import routes from './utils/Routes';
 
 injectTapEventPlugin();
 let store = createStore(SonrascApp,
-  applyMiddleware(thunkMiddleware, logger)
+  applyMiddleware(
+    thunkMiddleware,
+    logger,
+    routerMiddleware(browserHistory)
+  )
 );
 
 render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={App}>
-        <Route path="/invoices/upload-invoice" component={UploadInvoiceContainer} />
-      </Route>
-    </Router>
+    <Router history={browserHistory} routes={routes} />
   </Provider>,
   document.getElementById('container')
 );
