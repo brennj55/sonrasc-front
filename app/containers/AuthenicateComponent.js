@@ -34,7 +34,7 @@ export default function requireAuthentication(Component) {
   }
 
   const mapStateToProps = (state) => ({
-    isAuthenticated: state.authenication.isAuthenticated
+    isAuthenticated: state.Authenication.loggedIn.isAuthenticated
   });
 
   return connect(mapStateToProps)(AuthenticatedComponent);

@@ -10,8 +10,8 @@ const getFullName = (auth) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isAuthenticated: state.authenication.isAuthenticated,
-    name: getFullName(state.authenication)
+    isAuthenticated: state.Authenication.loggedIn.isAuthenticated,
+    name: getFullName(state.Authenication.loggedIn)
   };
 };
 

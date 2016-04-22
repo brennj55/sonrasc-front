@@ -1,7 +1,28 @@
 import { combineReducers } from 'redux';
 import { loginActions, registerActions } from '../actions';
 
-function authenication(state = {isFetching: false, isAuthenticated: false, message: '' }, action) {
+const USERNAME_FIELD_UNTOUCHED = 0;
+const USERNAME_FIELD_UNAVAILABLE = -1;
+const USERNAME_FIELD_AVAILABLE = 1;
+
+const initalRegistrationState =  { usernameAvailable: USERNAME_FIELD_UNTOUCHED };
+function registration(state = initalRegistrationState, action) {
+  switch (action.type) {
+    case registerActions.USERNAME_UNAVAILALE:
+      return { usernameAvailable: USERNAME_FIELD_UNAVAILABLE };
+
+    case registerActions.USERNAME_AVAILALE:
+      return { usernameAvailable: USERNAME_FIELD_AVAILABLE };
+
+    case registerActions.RESET_FIELD:
+      return initalRegistrationState;
+
+    default:
+      return state;
+  }
+}
+
+function loggedIn(state = {isFetching: false, isAuthenticated: false, message: '' }, action) {
   switch (action.type) {
 
     case loginActions.LOGIN_REQUEST:
@@ -41,4 +62,9 @@ function authenication(state = {isFetching: false, isAuthenticated: false, messa
   }
 }
 
-export default authenication;
+const Authenication = combineReducers({
+  loggedIn,
+  registration
+});
+
+export default Authenication;

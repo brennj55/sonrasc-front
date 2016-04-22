@@ -5,8 +5,8 @@ import { push } from 'react-router-redux';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    userError: state.authenication.message,
-    passwordError: state.authenication.message
+    userError: state.Authenication.loggedIn.message,
+    passwordError: state.Authenication.loggedIn.message
   };
 };
 

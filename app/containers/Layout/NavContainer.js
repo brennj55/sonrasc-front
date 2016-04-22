@@ -4,7 +4,7 @@ import * as actions from '../../actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    open: state.navigationMenu.open && state.authenication.isAuthenticated
+    open: state.navigationMenu.open && state.Authenication.loggedIn.isAuthenticated
   };
 };
 
