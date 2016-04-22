@@ -9,8 +9,11 @@ const initalRegistrationState =  {
   usernameAvailable: FIELD_UNTOUCHED,
   businessAvailable: FIELD_UNTOUCHED,
   username: { value: '', valid: true },
+  firstName: { value: '', valid: true },
+  lastName: { value: '', valid: true },
   validPassword: true
 };
+
 function registration(state = initalRegistrationState, action) {
   switch (action.type) {
     case registerActions.USERNAME_UNAVAILALE:

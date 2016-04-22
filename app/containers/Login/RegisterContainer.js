@@ -37,6 +37,17 @@ const isBusinessValidAndAvailable = (registration) => {
   }
 }
 
+const isFieldValid = (field, registration) => {
+  if (!registration[field].valid) return {
+    text: "Please enter a valid name.",
+    style: {color: Colors.red500 }
+  };
+  else return {
+    text: "",
+    style: {}
+  };
+}
+
 const checkIfEnableded = (registration) => {
   console.log(registration);
   return !(
@@ -71,6 +82,8 @@ const mapStateToProps = (state, ownProps) => {
   const isUsernameForUse = isUsernameValidAndAvailable(registration);
   const isBusinessForUse = isBusinessValidAndAvailable(registration);
   const isPasswordValid = isPasswordGivenValid(registration);
+  const isFirstNameValid = isFieldValid('firstName', registration);
+  const isLastNameValid = isFieldValid('lastName', registration);
 
   return {
     usernameFieldStyle: isUsernameForUse.style,
@@ -79,6 +92,10 @@ const mapStateToProps = (state, ownProps) => {
     usernameText: isUsernameForUse.text,
     busiessFieldStyle: isBusinessForUse.style,
     businessText: isBusinessForUse.text,
+    firstNameText: isFirstNameValid.text,
+    lastNameText: isLastNameValid.text,
+    firstNameStyle: isFirstNameValid.style,
+    lastNameStyle: isLastNameValid.style,
     registrationButtonEnabled: checkIfEnableded(state.Authenication.registration),
     usernameValue: registration.username.value
   };
@@ -91,7 +108,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onUsernameValueChange: (value) => handleUsernameChange(dispatch, value),
     onBusinessChange: (value) => dispatch(actions.registerActions.checkIfBusinessAvailable(value)),
     passwordsNotTheSame: () => dispatch(actions.registerActions.invalidPassword()),
-    passwordIsSame: () => dispatch(actions.registerActions.validPassword())
+    passwordIsSame: () => dispatch(actions.registerActions.validPassword()),
+    invalidName: (field, value) => dispatch(actions.registerActions.invalidField(field, value)),
+    validName: (field, value) => dispatch(actions.registerActions.setField(field, value))
   }
 };
 

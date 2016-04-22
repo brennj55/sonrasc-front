@@ -14,6 +14,7 @@ class Register extends Component {
     this.onValueOfUsernameChange = this.onValueOfUsernameChange.bind(this);
     this.handleBusinessUnfocus = this.handleBusinessUnfocus.bind(this);
     this.checkIsValidPassword = this.checkIsValidPassword.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
   }
 
   handleClick() {
@@ -41,6 +42,11 @@ class Register extends Component {
     if (event.target.value.length > 0) this.props.onBusinessChange(event.target.value.trim());
   }
 
+  handleNameChange(event, field) {
+    if (!event.target.value) this.props.invalidName(field, event.target.value.trim());
+    else this.props.validName(field, event.target.value.trim());
+  }
+
   checkIsValidPassword(event) {
     let password = this.refs.password.refs.input.value;
     let confirmPassword = this.refs.confirmPassword.refs.input.value;
@@ -58,7 +64,8 @@ class Register extends Component {
       onUsernameChange, usernameFieldStyle,
       usernameText, onUsernameValueChange, registrationButtonEnabled,
       usernameValue, businessFieldStyle, businessText,
-      passwordText, passwordStyle
+      passwordText, passwordStyle, firstNameText, lastNameText,
+      firstNameStyle, lastNameStyle
     } = this.props;
 
     return (
@@ -90,12 +97,18 @@ class Register extends Component {
               ref="firstName"
               floatingLabelText="First Name"
               type="text"
+              errorText={firstNameText}
+              errorStyle={firstNameStyle}
+              onBlur={(event) => this.handleNameChange(event, 'firstName')}
             />
             <TextField
               hintText="Surname"
               ref="surname"
               floatingLabelText="Surname"
               type="text"
+              errorText={lastNameText}
+              errorStyle={lastNameStyle}
+              onBlur={(event) => this.handleNameChange(event, 'lastName')}
             />
             <TextField
               hintText="Password"
