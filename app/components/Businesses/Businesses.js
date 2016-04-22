@@ -31,7 +31,8 @@ class Businesses extends Component {
   }
 
   render() {
-    const { fetching, businesses, styleFunc, onBusinessClick } = this.props;
+    const { fetching, businesses,
+      styleFunc, onBusinessClick } = this.props;
 
     if (!fetching) {
       return (

@@ -6,9 +6,11 @@ import * as registerActions from './RegisterActions.js';
 import * as dashboardActions from './DashboardActions.js';
 import * as navigationMenuActions from './NavigationMenuActions.js';
 import * as businessGrid from './BusinessesGridActions.js';
+import * as businessActions from './BusinessActions.js';
 
 export {
   dashboardActions,
+  businessActions,
   businessGrid,
   navigationMenuActions,
   invoiceGrid,

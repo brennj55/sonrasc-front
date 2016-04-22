@@ -8,6 +8,7 @@ import { isUndefined } from 'lodash';
 import { goBack } from 'react-router-redux';
 import { sumBy } from 'lodash';
 import moment from 'moment';
+import { getKey } from '../../utils/url';
 
 let Address = ({ key, field }) => (
   <div key={key} style={[styles.innerFlex]}>
@@ -16,11 +17,6 @@ let Address = ({ key, field }) => (
 );
 
 Address = Radium(Address);
-
-const getKey = (key) => {
-  let location = key.split('/');
-  return location[location.length - 1];
-}
 
 const mapStateToProps = (state, ownProps) => {
   let invoice = state.Invoice.invoice.data;

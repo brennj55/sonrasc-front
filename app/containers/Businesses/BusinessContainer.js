@@ -1,7 +1,8 @@
-import Businesses from '../../components/Businesses/Businesses';
+import Business from '../../components/Businesses/Business';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { push } from 'react-router-redux';
+import { getKey } from '../../utils/url';
 
 const randomColour = () => "#" + ((1<<24)*Math.random()|0).toString(16);
 
@@ -14,22 +15,19 @@ const getColour = () => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    fetching: false,
-    businesses: state.BusinessGrid.businesses.data || [],
-    styleFunc: (id) => getColour()
+    fetching: false
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onInit: () => dispatch(actions.businessGrid.getBusinessesForGrid()),
-    onBusinessClick: (id) => dispatch(push('/businesses/' + id))
+    onInit: () => dispatch(actions.businessActions.getBusiness(getKey(ownProps.location.pathname))),
   };
 };
 
-const BusinessesContainer = connect(
+const BusinessContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Businesses);
+)(Business);
 
-export default BusinessesContainer;
+export default BusinessContainer;

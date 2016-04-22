@@ -55,6 +55,8 @@ const checkIfEnableded = (registration) => {
     && registration.username.valid
     && registration.businessAvailable === 1
     && registration.validPassword
+    && registration.firstName.valid
+    && registration.lastName.valid
   );
 };
 
