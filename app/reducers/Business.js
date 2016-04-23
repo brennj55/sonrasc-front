@@ -8,8 +8,16 @@ const businessInitialState = {
   invoices: []
 };
 
-function business(state = businessInitialState, action) {
+function businessData(state = businessInitialState, action) {
   switch (action.type) {
+
+    case actions.SET_BUSINESS_DATA:
+      return Object.assign({}, state, {
+        fetching: false,
+        business: action.data.business,
+        address: action.data.address,
+        invoices: action.data.invoices
+      });
 
     default:
       return state;
@@ -17,7 +25,7 @@ function business(state = businessInitialState, action) {
 }
 
 const Business = combineReducers({
-  business
+  businessData
 });
 
-export default Invoice;
+export default Business;
