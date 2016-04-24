@@ -221,13 +221,16 @@ export function getInvoiceData(business) {
     let businesses = getState().UploadInvoice.businesses.names;
     let businessTag = businesses.filter(bsns => business === bsns.business);
     let id = businessTag[0]._id;
-    fetch(URL + ':7004/api/businesses/' + id, {
+    fetch(URL + ':7004/api/businesses/data/' + id, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
       credentials: 'include',
     }).then(res => res.json())
-      .then(x => console.log(x));
+      .then(json => {
+        let business = json.business;
+        dispatch(updateUploadForm('address', business.address));
+      });
   }
 }

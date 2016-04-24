@@ -15,11 +15,11 @@ class Dashboards extends Component {
   }
 
   render() {
-    const { fetching } = this.props;
+    const { fetching, data } = this.props;
     return (
       <div style={styles.base}>
         <h1 style={[styles.header]}>Dashboards</h1>
-        <CostsOverTimeGraph />
+        <CostsOverTimeGraph data={data} />
       </div>
 
     );

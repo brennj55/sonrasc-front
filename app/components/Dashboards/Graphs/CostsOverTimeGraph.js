@@ -5,10 +5,10 @@ import LineGraphContainer from '../../../containers/Dashboards/Graphs/LineGraphC
 import CostOverTimeRangeSliderContainer from '../../../containers/Dashboards/Graphs/CostOverTimeRangeSliderContainer';
 import TimePeriodSelection from '../../Fields/TimePeriodSelection';
 
-let CostsOverTimeGraph = () => (
+let CostsOverTimeGraph = ({ data }) => (
   <div style={styles.space}>
     <h2 style={[styles.subheader]}>Total Cost Over Time</h2>
-    <LineGraphContainer graphType="COSTS_OVER_TIME" />
+    <LineGraphContainer graphType="COSTS_OVER_TIME" data={data} />
     <CostOverTimeRangeSliderContainer graphType="COSTS_OVER_TIME" />
   </div>
 );
