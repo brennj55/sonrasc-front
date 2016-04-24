@@ -230,7 +230,24 @@ export function getInvoiceData(business) {
     }).then(res => res.json())
       .then(json => {
         let business = json.business;
+        let image = getState().UploadInvoice.image;
         dispatch(updateUploadForm('address', business.address));
+        dispatch(guessInvoiceData(business.invoices, image));
       });
   }
+}
+
+export function guessInvoiceData(invoices, image) {
+  return (dispatch) => {
+    fetch(URL + ":9005/api/invoiceGuess", {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({invoices, image})
+    }).then(res => res.json())
+      .then(json => {
+        console.log(json);
+      })
+  };
 }
