@@ -3,6 +3,24 @@ import { uploadInvoice as actions } from '../actions';
 import Immutable from 'immutable';
 import { pick, range } from 'lodash';
 
+export function suggestions(state = {fetching: false, open: false, message: '', suggestions: {}}, action) {
+  switch (action.type) {
+
+    case actions.GET_INVOICE_SUGGESTIONS:
+      return Object.assign({}, state, {fetching: true, open: true, message: action.message });
+
+    case actions.RECIEVED_INVOICE_SUGGESTIONS:
+      return Object.assign({}, state, {fetching: false, open: true,
+        suggestions: action.data, message: action.message });
+
+    case actions.CLOSE_NOTIFICATION_BAR:
+      return Object.assign({}, state, {open: false});
+
+    default:
+      return state;
+  }
+}
+
 export function image(state = '', action) {
   switch (action.type) {
     case actions.SELECT_IMAGE:
@@ -168,6 +186,7 @@ const UploadInvoice = combineReducers({
   itemsById,
   upload,
   businesses,
+  suggestions,
   invoiceData
 });
 

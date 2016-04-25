@@ -9,8 +9,11 @@ import UploadImage from '../../containers/Buttons/UploadImage';
 import CropButton from '../Buttons/CropButton';
 import TextField from 'material-ui/lib/text-field';
 import SubmitInvoice from '../../containers/Buttons/SubmitInvoice';
+import Snackbar from 'material-ui/lib/snackbar';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
+
+import InvoiceSuggestionNotificationContainer from '../../containers/Notifications/InvoiceSuggestionNotificationContainer'
 
 let UploadInvoice = ({ date, address, items, uploading }) => {
   if (!uploading) {
@@ -23,6 +26,7 @@ let UploadInvoice = ({ date, address, items, uploading }) => {
         <AddressFrom address={address} />
         <ItemList items={items} />
         <SubmitInvoice />
+        <InvoiceSuggestionNotificationContainer />
       </form>
     );
   }

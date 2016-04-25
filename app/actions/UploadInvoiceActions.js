@@ -237,9 +237,33 @@ export function getInvoiceData(business) {
   }
 }
 
+export const GET_INVOICE_SUGGESTIONS = "GET_INVOICE_SUGGESTIONS";
+export function gettingInvoiceSuggestions(message) {
+  return {
+    type: GET_INVOICE_SUGGESTIONS,
+    message
+  };
+}
+
+export const RECIEVED_INVOICE_SUGGESTIONS = "RECIEVED_INVOICE_SUGGESTIONS";
+export function recievedInvoiceSuggestions(data, message) {
+  return {
+    type: RECIEVED_INVOICE_SUGGESTIONS,
+    data, message
+  };
+}
+
+export const CLOSE_NOTIFICATION_BAR = "CLOSE_NOTIFICATION_BAR";
+export function closeNotiicationBar() {
+  return {
+    type: CLOSE_NOTIFICATION_BAR
+  }
+}
+
 export function guessInvoiceData(invoices, image) {
   return (dispatch) => {
     if (!image) return; //dipatch error.
+    dispatch(gettingInvoiceSuggestions("Checking to see if we can make any suggestions for this invoice..."));
     fetch(URL + ":9005/api/invoiceGuess", {
       method: 'POST',
       headers: new Headers({
@@ -249,6 +273,7 @@ export function guessInvoiceData(invoices, image) {
     }).then(res => res.json())
       .then(json => {
         console.log(json);
+        dispatch(recievedInvoiceSuggestions(json, "There are some suggestions available in some fields."));
       })
   };
 }
