@@ -15,7 +15,7 @@ class Login extends Component {
   }
 
   handleClick() {
-    let username = this.refs.username.refs.input.value;
+    let username = this.refs.username.refs.input.value.toLowerCase();
     let password = this.refs.password.refs.input.value;
 
     if (!username || !password) this.props.onCredentialsError();

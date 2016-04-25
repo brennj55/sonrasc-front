@@ -239,6 +239,7 @@ export function getInvoiceData(business) {
 
 export function guessInvoiceData(invoices, image) {
   return (dispatch) => {
+    if (!image) return; //dipatch error.
     fetch(URL + ":9005/api/invoiceGuess", {
       method: 'POST',
       headers: new Headers({

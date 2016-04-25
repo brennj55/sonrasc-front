@@ -24,6 +24,7 @@ class BusinessSelection extends Component {
       <div style={[styles.innerFlex, styles.space]}>
         <label style={[styles.flex1, styles.label]}>Invoice sent from</label>
         <AutoComplete
+          { ...{autoComplete: 'off'} }
           dataSource={businesses}
           filter={AutoComplete.fuzzyFilter}
           onNewRequest={(business) => this.handleBusinessSelect(business)}
