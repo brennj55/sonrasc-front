@@ -3,6 +3,7 @@ import { packageInvoiceForStorage, prepSuggestions } from '../utils/invoice.js';
 import { push } from 'react-router-redux';
 import { has, round } from 'lodash';
 const URL = 'http://' + location.hostname;
+import { isEmpty } from 'lodash';
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
 export function selectImage(image) {
@@ -273,7 +274,10 @@ export function guessInvoiceData(invoices, image) {
     }).then(res => res.json())
       .then(json => {
         let data = json.data;
-        dispatch(recievedInvoiceSuggestions(data, "There are some suggestions available in some fields."));
+        let suggestionsWithData = data.map(suggestions => suggestions.count.filter(x => !isEmpty(x)));
+        let tellUserDataIsThere = (suggestionsWithData.filter(x => x.length > 0)).length > 0;
+        if (tellUserDataIsThere) dispatch(recievedInvoiceSuggestions(data, "There are some suggestions available in some fields."));
+        else dispatch(recievedInvoiceSuggestions([], "There are no suggestions available at this time."));
       })
   };
 }

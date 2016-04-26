@@ -4,7 +4,10 @@ import * as actions from '../../actions';
 import { isEmpty } from 'lodash';
 
 const getSuggestion = (state, ownProps, value) => {
-  return [];
+  let type = "item/" + ownProps.id + "/" + ownProps.header.toLowerCase();
+  let theSuggestions = state.UploadInvoice.suggestions.data.filter(x => x.type === type);
+  if (!theSuggestions[0]) return []; //no suggestions.
+  else return theSuggestions[0].count.filter(x => !isEmpty(x));
 };
 
 const mapStateToProps = (state, ownProps) => {

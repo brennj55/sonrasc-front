@@ -23,6 +23,7 @@ class ItemPropertyField extends Component {
 
     return (
       <AutoComplete
+        { ...{autoComplete: 'off'} }
         multiLine={true}
         onUpdateInput={(value) => this.handleChange(header, value)}
         searchText={value}
