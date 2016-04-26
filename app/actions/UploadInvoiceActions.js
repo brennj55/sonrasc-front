@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import { packageInvoiceForStorage } from '../utils/invoice.js';
+import { packageInvoiceForStorage, prepSuggestions } from '../utils/invoice.js';
 import { push } from 'react-router-redux';
 import { has, round } from 'lodash';
 const URL = 'http://' + location.hostname;
@@ -272,8 +272,8 @@ export function guessInvoiceData(invoices, image) {
       body: JSON.stringify({invoices, image})
     }).then(res => res.json())
       .then(json => {
-        console.log(json);
-        dispatch(recievedInvoiceSuggestions(json, "There are some suggestions available in some fields."));
+        let data = json.data;
+        dispatch(recievedInvoiceSuggestions(data, "There are some suggestions available in some fields."));
       })
   };
 }

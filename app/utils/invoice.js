@@ -15,3 +15,9 @@ export function packageInvoiceForStorage(state) {
     items: items.toJS()
   };
 };
+
+export function prepSuggestions(suggestions) {
+  //let x = suggestions.map(suggestion => { return { [suggestion.type]: suggestion.count }});
+  console.log(x);
+  return x;
+}

@@ -1,11 +1,19 @@
 import ItemPropertyField from '../../components/Fields/ItemPropertyField';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import { isEmpty } from 'lodash';
+
+const getSuggestion = (state, ownProps, value) => {
+  return [];
+};
 
 const mapStateToProps = (state, ownProps) => {
   let items = state.UploadInvoice.items;
   let value = (items.get(ownProps.id)[ownProps.header] || "").value;
-  return { value };
+  return {
+    value,
+    suggestions: getSuggestion(state, ownProps, value)
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/lib/text-field';
+import AutoComplete from 'material-ui/lib/auto-complete';
 
 
 class ItemPropertyField extends Component {
@@ -18,13 +19,15 @@ class ItemPropertyField extends Component {
   }
 
   render() {
-    const { id, header, value } = this.props;
+    const { id, header, value, suggestions } = this.props;
 
     return (
-      <TextField
+      <AutoComplete
         multiLine={true}
-        onChange={(event) => this.handleChange(header, event.target.value)}
-        value={value}
+        onUpdateInput={(value) => this.handleChange(header, value)}
+        searchText={value}
+        dataSource={suggestions}
+        filter={AutoComplete.noFilter}
       />
     );
   }
