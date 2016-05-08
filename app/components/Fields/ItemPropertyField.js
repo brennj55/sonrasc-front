@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import AutoComplete from 'material-ui/AutoComplete';
-
+import Radium from 'radium';
+import styles from '../../styles/flex.js';
 
 class ItemPropertyField extends Component {
   constructor(props) {
@@ -26,13 +27,16 @@ class ItemPropertyField extends Component {
         { ...{autoComplete: 'off'} }
         multiLine={true}
         fullWidth={true}
+        id={id + " " + header}
         onUpdateInput={(value) => this.handleChange(header, value)}
         searchText={value}
         dataSource={suggestions}
         filter={AutoComplete.noFilter}
+        style={styles.cropFlex}
       />
     );
   }
 }
 
+ItemPropertyField = Radium(ItemPropertyField);
 export default ItemPropertyField;

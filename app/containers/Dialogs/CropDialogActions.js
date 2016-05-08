@@ -62,6 +62,7 @@ class CropDialogActions extends Component {
           secondary={true}
           label="Cancel"
           onClick={onCancelClick}
+          style={{ marginRight: '10px' }}
         />
         <RaisedButton
           primary={true}

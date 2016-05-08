@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import CropImage from '../../containers/Buttons/CropImage';
 import RemoveItem from '../../containers/Buttons/RemoveItem';
-
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import ItemProperty from '../../containers/Fields/ItemProperty';
-
+import Radium from 'radium';
+import styles from '../../styles/flex.js';
 
 class Item extends Component {
   constructor(props) {
@@ -14,9 +15,10 @@ class Item extends Component {
     const { id, headers } = this.props;
 
     return (
-      <div>
+      <Card style={styles.boxForm}>
         {headers.map(header =>
-          <div key={header}>
+          <div style={[styles.innerFlex]} key={header}>
+            <label style={[styles.flex1, styles.label]}>{header}</label>
             <ItemProperty
               id={id}
               header={header}
@@ -25,9 +27,10 @@ class Item extends Component {
           </div>
         )}
         <div><RemoveItem id={id} /></div>
-      </div>
+      </Card>
     );
   }
 }
 
+Item = Radium(Item);
 export default Item;

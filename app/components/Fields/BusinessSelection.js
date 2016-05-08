@@ -27,6 +27,7 @@ class BusinessSelection extends Component {
           { ...{autoComplete: 'off'} }
           dataSource={businesses}
           fullWidth={true}
+          id={"invoiceFrom"}
           filter={AutoComplete.fuzzyFilter}
           onNewRequest={(business) => this.handleBusinessSelect(business)}
           onUpdateInput={onUpdate}

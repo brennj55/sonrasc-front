@@ -12,6 +12,7 @@ let Address = ({ address, onUpdate }) => (
         hintText=""
         multiLine={true}
         value={address}
+        id={"addressFrom"}
         fullWidth={true}
         onChange={onUpdate}
         style={styles.cropFlex}
