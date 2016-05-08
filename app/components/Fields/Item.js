@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import CropImage from '../../containers/Buttons/CropImage';
 import RemoveItem from '../../containers/Buttons/RemoveItem';
 
-import TableRow from 'material-ui/lib/table/table-row';
-import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import ItemProperty from '../../containers/Fields/ItemProperty';
 
 
@@ -16,18 +14,18 @@ class Item extends Component {
     const { id, headers } = this.props;
 
     return (
-      <TableRow>
+      <div>
         {headers.map(header =>
-          <TableRowColumn key={header}>
+          <div key={header}>
             <ItemProperty
               id={id}
               header={header}
             />
             <CropImage cropType={'Item/' + id + '/' + header} />
-          </TableRowColumn>
+          </div>
         )}
-        <TableRowColumn><RemoveItem id={id} /></TableRowColumn>
-      </TableRow>
+        <div><RemoveItem id={id} /></div>
+      </div>
     );
   }
 }

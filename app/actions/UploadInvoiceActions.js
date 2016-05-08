@@ -49,10 +49,14 @@ export function recieveCroppedData(cropType, json) {
 export function fetchCroppedData(type, imageData, boundary) {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
+      console.log('hi im in fetching cropped data');
       const OCR_API_SOCKET = io.connect(location.hostname + ":" + process.env.WEB_OCR_API_PORT);
       OCR_API_SOCKET.emit('image-cropping', {imageData: imageData, cropType: type});
       OCR_API_SOCKET.on('extracted-text', data => {
-        if (!type.includes("Item")) resolve(dispatch(updateUploadForm(type, data, boundary)));
+        if (!type.includes("Item")) {
+          console.log(data);
+          resolve(dispatch(updateUploadForm(type, data, boundary)));
+        }
         else {
           const [itemToken, id, field] = type.split('/');
           resolve(dispatch(updateItem(data, field, parseInt(id), boundary)));

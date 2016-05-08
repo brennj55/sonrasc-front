@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { selectImage } from '../../actions';
-import FlatButton from 'material-ui/lib/flat-button';
-import ImageAddAPhoto from 'material-ui/lib/svg-icons/image/add-a-photo';
+import FlatButton from 'material-ui/FlatButton';
+import ImageAddAPhoto from 'material-ui/svg-icons/image/add-a-photo';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 
@@ -12,8 +12,7 @@ const fileStyle = {
   },
 
   ImageInput: {
-    cursor: 'pointer'
-    ,
+    cursor: 'pointer',
     position: 'absolute',
     top: 0,
     bottom: 0,
@@ -48,6 +47,7 @@ class UploadImageButton extends Component {
         <FlatButton
           label="Upload a file"
           primary={true}
+          fullWidth={true}
           icon={<ImageAddAPhoto />}
           style={fileStyle.button}
         >

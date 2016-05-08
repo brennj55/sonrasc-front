@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import CircularProgress from 'material-ui/lib/circular-progress';
+import CircularProgress from 'material-ui/CircularProgress';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 

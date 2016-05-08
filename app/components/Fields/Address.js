@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import BusinessSelection from './BusinessSelection';
 import CropImage from '../../containers/Buttons/CropImage';
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 
@@ -12,6 +12,7 @@ let Address = ({ address, onUpdate }) => (
         hintText=""
         multiLine={true}
         value={address}
+        fullWidth={true}
         onChange={onUpdate}
         style={styles.cropFlex}
       />

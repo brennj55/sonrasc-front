@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import AutoComplete from 'material-ui/lib/auto-complete';
+import AutoComplete from 'material-ui/AutoComplete';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 
@@ -26,6 +26,7 @@ class BusinessSelection extends Component {
         <AutoComplete
           { ...{autoComplete: 'off'} }
           dataSource={businesses}
+          fullWidth={true}
           filter={AutoComplete.fuzzyFilter}
           onNewRequest={(business) => this.handleBusinessSelect(business)}
           onUpdateInput={onUpdate}

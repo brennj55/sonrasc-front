@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Dialog from 'material-ui/lib/dialog';
-import FlatButton from 'material-ui/lib/flat-button';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 import CropBoxDialogActions from '../../containers/Dialogs/CropDialogActions';
 
 import CropTooler from '../../containers/Dialogs/CropTooler';

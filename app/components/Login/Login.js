@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import TextField from 'material-ui/lib/text-field';
-import Paper from 'material-ui/lib/paper';
-import RaisedButton from 'material-ui/lib/raised-button';
+import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 import Radium from 'radium';
 import { Router, Route, Link } from 'react-router';
 import styles from '../../styles/flex.js';
@@ -15,8 +15,8 @@ class Login extends Component {
   }
 
   handleClick() {
-    let username = this.refs.username.refs.input.value.toLowerCase();
-    let password = this.refs.password.refs.input.value;
+    let username = this.refs.username.input.value.toLowerCase();
+    let password = this.refs.password.input.value;
 
     if (!username || !password) this.props.onCredentialsError();
     if (username && password) this.props.onLogin(username, password);

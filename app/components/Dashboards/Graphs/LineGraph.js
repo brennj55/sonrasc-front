@@ -1,6 +1,6 @@
 import ChartInit from './ChartInit';
 import React, { Component, PropTypes } from 'react';
-import IconButton from 'material-ui/lib/icon-button';
+import IconButton from 'material-ui/IconButton';
 import Radium from 'radium';
 import styles from '../../../styles/flex.js';
 let Chart = require('chart.js');

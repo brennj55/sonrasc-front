@@ -1,7 +1,7 @@
 import React from 'react';
-import AppBar from 'material-ui/lib/app-bar';
-import Colors from 'material-ui/lib/styles/colors';
-import Avatar from 'material-ui/lib/avatar';
+import AppBar from 'material-ui/AppBar';
+import {deepPurple600} from 'material-ui/styles/colors';
+import Avatar from 'material-ui/Avatar';
 import '../../styles/main.css';
 
 const userData = (isAuthenticated, name, src) => {
@@ -16,7 +16,7 @@ const userData = (isAuthenticated, name, src) => {
 const Header = ({ isAuthenticated, name, src, onMenuTouch }) => (
   <AppBar
     title="Sonrasc"
-    style={{background: Colors.deepPurple600, position: 'fixed'}}
+    style={{background: deepPurple600, position: 'fixed'}}
     onLeftIconButtonTouchTap={isAuthenticated? onMenuTouch : null}
     iconElementRight={userData(isAuthenticated, name, src)}
   />

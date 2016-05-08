@@ -128,7 +128,8 @@ const styles = {
   },
 
   cropFlex: {
-    flex: '1 1 30%'
+    flex: '1 1 30%',
+    width: '100%'
   },
 
   buttonFlex: {

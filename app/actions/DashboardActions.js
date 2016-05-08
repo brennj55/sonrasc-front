@@ -38,3 +38,16 @@ export function filterGraphData(min, max, graphType) {
     min, max, graphType
   }
 }
+
+export function getTotalsData() {
+  return dispatch => {
+    fetch('http://192.168.99.100:7004/api/data/totals', {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      credentials: 'include'
+    }).then(res => res.json())
+      .then(json => console.log(json));
+  };
+}

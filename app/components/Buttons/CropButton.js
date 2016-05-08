@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import FlatButton from 'material-ui/lib/flat-button';
-import ImageCrop from 'material-ui/lib/svg-icons/image/crop';
+import FlatButton from 'material-ui/FlatButton';
+import ImageCrop from 'material-ui/svg-icons/image/crop';
 import CropImageBox from '../../containers/Dialogs/CropImageBox';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';

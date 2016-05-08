@@ -7,9 +7,9 @@ import ItemList from '../../containers/Fields/ItemList';
 import ChooseDate from '../../containers/Fields/ChooseDate';
 import UploadImage from '../../containers/Buttons/UploadImage';
 import CropButton from '../Buttons/CropButton';
-import TextField from 'material-ui/lib/text-field';
+import TextField from 'material-ui/TextField';
 import SubmitInvoice from '../../containers/Buttons/SubmitInvoice';
-import Snackbar from 'material-ui/lib/snackbar';
+import Snackbar from 'material-ui/Snackbar';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 

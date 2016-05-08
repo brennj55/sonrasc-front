@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import {GridList, GridTile} from 'material-ui/GridList';
 import Spinner from '../Layout/Spinner';
 import { Link } from 'react-router';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 import { printDate } from '../../utils/date';
-import Business from 'material-ui/lib/svg-icons/communication/business';
-import IconButton from 'material-ui/lib/icon-button';
+import Business from 'material-ui/svg-icons/communication/business';
+import IconButton from 'material-ui/IconButton';
 import NoDataError from '../Errors/NoDataError';
 
 let tiles = (businesses, styleFunc, onClick) => businesses.map(business =>

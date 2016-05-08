@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TextField from 'material-ui/lib/text-field';
-import AutoComplete from 'material-ui/lib/auto-complete';
+import TextField from 'material-ui/TextField';
+import AutoComplete from 'material-ui/AutoComplete';
 
 
 class ItemPropertyField extends Component {
@@ -25,6 +25,7 @@ class ItemPropertyField extends Component {
       <AutoComplete
         { ...{autoComplete: 'off'} }
         multiLine={true}
+        fullWidth={true}
         onUpdateInput={(value) => this.handleChange(header, value)}
         searchText={value}
         dataSource={suggestions}

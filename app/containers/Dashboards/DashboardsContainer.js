@@ -21,7 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onInit: () => 2
+    onInit: () => dispatch(actions.dashboardActions.getTotalsData())
   };
 };
 

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Spinner from '../Layout/Spinner';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
-import FlatButton from 'material-ui/lib/flat-button';
+import FlatButton from 'material-ui/FlatButton';
 import ItemsTable from './ItemsTable';
 
 

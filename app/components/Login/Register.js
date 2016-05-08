@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import TextField from 'material-ui/lib/text-field';
-import Paper from 'material-ui/lib/paper';
-import RaisedButton from 'material-ui/lib/raised-button';
+import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 
@@ -18,12 +18,12 @@ class Register extends Component {
   }
 
   handleClick() {
-    let username = this.refs.username.refs.input.value;
-    let password = this.refs.password.refs.input.value;
-    let firstName = this.refs.firstName.refs.input.value;
-    let lastName = this.refs.surname.refs.input.value;
-    let business = this.refs.business.refs.input.value;
-    let confirmPassword = this.refs.confirmPassword.refs.input.value;
+    let username = this.refs.username.input.value;
+    let password = this.refs.password.input.value;
+    let firstName = this.refs.firstName.input.value;
+    let lastName = this.refs.surname.input.value;
+    let business = this.refs.business.input.value;
+    let confirmPassword = this.refs.confirmPassword.input.value;
 
     this.props.onRegister(username, password, {
       firstName, lastName, business
@@ -48,8 +48,8 @@ class Register extends Component {
   }
 
   checkIsValidPassword(event) {
-    let password = this.refs.password.refs.input.value;
-    let confirmPassword = this.refs.confirmPassword.refs.input.value;
+    let password = this.refs.password.input.value;
+    let confirmPassword = this.refs.confirmPassword.input.value;
 
     if (confirmPassword === password && password.length > 0) {
       this.props.passwordIsSame();

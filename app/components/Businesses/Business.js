@@ -2,10 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import Spinner from '../Layout/Spinner';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
-import FlatButton from 'material-ui/lib/flat-button';
+import FlatButton from 'material-ui/FlatButton';
 import moment from 'moment';
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import {GridList, GridTile} from 'material-ui/GridList';
 
 // let InvoiceField = ({ labelText, value, key }) => (
 //   <div key={key} style={[styles.innerFlex, styles.space]}>

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import CropImage from '../../containers/Buttons/CropImage';
-import DatePicker from 'material-ui/lib/date-picker/date-picker';
+import DatePicker from 'material-ui/DatePicker';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 
@@ -16,6 +16,7 @@ let DatePickerField = ({ date, onChange }) => (
       autoOk={true}
       formatDate={formatDate}
       value={date}
+      fullWidth={true}
       onChange={onChange}
       style={styles.cropFlex}
     />

@@ -1,23 +1,23 @@
 import Register from '../../components/Login/Register';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import Colors from 'material-ui/lib/styles/colors';
+import {red500, green500} from 'material-ui/styles/colors';
 
 const isUsernameValidAndAvailable = (registration) => {
 
   if (!registration.username.valid || registration.username.length > 0) return {
     text: "Invalid Username",
-    style: {color: Colors.red500}
+    style: {color: red500}
   };
 
   else if (registration.usernameAvailable === 1) return {
     text: "Username Available",
-    style: {color: Colors.green500 }
+    style: {color: green500 }
   };
 
   else if (registration.usernameAvailable === -1) return {
     text: "Username Unavailable",
-    style: {color: Colors.red500 }
+    style: {color: red500 }
   };
 
   else return {
@@ -29,7 +29,7 @@ const isUsernameValidAndAvailable = (registration) => {
 const isBusinessValidAndAvailable = (registration) => {
   if (registration.businessAvailable === -1) return {
     text: "Business Name Unavailable",
-    style: {color: Colors.green500 }
+    style: {color: green500 }
   }
   else return {
     text: "",
@@ -40,7 +40,7 @@ const isBusinessValidAndAvailable = (registration) => {
 const isFieldValid = (field, registration) => {
   if (!registration[field].valid) return {
     text: "Please enter a valid name.",
-    style: {color: Colors.red500 }
+    style: {color: red500 }
   };
   else return {
     text: "",
@@ -71,7 +71,7 @@ const handleUsernameChange = (dispatch, value) => {
 const isPasswordGivenValid = (registration) => {
   if (!registration.validPassword) return {
     text: "Passwords don't match",
-    style: {color: Colors.red500 }
+    style: {color: red500 }
   };
   else return {
     text: "",
