@@ -5,7 +5,6 @@ import moment from 'moment';
 
 const handleSliderChange = (dispatch, ownProps, values) => {
   dispatch(actions.dashboardActions.setSliderValues(values.min, values.max, ownProps.graphType));
-  dispatch(actions.dashboardActions.filterGraphData(values.min, values.max, ownProps.graphType));
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -22,7 +21,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onChange: (component, values) => handleSliderChange(dispatch, ownProps, values)
+    onChange: (component, values) => handleSliderChange(dispatch, ownProps, values),
+    onChangeComplete: (component, values) => dispatch(actions.dashboardActions.filterGraphData(values.min, values.max, ownProps.graphType))
   };
 };
 

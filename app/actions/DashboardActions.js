@@ -1,3 +1,5 @@
+import { min, max } from 'lodash';
+
 export const SET_GRAPH_TYPE = "SET_GRAPH_TYPE";
 export function setGraphType(graphType) {
   return {
@@ -16,7 +18,6 @@ export function initSliderValues(min, max, graphType) {
 
 export const CHANGE_SLIDER_VALUES = "CHANGE_SLIDER_VALUES";
 export function setSliderValues(min, max, graphType) {
-  console.log(graphType, "in setSliderValues");
   return {
     type: CHANGE_SLIDER_VALUES,
     max, min, graphType
@@ -48,6 +49,15 @@ export function getTotalsData() {
       }),
       credentials: 'include'
     }).then(res => res.json())
-      .then(json => console.log(json));
+      .then(json => {
+        console.log(json, 'run out of style');
+        dispatch(setGraphType("COSTS_OVER_TIME"));
+        dispatch(setGraphData(json, "COSTS_OVER_TIME"));
+        let xs = json.map(d => d.x);
+        let minLabel = min(xs) || 0;
+        let maxLabel = max(xs) || 0;
+        dispatch(initSliderValues(minLabel, maxLabel, "COSTS_OVER_TIME"));
+        dispatch(setSliderValues(minLabel, maxLabel, "COSTS_OVER_TIME"));
+      });
   };
 }
