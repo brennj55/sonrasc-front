@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onChange: (value, field, id) => {
       dispatch(actions.uploadInvoice.updateItem(value, field, id));
-      if (field === 'Quantity' || field === 'Price') {
+      if (field === 'Quantity' || field === 'Price' || field === 'VAT') {
         dispatch(actions.uploadInvoice.updateItemsTotal(id));
       }
     }

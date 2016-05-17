@@ -132,8 +132,8 @@ export function updateItemsTotal(id) {
   return (dispatch, getState) => {
     let item = getState().UploadInvoice.items.get(id);
     console.log(item);
-    if (has(item, 'Quantity.value') && has(item, 'Price.value')) {
-      let total = item.Quantity.value * item.Price.value;
+    if (has(item, 'Quantity.value') && has(item, 'Price.value') && has(item, 'VAT.value')) {
+      let total = (item.Quantity.value * item.Price.value) + (item.VAT.value * item.Price.value * item.Quantity.value);
       dispatch(updateItem(round(total, 2), "Total", id, {}));
     }
   };
