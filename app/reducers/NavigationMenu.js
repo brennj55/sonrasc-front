@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { navigationMenuActions as actions } from '../actions';
 
-function navigationMenu(state = { open: false }, action) {
+function navigationMenu(state = { open: !!localStorage.user || false }, action) {
   switch (action.type) {
 
     case actions.TOGGLE_NAVIGATION:

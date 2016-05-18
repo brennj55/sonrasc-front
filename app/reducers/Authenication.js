@@ -62,7 +62,16 @@ function registration(state = initalRegistrationState, action) {
   }
 }
 
-function loggedIn(state = {isFetching: false, isAuthenticated: false, message: '' }, action) {
+const tryAndGetUser = () => {
+  if (localStorage.user) return JSON.parse(localStorage.user);
+  else return {};
+};
+
+function loggedIn(state = {isFetching: false,
+  isAuthenticated: !!localStorage.user || false, message: '',
+  sessionID: document.cookie.replace(/(?:(?:^|.*;\s*)connect.sid\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '',
+  user: tryAndGetUser()
+}, action) {
   switch (action.type) {
 
     case loginActions.LOGIN_REQUEST:
