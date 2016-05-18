@@ -27,7 +27,7 @@ export default function requireAuthentication(Component) {
         <div>
         {this.props.isAuthenticated === true
           ? <Component {...this.props}/>
-          : <ErrorPage />
+          : null
         }
         </div>
       )
