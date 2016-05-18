@@ -25,14 +25,17 @@ function registration(state = initalRegistrationState, action) {
     case registerActions.USERNAME_UNTOUCHED:
       return Object.assign({}, state, { usernameAvailable: FIELD_UNTOUCHED });
 
-      case registerActions.BUSINESS_UNAVAILALE:
-        return Object.assign({}, state, { businessAvailable: FIELD_UNAVAILABLE });
+    case registerActions.BUSINESS_UNAVAILALE:
+      return Object.assign({}, state, { businessAvailable: FIELD_UNAVAILABLE });
 
-      case registerActions.BUSINESS_AVAILALE:
-        return Object.assign({}, state, { businessAvailable: FIELD_AVAILABLE });
+    case registerActions.BUSINESS_AVAILALE:
+      return Object.assign({}, state, { businessAvailable: FIELD_AVAILABLE });
 
-      case registerActions.BUSIENSS_UNTOUCHED:
-        return Object.assign({}, state, { businessAvailable: FIELD_UNTOUCHED });
+    case registerActions.BUSIENSS_UNTOUCHED:
+      return Object.assign({}, state, { businessAvailable: FIELD_UNTOUCHED });
+
+    case "LOCATION_CHANGE":
+      return initalRegistrationState;
 
     case registerActions.INVALID_FIELD:
       return Object.assign({}, state, {

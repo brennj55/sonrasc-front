@@ -92,6 +92,10 @@ const styles = {
     }
   },
 
+  largeSpace: {
+    margin: '3em 0'
+  },
+
   spaceBetween: {
     display: 'flex',
     justifyContent: 'space-between'

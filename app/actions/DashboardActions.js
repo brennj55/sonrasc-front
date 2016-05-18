@@ -1,4 +1,4 @@
-import { min, max } from 'lodash';
+import { min, max, sortBy } from 'lodash';
 
 export const SET_GRAPH_TYPE = "SET_GRAPH_TYPE";
 export function setGraphType(graphType) {
@@ -52,6 +52,7 @@ export function getTotalsData() {
       .then(json => {
         console.log(json, 'run out of style');
         dispatch(setGraphType("COSTS_OVER_TIME"));
+        json = sortBy(json, d => d.x);
         dispatch(setGraphData(json, "COSTS_OVER_TIME"));
         let xs = json.map(d => d.x);
         let minLabel = min(xs) || 0;

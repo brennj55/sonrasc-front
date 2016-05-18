@@ -79,7 +79,7 @@ const checkIfLogoutSuccess = (dispatch, json) => {
   if (json.success) {
     dispatch(recieveLogout());
     dispatch(navigationActions.closeNavigation());
-    dispatch(push("/build/"));
+    dispatch(push("/"));
   }
 };
 
