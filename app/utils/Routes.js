@@ -14,13 +14,13 @@ import RegisterContainer from '../containers/Login/RegisterContainer';
 import DashboardsContainer from '../containers/Dashboards/DashboardsContainer';
 
 const routes = (
-  <Route path="/" component={AppContainer}>
+  <Route path="/build" component={AppContainer}>
     <IndexRoute component={LoginContainer} />
     <Route path="/register" component={RegisterContainer} />
     <Route path="/dashboards" component={requireAuthentication(DashboardsContainer)} />
     <Route path="/businesses/:id" component={requireAuthentication(BusinessContainer)} />
     <Route path="/businesses" component={requireAuthentication(BusinessesContainer)} />
-    <Route path="/invoices/upload" component={requireAuthentication(UploadInvoiceContainer)} />
+    <Route path="/upload" component={requireAuthentication(UploadInvoiceContainer)} />
     <Route path="/invoices" component={requireAuthentication(InvoiceGridContainer)} />
     <Route path="/invoices/:id" component={requireAuthentication(InvoiceContainer)} />
   </Route>

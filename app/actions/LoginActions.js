@@ -44,7 +44,7 @@ const checkIfLoginSuccess = (dispatch, json) => {
     dispatch(receiveLogin(json.user));
     localStorage.setItem("user", JSON.stringify(json.user));
     dispatch(navigationActions.toggleNavigation());
-    dispatch(push("/invoices/upload"));
+    dispatch(push("/upload"));
   }
   else {
     dispatch(loginError("Incorrect details."));

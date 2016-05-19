@@ -7,8 +7,8 @@ import '../../styles/main.css';
 const userData = (isAuthenticated, name, src) => {
   if (isAuthenticated) return (
     <div className="textboxFlex">
-      <span className="headerText">{ name }</span>
-      <Avatar src={src} />
+      {/*<span className="headerText">{ name }</span>*/}
+      {/*<Avatar src={src} />*/}
     </div>
   );
 }

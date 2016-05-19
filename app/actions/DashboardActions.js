@@ -56,7 +56,7 @@ export function getTotalsData() {
         dispatch(setGraphData(json, "COSTS_OVER_TIME"));
         let xs = json.map(d => d.x);
         let minLabel = min(xs) || 0;
-        let maxLabel = max(xs) || 0;
+        let maxLabel = max(xs) || 1;
         dispatch(initSliderValues(minLabel, maxLabel, "COSTS_OVER_TIME"));
         dispatch(setSliderValues(minLabel, maxLabel, "COSTS_OVER_TIME"));
       });

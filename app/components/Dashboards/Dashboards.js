@@ -4,7 +4,7 @@ import Radium from 'radium';
 import styles from '../../styles/flex.js';
 import CostsOverTimeGraph from './Graphs/CostsOverTimeGraph';
 import CostOverTimeRangeSliderContainer from '../../containers/Dashboards/Graphs/CostOverTimeRangeSliderContainer';
-import SpendingPerBusiness from './Graphs/SpendingPerBusiness';
+import SpendingPerBusinessContainer from '../../containers/Dashboards/Graphs/SpendingPerBusinessContainer';
 
 class Dashboards extends Component {
 
@@ -25,7 +25,7 @@ class Dashboards extends Component {
         <div>
           <CostOverTimeRangeSliderContainer graphType="COSTS_OVER_TIME" />
         </div>
-        <SpendingPerBusiness />
+        <SpendingPerBusinessContainer />
       </div>
 
     );

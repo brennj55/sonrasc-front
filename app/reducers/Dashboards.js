@@ -3,7 +3,7 @@ import { dashboardActions } from '../actions';
 import { zipObject, filter, toSafeInteger, isUndefined } from 'lodash';
 
 const sliderInitialState = {
-  values: { min: 0, max: 0 },
+  values: { min: 0, max: 1 },
   minValue: 0,
   maxValue: 1,
   graphType: ''

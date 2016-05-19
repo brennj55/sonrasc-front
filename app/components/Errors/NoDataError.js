@@ -8,7 +8,7 @@ let NoDataError = () => (
     color: '#B9B9B9',
     textAlign: 'center',
     padding: '4em 0'
-  }]}>No data found, try <Link to="/invoices/upload">uploading data</Link>.</h2>
+  }]}>No data found, try <Link to="/upload">uploading data</Link>.</h2>
 );
 
 NoDataError = Radium(NoDataError);

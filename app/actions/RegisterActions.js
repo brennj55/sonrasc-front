@@ -114,7 +114,7 @@ export const registerUser = (username, password, data) => {
       return res.json();
     }).then(json => {
         console.log(json);
-        if (json.success) dispatch(push("/invoices/upload"));
+        if (json.success) dispatch(push("/upload"));
       }
     ).catch(error => {
       console.log(error);
