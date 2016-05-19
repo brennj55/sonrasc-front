@@ -89,7 +89,7 @@ function pieChart(state = {}, action) {
 
     case dashboardActions.FILTER_PIE_CHART:
       return Object.assign({}, state, {
-        data: filterInvoices(state.data, action)
+        data: filterInvoices(state.allData, action)
       });
 
     default:
@@ -100,7 +100,7 @@ function pieChart(state = {}, action) {
 const filterInvoices = (bsns, action) => {
   return bsns.map(bsn => {
     let invoices = filter(bsn.invoices, point => action.min <= new Date(point.date.value).getTime() && new Date(point.date.value).getTime() <= action.max)
-    let total = invoices.map(invoice => invoice.totalCost);
+    let total = sum(invoices.map(invoice => invoice.totalCost));
     return {
       business: bsn.business,
       invoices: invoices,

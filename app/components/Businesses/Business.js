@@ -5,13 +5,8 @@ import styles from '../../styles/flex.js';
 import FlatButton from 'material-ui/FlatButton';
 import moment from 'moment';
 import {GridList, GridTile} from 'material-ui/GridList';
-
-// let InvoiceField = ({ labelText, value, key }) => (
-//   <div key={key} style={[styles.innerFlex, styles.space]}>
-//     <label style={[styles.flex1, styles.label]}>{labelText}</label>
-//     <span style={styles.flex1}>{value}</span>
-//   </div>
-// );
+import MoneyOverTimeForBusinessContainer from '../../containers/Businesses/MoneyOverTimeForBusinessContainer';
+import { getKey } from '../../utils/url';
 
 let tiles = (invoices, styleFunc, onInvoiceClick) => invoices.map(invoice =>
   <GridTile
@@ -53,6 +48,11 @@ class Business extends Component {
           <div style={[styles.innerFlex, styles.space]}>
             <label style={[styles.flex1, styles.label]}>Address</label>
             <span style={styles.flex1}>{address}</span>
+          </div>
+
+          <div stlye={styles.space}>
+            <h2 style={[styles.subheader, styles.spaceBetween]}>Costs over time</h2>
+            <MoneyOverTimeForBusinessContainer id={location.pathname} />
           </div>
 
           <div style={[styles.space]}>

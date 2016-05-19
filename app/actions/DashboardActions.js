@@ -58,7 +58,6 @@ export function getTotalsData() {
       credentials: 'include'
     }).then(res => res.json())
       .then(json => {
-        console.log(json, 'run out of style');
         dispatch(setGraphType("COSTS_OVER_TIME"));
         json = sortBy(json, d => d.x);
         dispatch(setGraphData(json, "COSTS_OVER_TIME"));

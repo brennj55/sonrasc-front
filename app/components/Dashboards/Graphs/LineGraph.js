@@ -22,10 +22,11 @@ class LineGraph extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, id } = this.props;
     if (data.datasets[0].data.length !== 0) {
       return (
         <LineChart
+          id={id}
           data={data}
           options={chartOptions}
           redraw
