@@ -7,6 +7,11 @@ const handleSliderChange = (dispatch, ownProps, values) => {
   dispatch(actions.dashboardActions.setSliderValues(values.min, values.max, ownProps.graphType));
 }
 
+const filters = (component, values, dispatch, ownProps) => {
+  dispatch(actions.dashboardActions.filterGraphData(values.min, values.max, ownProps.graphType));
+  dispatch(actions.dashboardActions.filterPieChart(values.min, values.max));
+};
+
 const mapStateToProps = (state, ownProps) => {
   let values = state.Dashboards.CostOverTime.slider.values;
   return {
@@ -22,7 +27,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onChange: (component, values) => handleSliderChange(dispatch, ownProps, values),
-    onChangeComplete: (component, values) => dispatch(actions.dashboardActions.filterGraphData(values.min, values.max, ownProps.graphType))
+    onChangeComplete: (component, values) => filters(component, values, dispatch, ownProps)
   };
 };
 

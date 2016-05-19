@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { dashboardActions } from '../actions';
-import { zipObject, filter, toSafeInteger, isUndefined } from 'lodash';
+import { zipObject, filter, toSafeInteger, isUndefined, sum } from 'lodash';
 
 const sliderInitialState = {
   values: { min: 0, max: 1 },
@@ -78,13 +78,45 @@ function graphData(state = costsOverTimeInitialState, action) {
   }
 }
 
+function pieChart(state = {}, action) {
+  switch (action.type) {
+
+    case dashboardActions.SET_PI_CHART_DATA:
+      return Object.assign({}, state, {
+        data: action.data,
+        allData: action.data
+      });
+
+    case dashboardActions.FILTER_PIE_CHART:
+      return Object.assign({}, state, {
+        data: filterInvoices(state.data, action)
+      });
+
+    default:
+      return state;
+  }
+}
+
+const filterInvoices = (bsns, action) => {
+  return bsns.map(bsn => {
+    let invoices = filter(bsn.invoices, point => action.min <= new Date(point.date.value).getTime() && new Date(point.date.value).getTime() <= action.max)
+    let total = invoices.map(invoice => invoice.totalCost);
+    return {
+      business: bsn.business,
+      invoices: invoices,
+      sum: total
+    };
+  });
+}
+
 const CostOverTime = combineReducers({
   slider,
   graphData
 });
 
 const Dashboards = combineReducers({
-  CostOverTime
+  CostOverTime,
+  pieChart
 });
 
 export default Dashboards;

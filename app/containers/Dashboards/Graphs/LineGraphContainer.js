@@ -5,10 +5,8 @@ import { groupByYear } from '../../../utils/date.js';
 import moment from 'moment';
 
 const getGraphData = (state, ownProps) => {
-	console.log(state.Dashboards.CostOverTime.graphData.data);
 	let labels = state.Dashboards.CostOverTime.graphData.labels.map((d) => moment(d).locale('en-gb').format('L')) || {};
 	let data = state.Dashboards.CostOverTime.graphData.data;
-	console.log(labels, data, 'hello');
 	return {
 		labels: labels,
 		datasets: [
