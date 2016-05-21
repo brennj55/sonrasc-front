@@ -4,29 +4,28 @@ import IconButton from 'material-ui/IconButton';
 import Radium from 'radium';
 import styles from '../../../styles/flex.js';
 let Chart = require('chart.js');
-var LineChart = require("react-chartjs").Line;
+var Pie = require("react-chartjs").Pie;
 import GraphError from './GraphError';
 
 var chartOptions = {
   responsive: true
 };
 
-class LineGraph extends Component {
+class PieChart extends Component {
 
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    this.props.onInit(this.props.graphType);
+    //this.props.onInit(this.props.graphType);
   }
 
   render() {
-    const { data, id } = this.props;
-    if (data.datasets[0].data.length !== 0) {
+    const { data } = this.props;
+    if (data.length !== 0) {
       return (
-        <LineChart
-          id={id}
+        <Pie
           data={data}
           options={chartOptions}
           redraw
@@ -39,5 +38,5 @@ class LineGraph extends Component {
   }
 }
 
-LineGraph = Radium(LineGraph);
-export default LineGraph;
+PieChart = Radium(PieChart);
+export default PieChart;

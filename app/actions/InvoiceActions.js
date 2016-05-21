@@ -1,3 +1,4 @@
+const URL = 'http://' + location.hostname;
 export const GET_INVOICE_REQUEST = "GET_INVOICE_REQUEST";
 export function getInvoiceRequest() {
   return {
@@ -23,7 +24,7 @@ export function setUploaderName(name) {
 
 export function setName(userID) {
   return (dispatch) => {
-    fetch('http://192.168.99.100:7004/api/name/', {
+    fetch(URL + ':7004/api/name/', {
     method: 'POST',
     headers: new Headers({
       'Content-Type': 'application/json'
@@ -38,7 +39,7 @@ export function setName(userID) {
 export function getInvoice(key) {
   return (dispatch) => {
     dispatch(getInvoiceRequest());
-    fetch('http://192.168.99.100:7004/api/invoices/' + key, {
+    fetch(URL + ':7004/api/invoices/' + key, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'

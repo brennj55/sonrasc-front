@@ -1,17 +1,14 @@
 import React from 'react';
 import ItemContainer from '../../containers/Fields/ItemContainer';
-import Table from 'material-ui/lib/table/table';
-import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
-import TableHeader from 'material-ui/lib/table/table-header';
-import TableRow from 'material-ui/lib/table/table-row';
-import TableBody from 'material-ui/lib/table/table-body';
-import FlatButton from 'material-ui/lib/flat-button';
-import ContentAdd from 'material-ui/lib/svg-icons/content/add';
+
+
+import FlatButton from 'material-ui/FlatButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 
-let headers = ['Name', 'Price', 'Quantity', 'Total', ''];
-let header = ['Name', 'Price', 'Quantity', 'Total'];
+let headers = ['Name', 'Price', 'Quantity', 'VAT', 'Total', ''];
+let header = ['Name', 'Price', 'Quantity', 'VAT', 'Total'];
 
 const TableHead = () => (
   <TableRow>
@@ -35,12 +32,9 @@ let Items = ({ items, onClick, totalCost }) => (
       />
     </h2>
 
-    <Table style={{position: 'relative', padding: '1em 0'}}>
-      <TableHeader displaySelectAll={false}>
-        <TableHead />
-      </TableHeader>
+    <div style={{position: 'relative', padding: '1em 0'}}>
 
-      <TableBody>
+      <div>
         {items.toArray().map((item, key) =>
           <ItemContainer
               headers={header}
@@ -48,8 +42,8 @@ let Items = ({ items, onClick, totalCost }) => (
               id={key}
             />
         )}
-      </TableBody>
-    </Table>
+      </div>
+    </div>
 
     <h3 style={[styles.subheader, styles.marginSpace, styles.spaceBetween]}>
       Total Cost

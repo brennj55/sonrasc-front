@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import Cropper from 'react-cropper';
 
+const getBoundaryBox = (data) => {
+  return {
+    left: data.x,
+    top: data.y,
+    width: data.width,
+    height: data.height
+  }
+}
+
 class CropTool extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +19,7 @@ class CropTool extends Component {
   crop() {
     if (this.refs.cropper.getCroppedCanvas() === undefined) return;
     let croppedArea = this.refs.cropper.getCroppedCanvas().toDataURL("image/jpeg", 1.0);
-    let boundary = this.refs.cropper.getCropBoxData();
+    let boundary = getBoundaryBox(this.refs.cropper.getData());
     this.props.onCrop(croppedArea, boundary);
   }
 

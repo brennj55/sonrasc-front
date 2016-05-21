@@ -2,16 +2,16 @@ import Dashboards from '../../components/Dashboards/Dashboards';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-
 const mapStateToProps = (state, ownProps) => {
   return {
-    fetching: false
+    fetching: false,
+    data: state.Dashboards.CostOverTime.graphData.data
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onInit: () => 2
+    onInit: () => dispatch(actions.dashboardActions.getTotalsData())
   };
 };
 

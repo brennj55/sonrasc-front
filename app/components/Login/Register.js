@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import TextField from 'material-ui/lib/text-field';
-import Paper from 'material-ui/lib/paper';
-import RaisedButton from 'material-ui/lib/raised-button';
+import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 
@@ -14,15 +14,16 @@ class Register extends Component {
     this.onValueOfUsernameChange = this.onValueOfUsernameChange.bind(this);
     this.handleBusinessUnfocus = this.handleBusinessUnfocus.bind(this);
     this.checkIsValidPassword = this.checkIsValidPassword.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
   }
 
   handleClick() {
-    let username = this.refs.username.refs.input.value;
-    let password = this.refs.password.refs.input.value;
-    let firstName = this.refs.firstName.refs.input.value;
-    let lastName = this.refs.surname.refs.input.value;
-    let business = this.refs.business.refs.input.value;
-    let confirmPassword = this.refs.confirmPassword.refs.input.value;
+    let username = this.refs.username.input.value;
+    let password = this.refs.password.input.value;
+    let firstName = this.refs.firstName.input.value;
+    let lastName = this.refs.surname.input.value;
+    let business = this.refs.business.input.value;
+    let confirmPassword = this.refs.confirmPassword.input.value;
 
     this.props.onRegister(username, password, {
       firstName, lastName, business
@@ -41,9 +42,14 @@ class Register extends Component {
     if (event.target.value.length > 0) this.props.onBusinessChange(event.target.value.trim());
   }
 
+  handleNameChange(event, field) {
+    if (!event.target.value) this.props.invalidName(field, event.target.value.trim());
+    else this.props.validName(field, event.target.value.trim());
+  }
+
   checkIsValidPassword(event) {
-    let password = this.refs.password.refs.input.value;
-    let confirmPassword = this.refs.confirmPassword.refs.input.value;
+    let password = this.refs.password.input.value;
+    let confirmPassword = this.refs.confirmPassword.input.value;
 
     if (confirmPassword === password && password.length > 0) {
       this.props.passwordIsSame();
@@ -58,7 +64,8 @@ class Register extends Component {
       onUsernameChange, usernameFieldStyle,
       usernameText, onUsernameValueChange, registrationButtonEnabled,
       usernameValue, businessFieldStyle, businessText,
-      passwordText, passwordStyle
+      passwordText, passwordStyle, firstNameText, lastNameText,
+      firstNameStyle, lastNameStyle
     } = this.props;
 
     return (
@@ -90,12 +97,18 @@ class Register extends Component {
               ref="firstName"
               floatingLabelText="First Name"
               type="text"
+              errorText={firstNameText}
+              errorStyle={firstNameStyle}
+              onBlur={(event) => this.handleNameChange(event, 'firstName')}
             />
             <TextField
               hintText="Surname"
               ref="surname"
               floatingLabelText="Surname"
               type="text"
+              errorText={lastNameText}
+              errorStyle={lastNameStyle}
+              onBlur={(event) => this.handleNameChange(event, 'lastName')}
             />
             <TextField
               hintText="Password"

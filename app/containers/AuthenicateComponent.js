@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import Error from '../components/Layout/Error.js';
 
 export default function requireAuthentication(Component) {
 
@@ -17,7 +18,7 @@ export default function requireAuthentication(Component) {
     checkAuth() {
       if (!this.props.isAuthenticated) {
         let redirectAfterLogin = this.props.location.pathname;
-        this.props.dispatch(push("/build/"));
+        this.props.dispatch(push("/"));
       }
     }
 

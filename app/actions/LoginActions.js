@@ -42,8 +42,9 @@ function recieveLogout() {
 const checkIfLoginSuccess = (dispatch, json) => {
   if (json.success) {
     dispatch(receiveLogin(json.user));
+    localStorage.setItem("user", JSON.stringify(json.user));
     dispatch(navigationActions.toggleNavigation());
-    dispatch(push("/invoices/upload"));
+    dispatch(push("/upload"));
   }
   else {
     dispatch(loginError("Incorrect details."));
@@ -78,8 +79,9 @@ const getLogoutGetObject = () => {
 const checkIfLogoutSuccess = (dispatch, json) => {
   if (json.success) {
     dispatch(recieveLogout());
+    localStorage.removeItem("user");
     dispatch(navigationActions.closeNavigation());
-    dispatch(push("/build/"));
+    dispatch(push("/"));
   }
 };
 

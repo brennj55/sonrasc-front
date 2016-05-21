@@ -1,8 +1,9 @@
 import io from 'socket.io-client';
-import { packageInvoiceForStorage } from '../utils/invoice.js';
+import { packageInvoiceForStorage, prepSuggestions } from '../utils/invoice.js';
 import { push } from 'react-router-redux';
 import { has, round } from 'lodash';
 const URL = 'http://' + location.hostname;
+import { isEmpty } from 'lodash';
 
 export const SELECT_IMAGE = "SELECT_IMAGE";
 export function selectImage(image) {
@@ -48,10 +49,14 @@ export function recieveCroppedData(cropType, json) {
 export function fetchCroppedData(type, imageData, boundary) {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
+      console.log('hi im in fetching cropped data');
       const OCR_API_SOCKET = io.connect(location.hostname + ":" + process.env.WEB_OCR_API_PORT);
       OCR_API_SOCKET.emit('image-cropping', {imageData: imageData, cropType: type});
       OCR_API_SOCKET.on('extracted-text', data => {
-        if (!type.includes("Item")) resolve(dispatch(updateUploadForm(type, data, boundary)));
+        if (!type.includes("Item")) {
+          console.log(data);
+          resolve(dispatch(updateUploadForm(type, data, boundary)));
+        }
         else {
           const [itemToken, id, field] = type.split('/');
           resolve(dispatch(updateItem(data, field, parseInt(id), boundary)));
@@ -127,8 +132,8 @@ export function updateItemsTotal(id) {
   return (dispatch, getState) => {
     let item = getState().UploadInvoice.items.get(id);
     console.log(item);
-    if (has(item, 'Quantity.value') && has(item, 'Price.value')) {
-      let total = item.Quantity.value * item.Price.value;
+    if (has(item, 'Quantity.value') && has(item, 'Price.value') && has(item, 'VAT.value')) {
+      let total = (item.Quantity.value * item.Price.value) + (item.VAT.value * item.Price.value * item.Quantity.value);
       dispatch(updateItem(round(total, 2), "Total", id, {}));
     }
   };
@@ -221,13 +226,62 @@ export function getInvoiceData(business) {
     let businesses = getState().UploadInvoice.businesses.names;
     let businessTag = businesses.filter(bsns => business === bsns.business);
     let id = businessTag[0]._id;
-    fetch(URL + ':7004/api/businesses/' + id, {
+    fetch(URL + ':7004/api/businesses/data/' + id, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
       credentials: 'include',
     }).then(res => res.json())
-      .then(x => console.log(x));
+      .then(json => {
+        let business = json.business;
+        let image = getState().UploadInvoice.image;
+        dispatch(updateUploadForm('address', business.address));
+        dispatch(guessInvoiceData(business.invoices, image));
+      });
   }
+}
+
+export const GET_INVOICE_SUGGESTIONS = "GET_INVOICE_SUGGESTIONS";
+export function gettingInvoiceSuggestions(message) {
+  return {
+    type: GET_INVOICE_SUGGESTIONS,
+    message
+  };
+}
+
+export const RECIEVED_INVOICE_SUGGESTIONS = "RECIEVED_INVOICE_SUGGESTIONS";
+export function recievedInvoiceSuggestions(data, message) {
+  return {
+    type: RECIEVED_INVOICE_SUGGESTIONS,
+    data, message
+  };
+}
+
+export const CLOSE_NOTIFICATION_BAR = "CLOSE_NOTIFICATION_BAR";
+export function closeNotiicationBar() {
+  return {
+    type: CLOSE_NOTIFICATION_BAR
+  }
+}
+
+export function guessInvoiceData(invoices, image) {
+  return (dispatch) => {
+    if (!image) return; //dipatch error.
+    dispatch(gettingInvoiceSuggestions("Checking to see if we can make any suggestions for this invoice..."));
+    fetch(URL + ":9005/api/invoiceGuess", {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({invoices, image})
+    }).then(res => res.json())
+      .then(json => {
+        let data = json.data;
+        let suggestionsWithData = data.map(suggestions => suggestions.count.filter(x => !isEmpty(x)));
+        let tellUserDataIsThere = (suggestionsWithData.filter(x => x.length > 0)).length > 0;
+        if (tellUserDataIsThere) dispatch(recievedInvoiceSuggestions(data, "There are some suggestions available in some fields."));
+        else dispatch(recievedInvoiceSuggestions([], "There are no suggestions available at this time."));
+      })
+  };
 }

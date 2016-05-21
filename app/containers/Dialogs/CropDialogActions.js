@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 import CropImageDialog from '../../components/Dialogs/CropImageDialog';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
@@ -62,6 +62,7 @@ class CropDialogActions extends Component {
           secondary={true}
           label="Cancel"
           onClick={onCancelClick}
+          style={{ marginRight: '10px' }}
         />
         <RaisedButton
           primary={true}

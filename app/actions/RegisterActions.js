@@ -1,3 +1,4 @@
+const URL = 'http://' + location.hostname;
 import { push } from 'react-router-redux';
 
 export const USERNAME_UNAVAILALE = "USERNAME_UNAVAILALE";
@@ -59,7 +60,7 @@ export function invalidField(field, value) {
 
 export const checkIfBusinessAvailable = (business) => {
   return dispatch => {
-    fetch('http://192.168.99.100:7004/api/businesses/name', {
+    fetch(URL + ':7004/api/businesses/name', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -76,7 +77,7 @@ export const checkIfBusinessAvailable = (business) => {
 
 export const checkIfUsernameAvailable = (username) => {
   return dispatch => {
-    fetch('http://192.168.99.100:7004/api/username', {
+    fetch(URL + ':7004/api/username', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -99,7 +100,7 @@ export function clearForm() {
 
 export const registerUser = (username, password, data) => {
   return dispatch => {
-    fetch('http://192.168.99.100:7004/api/register', {
+    fetch(URL + ':7004/api/register', {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -114,7 +115,7 @@ export const registerUser = (username, password, data) => {
       return res.json();
     }).then(json => {
         console.log(json);
-        if (json.success) dispatch(push("/invoices/upload"));
+        if (json.success) dispatch(push("/upload"));
       }
     ).catch(error => {
       console.log(error);

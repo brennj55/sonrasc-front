@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import GridList from 'material-ui/lib/grid-list/grid-list';
-import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import {GridList, GridTile} from 'material-ui/GridList';
 import Spinner from '../Layout/Spinner';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';

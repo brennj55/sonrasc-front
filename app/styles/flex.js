@@ -92,6 +92,10 @@ const styles = {
     }
   },
 
+  largeSpace: {
+    margin: '3em 0'
+  },
+
   spaceBetween: {
     display: 'flex',
     justifyContent: 'space-between'
@@ -128,7 +132,8 @@ const styles = {
   },
 
   cropFlex: {
-    flex: '1 1 30%'
+    flex: '1 1 30%',
+    width: '100%'
   },
 
   buttonFlex: {

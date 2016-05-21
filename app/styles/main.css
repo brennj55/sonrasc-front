@@ -23,10 +23,6 @@ form {
   flex: 1 1 auto;
 }
 
-/* Don't display nav unless prompted elsewhere on app on mobile display. */
-.navigation {
-  display: none;
-}
 
 /* Tablet and desktop above */
 @media (min-width: 42em) {

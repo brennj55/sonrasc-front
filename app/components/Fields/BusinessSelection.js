@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import AutoComplete from 'material-ui/lib/auto-complete';
+import AutoComplete from 'material-ui/AutoComplete';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 
@@ -24,7 +24,10 @@ class BusinessSelection extends Component {
       <div style={[styles.innerFlex, styles.space]}>
         <label style={[styles.flex1, styles.label]}>Invoice sent from</label>
         <AutoComplete
+          { ...{autoComplete: 'off'} }
           dataSource={businesses}
+          fullWidth={true}
+          id={"invoiceFrom"}
           filter={AutoComplete.fuzzyFilter}
           onNewRequest={(business) => this.handleBusinessSelect(business)}
           onUpdateInput={onUpdate}

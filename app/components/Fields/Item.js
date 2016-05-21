@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import CropImage from '../../containers/Buttons/CropImage';
 import RemoveItem from '../../containers/Buttons/RemoveItem';
-
-import TableRow from 'material-ui/lib/table/table-row';
-import TableRowColumn from 'material-ui/lib/table/table-row-column';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import ItemProperty from '../../containers/Fields/ItemProperty';
-
+import Radium from 'radium';
+import styles from '../../styles/flex.js';
 
 class Item extends Component {
   constructor(props) {
@@ -16,20 +15,22 @@ class Item extends Component {
     const { id, headers } = this.props;
 
     return (
-      <TableRow>
+      <Card style={styles.boxForm}>
         {headers.map(header =>
-          <TableRowColumn key={header}>
+          <div style={[styles.innerFlex]} key={header}>
+            <label style={[styles.flex1, styles.label]}>{header}</label>
             <ItemProperty
               id={id}
               header={header}
             />
             <CropImage cropType={'Item/' + id + '/' + header} />
-          </TableRowColumn>
+          </div>
         )}
-        <TableRowColumn><RemoveItem id={id} /></TableRowColumn>
-      </TableRow>
+        <div><RemoveItem id={id} /></div>
+      </Card>
     );
   }
 }
 
+Item = Radium(Item);
 export default Item;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ActionDelete from 'material-ui/lib/svg-icons/action/delete';
-import FlatButton from 'material-ui/lib/flat-button';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
+import FlatButton from 'material-ui/FlatButton';
 
 class RemoveItemButton extends Component {
   constructor(props) {

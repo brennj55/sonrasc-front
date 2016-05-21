@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RaisedButton from 'material-ui/lib/raised-button';
+import RaisedButton from 'material-ui/RaisedButton';
 import Radium from 'radium';
 import styles from '../../styles/flex.js';
 

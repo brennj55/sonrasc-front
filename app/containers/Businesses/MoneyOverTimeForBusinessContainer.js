@@ -1,13 +1,15 @@
-import LineGraph from '../../../components/Dashboards/Graphs/LineGraph';
+import LineGraph from '../../components/Dashboards/Graphs/LineGraph';
 import { connect } from 'react-redux';
-import * as actions from '../../../actions';
-import { groupByYear } from '../../../utils/date.js';
+import * as actions from '../../actions';
+import { groupByYear } from '../../utils/date.js';
 import moment from 'moment';
+import { getKey } from '../../utils/url';
 
 const getGraphData = (state, ownProps) => {
-	let labels = state.Dashboards.CostOverTime.graphData.labels.map((d) => moment(d).locale('en-gb').format('L')) || {};
-	let data = state.Dashboards.CostOverTime.graphData.data;
-	return {
+	let labels = state.Business.graphData.labels.map((d) => moment(d).locale('en-gb').format('L')) || {};
+	let data = state.Business.graphData.data;
+  
+  return {
 		labels: labels,
 		datasets: [
 			{
@@ -25,7 +27,7 @@ const getGraphData = (state, ownProps) => {
 };
 
 const init = (dispatch, graphType, ownProps) => {
-
+  //dispatch(actions.dashboardActions.getBusinessData(getKey(ownProps.id)));
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -40,9 +42,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-const LineGraphContainer = connect(
+const MoneyOverTimeForBusinessContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(LineGraph);
 
-export default LineGraphContainer;
+export default MoneyOverTimeForBusinessContainer;

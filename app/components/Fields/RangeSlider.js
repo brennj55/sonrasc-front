@@ -6,6 +6,10 @@ class RangeSlider extends Component {
     super(props);
   }
 
+  componentDidMount() {
+  //  this.props.onInit();
+  }
+
   render() {
     const { minValue, maxValue, value,
       step, onChange, style, disabled,

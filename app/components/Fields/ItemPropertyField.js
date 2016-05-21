@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import TextField from 'material-ui/lib/text-field';
-
+import TextField from 'material-ui/TextField';
+import AutoComplete from 'material-ui/AutoComplete';
+import Radium from 'radium';
+import styles from '../../styles/flex.js';
 
 class ItemPropertyField extends Component {
   constructor(props) {
@@ -18,16 +20,23 @@ class ItemPropertyField extends Component {
   }
 
   render() {
-    const { id, header, value } = this.props;
+    const { id, header, value, suggestions } = this.props;
 
     return (
-      <TextField
+      <AutoComplete
+        { ...{autoComplete: 'off'} }
         multiLine={true}
-        onChange={(event) => this.handleChange(header, event.target.value)}
-        value={value}
+        fullWidth={true}
+        id={id + " " + header}
+        onUpdateInput={(value) => this.handleChange(header, value)}
+        searchText={value}
+        dataSource={suggestions}
+        filter={AutoComplete.noFilter}
+        style={styles.cropFlex}
       />
     );
   }
 }
 
+ItemPropertyField = Radium(ItemPropertyField);
 export default ItemPropertyField;

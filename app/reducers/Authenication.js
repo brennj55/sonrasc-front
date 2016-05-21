@@ -9,8 +9,11 @@ const initalRegistrationState =  {
   usernameAvailable: FIELD_UNTOUCHED,
   businessAvailable: FIELD_UNTOUCHED,
   username: { value: '', valid: true },
+  firstName: { value: '', valid: true },
+  lastName: { value: '', valid: true },
   validPassword: true
 };
+
 function registration(state = initalRegistrationState, action) {
   switch (action.type) {
     case registerActions.USERNAME_UNAVAILALE:
@@ -22,14 +25,17 @@ function registration(state = initalRegistrationState, action) {
     case registerActions.USERNAME_UNTOUCHED:
       return Object.assign({}, state, { usernameAvailable: FIELD_UNTOUCHED });
 
-      case registerActions.BUSINESS_UNAVAILALE:
-        return Object.assign({}, state, { businessAvailable: FIELD_UNAVAILABLE });
+    case registerActions.BUSINESS_UNAVAILALE:
+      return Object.assign({}, state, { businessAvailable: FIELD_UNAVAILABLE });
 
-      case registerActions.BUSINESS_AVAILALE:
-        return Object.assign({}, state, { businessAvailable: FIELD_AVAILABLE });
+    case registerActions.BUSINESS_AVAILALE:
+      return Object.assign({}, state, { businessAvailable: FIELD_AVAILABLE });
 
-      case registerActions.BUSIENSS_UNTOUCHED:
-        return Object.assign({}, state, { businessAvailable: FIELD_UNTOUCHED });
+    case registerActions.BUSIENSS_UNTOUCHED:
+      return Object.assign({}, state, { businessAvailable: FIELD_UNTOUCHED });
+
+    case "LOCATION_CHANGE":
+      return initalRegistrationState;
 
     case registerActions.INVALID_FIELD:
       return Object.assign({}, state, {
@@ -56,7 +62,16 @@ function registration(state = initalRegistrationState, action) {
   }
 }
 
-function loggedIn(state = {isFetching: false, isAuthenticated: false, message: '' }, action) {
+const tryAndGetUser = () => {
+  if (localStorage.user) return JSON.parse(localStorage.user);
+  else return {};
+};
+
+function loggedIn(state = {isFetching: false,
+  isAuthenticated: !!localStorage.user || false, message: '',
+  sessionID: document.cookie.replace(/(?:(?:^|.*;\s*)connect.sid\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '',
+  user: tryAndGetUser()
+}, action) {
   switch (action.type) {
 
     case loginActions.LOGIN_REQUEST:
