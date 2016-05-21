@@ -1,3 +1,4 @@
+const URL = 'http://' + location.hostname;
 export const GET_INVOICES_REQUEST = "GET_INVOICES_REQUEST";
 export function getInvoicesRequest() {
   return {
@@ -16,7 +17,7 @@ export function getInvoicesSuccess(data) {
 export function getInvoicesForGrid() {
   return (dispatch) => {
     dispatch(getInvoicesRequest());
-    fetch('http://192.168.99.100:7004/api/invoices/', {
+    fetch(URL + ':7004/api/invoices/', {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'

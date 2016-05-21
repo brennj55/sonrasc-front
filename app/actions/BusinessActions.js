@@ -1,4 +1,5 @@
 import { min, max, sortBy, sum } from 'lodash';
+const URL = 'http://' + location.hostname;
 
 export const SET_BUSINESS_DATA = "SET_BUSINESS_DATA";
 export function setData(data) {
@@ -18,7 +19,7 @@ export function setGraphDataForBusiness(business) {
 
 export function getBusiness(key) {
   return (dispatch) => {
-    fetch('http://192.168.99.100:7004/api/businesses/data/' + key, {
+    fetch(URL + ':7004/api/businesses/data/' + key, {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'

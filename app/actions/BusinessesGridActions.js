@@ -1,3 +1,5 @@
+const URL = 'http://' + location.hostname;
+
 export const GET_BUSINESSES_REQUEST = "GET_BUSINESSES_REQUEST";
 export function getBusinessesRequest() {
   return {
@@ -16,7 +18,7 @@ export function getBusinessesSuccess(data) {
 export function getBusinessesForGrid() {
   return (dispatch) => {
     dispatch(getBusinessesRequest());
-    fetch('http://192.168.99.100:7004/api/businesses/', {
+    fetch(URL + ':7004/api/businesses/', {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'

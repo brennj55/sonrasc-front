@@ -1,3 +1,4 @@
+const URL = 'http://' + location.hostname;
 import { min, max, sortBy, sum } from 'lodash';
 
 export const SET_GRAPH_TYPE = "SET_GRAPH_TYPE";
@@ -50,7 +51,7 @@ export function filterPieChart(min, max) {
 
 export function getTotalsData() {
   return dispatch => {
-    fetch('http://192.168.99.100:7004/api/data/totals', {
+    fetch(URL + ':7004/api/data/totals', {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -88,7 +89,7 @@ export function setPieChartData(data) {
 
 export function getPieChartData() {
   return dispatch => {
-    fetch('http://192.168.99.100:7004/api/data/businessTotals', {
+    fetch(URL + ':7004/api/data/businessTotals', {
       method: 'GET',
       headers: new Headers({
         'Content-Type': 'application/json'
