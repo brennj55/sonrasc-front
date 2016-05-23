@@ -9,6 +9,7 @@ import styles from '../../styles/flex.js';
 
 let headers = ['Name', 'Price', 'Quantity', 'VAT', 'Total', ''];
 let header = ['Name', 'Price', 'Quantity', 'VAT', 'Total'];
+let types = ['text', 'number', 'number', 'number', 'number'];
 
 const TableHead = () => (
   <TableRow>
@@ -38,6 +39,7 @@ let Items = ({ items, onClick, totalCost }) => (
         {items.toArray().map((item, key) =>
           <ItemContainer
               headers={header}
+              types={types}
               key={key}
               id={key}
             />

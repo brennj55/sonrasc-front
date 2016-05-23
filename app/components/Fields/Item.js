@@ -12,16 +12,17 @@ class Item extends Component {
   }
 
   render() {
-    const { id, headers } = this.props;
+    const { id, headers, types } = this.props;
 
     return (
       <Card style={styles.boxForm}>
-        {headers.map(header =>
+        {headers.map((header, key)=>
           <div style={[styles.innerFlex]} key={header}>
             <label style={[styles.flex1, styles.label]}>{header}</label>
             <ItemProperty
               id={id}
               header={header}
+              type={types[key]}
             />
             <CropImage cropType={'Item/' + id + '/' + header} />
           </div>
