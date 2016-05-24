@@ -20,7 +20,7 @@ class ItemPropertyField extends Component {
   }
 
   render() {
-    const { id, header, value, suggestions } = this.props;
+    const { id, header, value, suggestions, type } = this.props;
 
     return (
       <AutoComplete
@@ -30,6 +30,7 @@ class ItemPropertyField extends Component {
         id={id + " " + header}
         onUpdateInput={(value) => this.handleChange(header, value)}
         searchText={value}
+        type={type}
         dataSource={suggestions}
         filter={AutoComplete.noFilter}
         style={styles.cropFlex}

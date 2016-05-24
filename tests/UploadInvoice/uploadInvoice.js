@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as actions from '../../app/actions';
+import { uploadInvoice as actions } from '../../app/actions';
 import configureMockStore from 'redux-mock-store';
 import Immutable from 'immutable';
 import { items, image } from '../../app/reducers/UploadInvoice';
@@ -297,7 +297,7 @@ let tests = describe("Upload an Invoice", () => {
     });
   });
 
-  
+
 });
 
 export default tests;
